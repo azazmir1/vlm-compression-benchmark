@@ -1,0 +1,49 @@
+family: lfm2vl
+organization: Liquid AI
+architecture: hybrid-recurrent
+description: "SigLIP2 NaFlex vision encoder + 2-layer MLP projector + LFM2 recurrent-hybrid language backbone"
+hf_base: LiquidAI
+
+deployment_tracks:
+  - rpi5    # 450M variant only
+  - jetson
+  - gpu
+
+variants:
+  - name: LFM2-VL-450M
+    model_id: LiquidAI/LFM2-VL-450M
+    params_M: 450
+    sub_500M: true
+    vision_encoder: SigLIP2-Base-86M
+    lm_backbone: LFM2-350M
+    default_quant_target: int8
+
+  - name: LFM2-VL-1.6B
+    model_id: LiquidAI/LFM2-VL-1.6B
+    params_M: 1600
+    sub_500M: false
+    vision_encoder: SigLIP2-So400M
+    lm_backbone: LFM2-1.2B
+    default_quant_target: int4
+
+  - name: LFM2-VL-3B
+    model_id: LiquidAI/LFM2-VL-3B
+    params_M: 3000
+    sub_500M: false
+    vision_encoder: SigLIP2-So400M
+    lm_backbone: LFM2-2.6B
+    default_quant_target: int4
+
+  - name: LFM2.5-VL-1.6B
+    model_id: LiquidAI/LFM2.5-VL-1.6B
+    params_M: 1600
+    sub_500M: false
+    default_quant_target: int4
+
+input: [image, text]
+output: text
+trust_remote_code: false
+transformers_min_version: "4.57.0"
+
+eval_benchmarks: [vqav2, textvqa, pope]
+lora_target_modules: [q_proj, v_proj, k_proj, o_proj]

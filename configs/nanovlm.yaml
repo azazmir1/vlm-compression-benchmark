@@ -1,0 +1,30 @@
+family: nanovlm
+organization: HuggingFace
+architecture: decoder-only
+description: "SigLIP vision encoder + SmolLM2 language decoder, ~750 lines of pure PyTorch"
+hf_base: lusxvr
+
+deployment_tracks:
+  - rpi5
+  - jetson
+  - gpu
+
+variants:
+  - name: nanoVLM-222M
+    model_id: lusxvr/nanoVLM-222M
+    params_M: 222
+    sub_500M: true
+    default_quant_target: int8
+
+  - name: nanoVLM-450M
+    model_id: lusxvr/nanoVLM-450M
+    params_M: 450
+    sub_500M: true
+    default_quant_target: int8
+
+input: [image, text]
+output: text
+trust_remote_code: true
+
+eval_benchmarks: [vqav2, textvqa, pope]
+lora_target_modules: [q_proj, v_proj]

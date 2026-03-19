@@ -1,0 +1,48 @@
+family: qwen25vl
+organization: Alibaba (Qwen Team)
+architecture: decoder-only
+description: "Qwen Vision Transformer (native resolution dynamic resolution) + Qwen2.5 LLM"
+hf_base: Qwen
+
+deployment_tracks:
+  - jetson   # 3B variant with INT4
+  - gpu
+
+variants:
+  - name: Qwen2.5-VL-3B-Instruct
+    model_id: Qwen/Qwen2.5-VL-3B-Instruct
+    params_M: 3000
+    sub_500M: false
+    default_quant_target: int4
+
+  - name: Qwen2.5-VL-7B-Instruct
+    model_id: Qwen/Qwen2.5-VL-7B-Instruct
+    params_M: 7000
+    sub_500M: false
+    default_quant_target: int4
+
+  - name: Qwen2.5-VL-32B-Instruct
+    model_id: Qwen/Qwen2.5-VL-32B-Instruct
+    params_M: 32000
+    sub_500M: false
+    default_quant_target: int4
+    excluded: true   # above 16B cap
+
+  - name: Qwen2.5-VL-72B-Instruct
+    model_id: Qwen/Qwen2.5-VL-72B-Instruct
+    params_M: 72000
+    sub_500M: false
+    default_quant_target: int4
+    excluded: true   # above 16B cap
+
+input: [image, text]
+output: text
+trust_remote_code: false
+
+notes: >
+  GPU/Jetson-only track. No sub-500M variant.
+  Uses Qwen2VLForConditionalGeneration from transformers.
+  Supports dynamic resolution (any aspect ratio) via mrope position encoding.
+
+eval_benchmarks: [vqav2, textvqa, pope]
+lora_target_modules: [q_proj, v_proj, k_proj, o_proj]

@@ -1,0 +1,61 @@
+family: internvl25
+organization: OpenGVLab / Shanghai AI Laboratory
+architecture: encoder-decoder
+description: "InternViT-300M-448px vision encoder + InternLM / Qwen2 language backbone"
+hf_base: OpenGVLab
+
+deployment_tracks:
+  - jetson   # 1B and 2B with INT4
+  - gpu
+
+variants:
+  - name: InternVL2_5-1B
+    model_id: OpenGVLab/InternVL2_5-1B
+    params_M: 1000
+    sub_500M: false
+    vision_encoder: InternViT-300M-448px
+    lm_backbone: Qwen2.5-0.5B
+    default_quant_target: int4
+
+  - name: InternVL2_5-2B
+    model_id: OpenGVLab/InternVL2_5-2B
+    params_M: 2000
+    sub_500M: false
+    vision_encoder: InternViT-300M-448px
+    lm_backbone: Qwen2.5-1.5B
+    default_quant_target: int4
+
+  - name: InternVL2_5-4B
+    model_id: OpenGVLab/InternVL2_5-4B
+    params_M: 4000
+    sub_500M: false
+    vision_encoder: InternViT-300M-448px
+    lm_backbone: Qwen2.5-3B
+    default_quant_target: int4
+
+  - name: InternVL2_5-8B
+    model_id: OpenGVLab/InternVL2_5-8B
+    params_M: 8000
+    sub_500M: false
+    vision_encoder: InternViT-6B-448px-V1-5
+    lm_backbone: InternLM2_5-7B
+    default_quant_target: int4
+
+  - name: InternVL2_5-26B
+    model_id: OpenGVLab/InternVL2_5-26B
+    params_M: 26000
+    sub_500M: false
+    default_quant_target: int4
+    excluded: true   # above 16B cap
+
+input: [image, text]
+output: text
+trust_remote_code: true
+
+notes: >
+  GPU/Jetson-only track. Smallest full model is 1B.
+  Uses AutoModel.from_pretrained with trust_remote_code=True.
+  Uses model.chat() API for inference rather than standard generate().
+
+eval_benchmarks: [vqav2, textvqa, pope]
+lora_target_modules: [q_proj, v_proj, k_proj, o_proj]

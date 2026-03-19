@@ -1,0 +1,42 @@
+family: florence2
+organization: Microsoft
+architecture: encoder-decoder
+description: "DaViT image encoder + BART-based multimodal seq2seq transformer"
+hf_base: microsoft
+
+deployment_tracks:
+  - rpi5
+  - jetson
+  - gpu
+
+variants:
+  - name: Florence-2-base
+    model_id: microsoft/Florence-2-base
+    params_M: 232
+    sub_500M: true
+    default_quant_target: int8
+
+  - name: Florence-2-base-ft
+    model_id: microsoft/Florence-2-base-ft
+    params_M: 232
+    sub_500M: true
+    default_quant_target: int8
+
+  - name: Florence-2-large
+    model_id: microsoft/Florence-2-large
+    params_M: 771
+    sub_500M: false
+    default_quant_target: int4
+
+  - name: Florence-2-large-ft
+    model_id: microsoft/Florence-2-large-ft
+    params_M: 771
+    sub_500M: false
+    default_quant_target: int4
+
+input: [image, text]
+output: text
+trust_remote_code: true
+
+eval_benchmarks: [vqav2, textvqa, pope]
+lora_target_modules: [q_proj, v_proj, k_proj, out_proj]

@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Environments
+.venv/
+venv/
+env/
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# HuggingFace cache
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Logs
+logs/
+
+# Results (reproducible, don't track)
+results/
+
+# Claude Code
+.claude/

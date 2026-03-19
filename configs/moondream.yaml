@@ -1,0 +1,38 @@
+family: moondream
+organization: Moondream AI (vikhyatk)
+architecture: decoder-only
+description: "SigLIP-based vision encoder + custom causal transformer language model"
+hf_base: vikhyatk
+
+deployment_tracks:
+  - rpi5    # 0.5B variant, borderline — requires INT8/INT4
+  - jetson
+  - gpu
+
+variants:
+  - name: moondream2-0.5B
+    model_id: vikhyatk/moondream2
+    revision: "2024-08-26"   # 0.5B checkpoint
+    params_M: 500
+    sub_500M: true           # borderline (exactly 500M)
+    default_quant_target: int8
+
+  - name: moondream2-2B
+    model_id: vikhyatk/moondream2
+    revision: null           # latest = 2B
+    params_M: 2000
+    sub_500M: false
+    default_quant_target: int4
+
+input: [image, text]
+output: text
+trust_remote_code: true
+
+notes: >
+  Both 0.5B and 2B variants share the same HF repo (vikhyatk/moondream2).
+  Select checkpoint via the `revision` parameter.
+  Moondream uses model.encode_image() + model.answer_question() API
+  rather than standard generate().
+
+eval_benchmarks: [vqav2, textvqa, pope]
+lora_target_modules: [q_proj, v_proj]

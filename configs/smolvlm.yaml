@@ -1,0 +1,54 @@
+family: smolvlm
+organization: HuggingFace (HuggingFaceTB)
+architecture: encoder-decoder
+description: "SigLIP-B/16 image encoder + SmolLM2 language decoder (Idefics3 architecture)"
+hf_base: HuggingFaceTB
+
+deployment_tracks:
+  - rpi5
+  - jetson
+  - gpu
+
+variants:
+  - name: SmolVLM-256M-Instruct
+    model_id: HuggingFaceTB/SmolVLM-256M-Instruct
+    params_M: 256
+    sub_500M: true
+    default_quant_target: int8
+
+  - name: SmolVLM-256M-Base
+    model_id: HuggingFaceTB/SmolVLM-256M-Base
+    params_M: 256
+    sub_500M: true
+    default_quant_target: int8
+
+  - name: SmolVLM-500M-Instruct
+    model_id: HuggingFaceTB/SmolVLM-500M-Instruct
+    params_M: 500
+    sub_500M: true   # borderline
+    default_quant_target: int8
+
+  - name: SmolVLM-Instruct
+    model_id: HuggingFaceTB/SmolVLM-Instruct
+    params_M: 2200
+    sub_500M: false
+    default_quant_target: int4
+
+  - name: SmolVLM2-256M-Video-Instruct
+    model_id: HuggingFaceTB/SmolVLM2-256M-Video-Instruct
+    params_M: 256
+    sub_500M: true
+    default_quant_target: int8
+
+  - name: SmolVLM2-2.2B-Instruct
+    model_id: HuggingFaceTB/SmolVLM2-2.2B-Instruct
+    params_M: 2200
+    sub_500M: false
+    default_quant_target: int4
+
+input: [image, text]
+output: text
+trust_remote_code: false
+
+eval_benchmarks: [vqav2, textvqa, pope]
+lora_target_modules: [q_proj, v_proj, k_proj, out_proj]

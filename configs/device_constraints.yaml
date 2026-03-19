@@ -1,0 +1,61 @@
+# configs/device_constraints.yaml
+# Hardware specs and deployability thresholds for all target devices.
+
+devices:
+
+  a6000:
+    name: "NVIDIA RTX A6000"
+    type: gpu
+    vram_gb: 48
+    memory_limit_mb: 44000   # ~44 GB leaving room for activations
+    latency_limit_s: null    # no latency constraint on lab GPU
+    compute: cuda
+    notes: "Lab GPU — used for all baseline and compression experiments"
+
+  jetson_orin_nano:
+    name: "NVIDIA Jetson Orin Nano 8GB"
+    type: edge_gpu
+    unified_memory_gb: 8
+    memory_limit_mb: 6144    # 8 GB unified - ~2 GB OS overhead
+    latency_limit_s: 3.0
+    compute: cuda
+    notes: "Shared CPU+GPU memory; no dedicated VRAM"
+
+  rpi5:
+    name: "Raspberry Pi 5 8GB"
+    type: edge_cpu
+    ram_gb: 8
+    memory_limit_mb: 4096    # 8 GB RAM - ~4 GB OS + system overhead
+    latency_limit_s: 10.0
+    compute: cpu_only
+    notes: "No GPU; inference via ONNX Runtime CPU or PyTorch CPU"
+
+# ── Deployability matrix (expected, to be verified experimentally) ──────────
+#
+# Format: model_size_M | FP16 fits | INT8 fits | INT4 fits
+#                      | (Jetson, RPi5)
+#
+#    222–500M  →  Jetson: FP16 ✅   RPi5: FP16 ✅   (both devices, all precisions)
+#    500M–2B   →  Jetson: FP16 ✅   RPi5: INT4 only (latency risk on CPU)
+#    2B–4B     →  Jetson: INT4 ✅   RPi5: ❌         (CPU too slow)
+#    4B–8B     →  Jetson: INT4 ⚠️   RPi5: ❌
+#    >8B       →  GPU-only (excluded from this study by 16B cap)
+
+# ── 5 confirmed edge-compatible models (both devices) ──────────────────────
+both_device_models:
+  - lusxvr/nanoVLM-222M          # 222M — smallest in catalog
+  - microsoft/Florence-2-base    # 232M — encoder-decoder
+  - HuggingFaceTB/SmolVLM-256M-Instruct  # 256M
+  - lusxvr/nanoVLM-450M          # 450M
+  - LiquidAI/LFM2-VL-450M        # 450M — different architecture (hybrid recurrent)
+
+# ── GPU-only models (negative examples — cannot run on either edge device) ──
+gpu_only_models:
+  - apple/FastVLM-7B              # 7B — CPU latency ~120s/sample on RPi5
+  - Qwen/Qwen2.5-VL-7B-Instruct  # 7B — same
+  - OpenGVLab/InternVL2_5-8B     # 8B — memory exceeds Jetson unified limit
+  - OpenGVLab/InternVL2_5-4B     # 4B — memory OK on Jetson, CPU latency ~50s RPi5
+  - HuggingFaceTB/SmolVLM-Instruct       # 2.2B — CPU too slow on RPi5
+  - moondream/moondream2          # 2B — CPU too slow on RPi5
+  - LiquidAI/LFM2-VL-3B          # 3B — memory + latency exceeds RPi5 limits
+  - Qwen/Qwen2.5-VL-3B-Instruct  # 3B — same as above
