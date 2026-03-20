@@ -1,0 +1,21 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-1B",
+  "family": "internvl25",
+  "quant": "int4",
+  "backend": "bnb",
+  "num_params_M": 938.2,
+  "gpu_mem_load_mb": 1116.0,
+  "compression_ratio": 1.71,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.6403,
+      "avg_latency_s": 0.1856,
+      "peak_memory_mb": 1883.1,
+      "avg_memory_mb": 1883.1,
+      "throughput_sps": 5.383,
+      "avg_power_w": 111.3,
+      "avg_gpu_util_pct": 19.5,
+      "n_samples": 1000
+    }
+  }
+}

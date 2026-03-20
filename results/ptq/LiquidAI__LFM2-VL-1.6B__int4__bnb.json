@@ -1,0 +1,21 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-1.6B",
+  "family": "lfm2vl",
+  "quant": "int4",
+  "backend": "bnb",
+  "num_params_M": 1584.8,
+  "gpu_mem_load_mb": 1654.0,
+  "compression_ratio": 1.89,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.324,
+      "avg_latency_s": 0.1319,
+      "peak_memory_mb": 2955.1,
+      "avg_memory_mb": 2954.9,
+      "throughput_sps": 7.575,
+      "avg_power_w": 210.0,
+      "avg_gpu_util_pct": 53.5,
+      "n_samples": 1000
+    }
+  }
+}

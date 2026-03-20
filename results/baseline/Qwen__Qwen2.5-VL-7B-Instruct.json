@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "family": "qwen25vl",
+  "quant": "fp16",
+  "num_params_M": 8292.2,
+  "gpu_mem_load_mb": 15820.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8363,
+      "avg_latency_s": 0.1854,
+      "peak_memory_mb": 8137.1,
+      "avg_memory_mb": 7211.1,
+      "throughput_sps": 5.388,
+      "avg_power_w": 220.8,
+      "avg_gpu_util_pct": 56.3,
+      "n_samples": 1000
+    }
+  }
+}

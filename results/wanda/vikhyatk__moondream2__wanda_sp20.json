@@ -1,0 +1,24 @@
+{
+  "model_id": "vikhyatk/moondream2",
+  "family": "moondream",
+  "quant": "fp16",
+  "pruning_method": "wanda",
+  "target_sparsity": 0.2,
+  "actual_sparsity": 0.1998,
+  "pruned_layers": 154,
+  "n_calib_samples": 128,
+  "num_params_M": 1927.2,
+  "gpu_mem_load_mb": 3700.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.7877,
+      "avg_latency_s": 0.1776,
+      "peak_memory_mb": 2271.1,
+      "avg_memory_mb": 2215.5,
+      "throughput_sps": 5.627,
+      "avg_power_w": 112.3,
+      "avg_gpu_util_pct": 17.2,
+      "n_samples": 1000
+    }
+  }
+}

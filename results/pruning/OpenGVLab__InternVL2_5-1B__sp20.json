@@ -1,0 +1,23 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-1B",
+  "family": "internvl25",
+  "quant": "fp16",
+  "pruning_method": "magnitude_l1_unstructured",
+  "target_sparsity": 0.2,
+  "actual_sparsity": 0.2,
+  "pruned_layers": 171,
+  "num_params_M": 938.2,
+  "gpu_mem_load_mb": 1908.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.667,
+      "avg_latency_s": 0.0946,
+      "peak_memory_mb": 14845.1,
+      "avg_memory_mb": 14843.3,
+      "throughput_sps": 10.562,
+      "avg_power_w": 236.3,
+      "avg_gpu_util_pct": 60.5,
+      "n_samples": 1000
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model_id": "AIDC-AI/Ovis2-1B",
+  "family": "ovis2",
+  "quant": "fp16",
+  "pruning_method": "magnitude_l1_unstructured",
+  "target_sparsity": 0.4,
+  "actual_sparsity": 0.4,
+  "pruned_layers": 290,
+  "num_params_M": 1131.3,
+  "gpu_mem_load_mb": 2682.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.7403,
+      "avg_latency_s": 0.1604,
+      "peak_memory_mb": 6583.1,
+      "avg_memory_mb": 6583.1,
+      "throughput_sps": 6.23,
+      "avg_power_w": 103.4,
+      "avg_gpu_util_pct": 25.7,
+      "n_samples": 1000
+    }
+  }
+}

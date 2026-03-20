@@ -1,0 +1,23 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-450M",
+  "family": "lfm2vl",
+  "quant": "fp16",
+  "pruning_method": "magnitude_l1_unstructured",
+  "target_sparsity": 0.4,
+  "actual_sparsity": 0.4,
+  "pruned_layers": 95,
+  "num_params_M": 450.8,
+  "gpu_mem_load_mb": 918.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.423,
+      "avg_latency_s": 0.0813,
+      "peak_memory_mb": 8427.1,
+      "avg_memory_mb": 8426.6,
+      "throughput_sps": 12.287,
+      "avg_power_w": 181.0,
+      "avg_gpu_util_pct": 51.3,
+      "n_samples": 1000
+    }
+  }
+}

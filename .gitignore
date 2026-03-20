@@ -36,8 +36,8 @@ Thumbs.db
 # Logs
 logs/
 
-# Results (reproducible, don't track)
-results/
+# Results — tracked for reproducibility
+# results/
 
 # Claude Code
 .claude/

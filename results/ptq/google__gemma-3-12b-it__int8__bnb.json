@@ -1,0 +1,21 @@
+{
+  "model_id": "google/gemma-3-12b-it",
+  "family": "gemma3",
+  "quant": "int8",
+  "backend": "bnb",
+  "num_params_M": 12187.3,
+  "gpu_mem_load_mb": 13078.0,
+  "compression_ratio": 1.78,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.5553,
+      "avg_latency_s": 0.9707,
+      "peak_memory_mb": 22422.1,
+      "avg_memory_mb": 14999.1,
+      "throughput_sps": 1.03,
+      "avg_power_w": 194.7,
+      "avg_gpu_util_pct": 45.1,
+      "n_samples": 1000
+    }
+  }
+}

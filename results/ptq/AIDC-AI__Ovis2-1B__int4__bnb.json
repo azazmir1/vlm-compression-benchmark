@@ -1,0 +1,21 @@
+{
+  "model_id": "AIDC-AI/Ovis2-1B",
+  "family": "ovis2",
+  "quant": "int4",
+  "backend": "bnb",
+  "num_params_M": 1131.3,
+  "gpu_mem_load_mb": 2194.0,
+  "compression_ratio": 1.22,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.826,
+      "avg_latency_s": 0.2224,
+      "peak_memory_mb": 1883.1,
+      "avg_memory_mb": 1652.9,
+      "throughput_sps": 4.494,
+      "avg_power_w": 97.7,
+      "avg_gpu_util_pct": 16.2,
+      "n_samples": 1000
+    }
+  }
+}

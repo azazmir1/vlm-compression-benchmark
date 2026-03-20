@@ -1,0 +1,24 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-1.6B",
+  "family": "lfm2vl",
+  "quant": "fp16",
+  "pruning_method": "wanda",
+  "target_sparsity": 0.4,
+  "actual_sparsity": 0.3999,
+  "pruned_layers": 93,
+  "n_calib_samples": 128,
+  "num_params_M": 1584.8,
+  "gpu_mem_load_mb": 3130.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.802,
+      "avg_latency_s": 0.0774,
+      "peak_memory_mb": 7903.1,
+      "avg_memory_mb": 6707.2,
+      "throughput_sps": 12.902,
+      "avg_power_w": 210.8,
+      "avg_gpu_util_pct": 55.0,
+      "n_samples": 1000
+    }
+  }
+}

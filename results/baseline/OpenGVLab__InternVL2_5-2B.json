@@ -1,0 +1,19 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-2B",
+  "family": "internvl25",
+  "quant": "fp16",
+  "num_params_M": 2205.8,
+  "gpu_mem_load_mb": 4754.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.73,
+      "avg_latency_s": 0.0833,
+      "peak_memory_mb": 8137.1,
+      "avg_memory_mb": 8127.1,
+      "throughput_sps": 11.998,
+      "avg_power_w": 232.8,
+      "avg_gpu_util_pct": 60.0,
+      "n_samples": 1000
+    }
+  }
+}

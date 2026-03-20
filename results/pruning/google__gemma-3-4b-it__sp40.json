@@ -1,0 +1,23 @@
+{
+  "model_id": "google/gemma-3-4b-it",
+  "family": "gemma3",
+  "quant": "fp16",
+  "pruning_method": "magnitude_l1_unstructured",
+  "target_sparsity": 0.4,
+  "actual_sparsity": 0.4,
+  "pruned_layers": 239,
+  "num_params_M": 4300.1,
+  "gpu_mem_load_mb": 8204.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.2103,
+      "avg_latency_s": 0.6451,
+      "peak_memory_mb": 6583.1,
+      "avg_memory_mb": 2386.9,
+      "throughput_sps": 1.55,
+      "avg_power_w": 49.5,
+      "avg_gpu_util_pct": 8.2,
+      "n_samples": 1000
+    }
+  }
+}
