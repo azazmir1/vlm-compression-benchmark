@@ -104,7 +104,34 @@ def load_pope(n_samples: int = 1000):
     return samples
 
 
-# ── Inference helpers ────────────────────────────────────────────────────────
+# ── Accuracy metrics ─────────────────────────────────────────────────────────
+#
+# We compute multiple metrics per sample so that compression quality is
+# visible even when exact-match drops to zero:
+#
+#   exact_match   — standard VQAv2 soft accuracy (strict)
+#   contains      — does any gold answer appear inside the prediction?
+#   token_f1      — token-level F1 between prediction and best gold answer
+#   bleu          — BLEU score (n-gram precision with brevity penalty)
+#   rouge_l       — ROUGE-L (longest common subsequence F1)
+
+import re
+import string
+from collections import Counter
+from math import exp, log
+
+
+def _normalize_text(s: str) -> str:
+    """Lower-case, strip punctuation/articles, collapse whitespace."""
+    s = s.lower().strip()
+    # remove punctuation
+    s = s.translate(str.maketrans("", "", string.punctuation))
+    # remove articles
+    s = re.sub(r"\b(a|an|the)\b", " ", s)
+    return " ".join(s.split())
+
+
+# ── 1. Exact Match (standard VQAv2) ─────────────────────────────────────────
 
 def _vqa_accuracy(pred: str, gold_answers: list[str]) -> float:
     """VQA soft accuracy: min(count/3, 1)."""
@@ -112,6 +139,175 @@ def _vqa_accuracy(pred: str, gold_answers: list[str]) -> float:
     count = sum(1 for a in gold_answers if a.strip().lower() == pred_clean)
     return min(count / 3.0, 1.0)
 
+
+# ── 2. Contains Match ────────────────────────────────────────────────────────
+
+def _contains_accuracy(pred: str, gold_answers: list[str]) -> float:
+    """1.0 if any gold answer appears as a substring in the prediction.
+
+    Catches verbose predictions like "The answer is red" when gold is "red".
+    Uses normalized text to ignore punctuation/articles.
+    """
+    pred_norm = _normalize_text(pred)
+    if not pred_norm:
+        return 0.0
+    for gold in gold_answers:
+        gold_norm = _normalize_text(gold)
+        if gold_norm and gold_norm in pred_norm:
+            return 1.0
+    return 0.0
+
+
+# ── 3. Token F1 ──────────────────────────────────────────────────────────────
+
+def _token_f1(pred: str, gold_answers: list[str]) -> float:
+    """Token-level F1 score (best match against any gold answer).
+
+    Standard SQuAD-style: treats prediction and gold as bags of tokens,
+    computes precision (how many pred tokens are in gold) and recall
+    (how many gold tokens are in pred), returns their harmonic mean.
+    """
+    pred_tokens = _normalize_text(pred).split()
+    if not pred_tokens:
+        return 0.0
+
+    best_f1 = 0.0
+    for gold in gold_answers:
+        gold_tokens = _normalize_text(gold).split()
+        if not gold_tokens:
+            continue
+        common = set(pred_tokens) & set(gold_tokens)
+        if not common:
+            continue
+        precision = len(common) / len(pred_tokens)
+        recall = len(common) / len(gold_tokens)
+        f1 = 2 * precision * recall / (precision + recall)
+        best_f1 = max(best_f1, f1)
+
+    return best_f1
+
+
+# ── 4. BLEU Score ────────────────────────────────────────────────────────────
+
+def _get_ngrams(tokens: list[str], n: int) -> Counter:
+    """Extract n-gram counts from a token list."""
+    return Counter(tuple(tokens[i:i + n]) for i in range(len(tokens) - n + 1))
+
+
+def _bleu_score(pred: str, gold_answers: list[str],
+                max_n: int = 4) -> float:
+    """Sentence-level BLEU (up to max_n-grams) against best gold answer.
+
+    Pure Python implementation — no dependencies. For unigram-only
+    matches (common in VQA), uses exact precision without smoothing
+    so that zero overlap = zero BLEU. Smoothing is only applied for
+    higher-order n-grams to avoid log(0).
+    """
+    pred_tokens = _normalize_text(pred).split()
+    if not pred_tokens:
+        return 0.0
+
+    best_bleu = 0.0
+    for gold in gold_answers:
+        gold_tokens = _normalize_text(gold).split()
+        if not gold_tokens:
+            continue
+
+        # Clipped n-gram precisions
+        log_precisions = []
+        for n in range(1, min(max_n, len(pred_tokens), len(gold_tokens)) + 1):
+            pred_ngrams = _get_ngrams(pred_tokens, n)
+            gold_ngrams = _get_ngrams(gold_tokens, n)
+            clipped = sum(min(pred_ngrams[ng], gold_ngrams.get(ng, 0))
+                          for ng in pred_ngrams)
+            total = max(sum(pred_ngrams.values()), 1)
+            if n == 1:
+                # No smoothing for unigrams: zero overlap = zero BLEU
+                if clipped == 0:
+                    break
+                precision = clipped / total
+            else:
+                # Add-1 smoothing for higher n-grams (Chen & Cherry, 2014)
+                precision = (clipped + 1) / (total + 1)
+            log_precisions.append(log(precision))
+
+        if not log_precisions:
+            continue
+
+        # Geometric mean of precisions
+        avg_log_prec = sum(log_precisions) / len(log_precisions)
+
+        # Brevity penalty
+        bp = min(1.0, exp(1 - len(gold_tokens) / len(pred_tokens))) \
+            if len(pred_tokens) < len(gold_tokens) else 1.0
+
+        bleu = bp * exp(avg_log_prec)
+        best_bleu = max(best_bleu, bleu)
+
+    return best_bleu
+
+
+# ── 5. ROUGE-L ───────────────────────────────────────────────────────────────
+
+def _lcs_length(x: list[str], y: list[str]) -> int:
+    """Length of the longest common subsequence between two token lists."""
+    m, n = len(x), len(y)
+    # Space-optimized: only keep two rows
+    prev = [0] * (n + 1)
+    curr = [0] * (n + 1)
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if x[i - 1] == y[j - 1]:
+                curr[j] = prev[j - 1] + 1
+            else:
+                curr[j] = max(prev[j], curr[j - 1])
+        prev, curr = curr, [0] * (n + 1)
+    return prev[n]
+
+
+def _rouge_l(pred: str, gold_answers: list[str]) -> float:
+    """ROUGE-L F1 score (longest common subsequence) against best gold answer.
+
+    Captures word-order similarity — a prediction that contains the gold
+    answer's words in roughly the right order scores high even if it has
+    extra words.
+    """
+    pred_tokens = _normalize_text(pred).split()
+    if not pred_tokens:
+        return 0.0
+
+    best_f1 = 0.0
+    for gold in gold_answers:
+        gold_tokens = _normalize_text(gold).split()
+        if not gold_tokens:
+            continue
+
+        lcs = _lcs_length(pred_tokens, gold_tokens)
+        if lcs == 0:
+            continue
+
+        precision = lcs / len(pred_tokens)
+        recall = lcs / len(gold_tokens)
+        f1 = 2 * precision * recall / (precision + recall)
+        best_f1 = max(best_f1, f1)
+
+    return best_f1
+
+
+# ── Multi-metric scorer ──────────────────────────────────────────────────────
+
+def _vqa_multi_metric(pred: str, gold_answers: list[str]) -> dict:
+    """Compute all accuracy metrics for one VQA sample."""
+    return {
+        "exact_match": _vqa_accuracy(pred, gold_answers),
+        "contains":    _contains_accuracy(pred, gold_answers),
+        "token_f1":    _token_f1(pred, gold_answers),
+        "bleu":        _bleu_score(pred, gold_answers),
+        "rouge_l":     _rouge_l(pred, gold_answers),
+    }
+
+
+# ── POPE (unchanged — binary yes/no, exact match is appropriate) ─────────────
 
 def _pope_accuracy(pred: str, gold_answers: list[str]) -> float:
     # Use first-word exact match (POPE standard): substring "yes" in pred_clean
@@ -270,8 +466,19 @@ def _internvl_preprocess(image: Image.Image):
 def evaluate_dataset(model, processor, samples: list, family: str,
                      device: str, dataset_name: str,
                      accuracy_fn, batch_size: int = 1) -> dict:
+    """Evaluate model on a dataset with multi-metric scoring.
+
+    For VQA datasets (accuracy_fn == _vqa_accuracy), computes all metrics:
+      exact_match, contains, token_f1, bleu, rouge_l.
+    For POPE, only exact match is used (binary yes/no task).
+    """
     logger.info(f"  Evaluating on {dataset_name} ({len(samples)} samples)...")
+
+    # Determine if we should compute multi-metric (VQA-style) or single (POPE)
+    use_multi = (accuracy_fn is _vqa_accuracy)
+
     scores, latencies = [], []
+    multi_scores = []  # list of dicts when use_multi=True
     profiler = GPUProfiler(device_index=0)
 
     skipped = 0
@@ -288,21 +495,59 @@ def evaluate_dataset(model, processor, samples: list, family: str,
                     torch.cuda.empty_cache()
                 continue
             latencies.append(time.perf_counter() - t0)
-            scores.append(accuracy_fn(pred, sample["answers"]))
-    if skipped:
-        logger.warning(f"  {dataset_name}: skipped {skipped} samples due to errors")
 
+            if use_multi:
+                m = _vqa_multi_metric(pred, sample["answers"])
+                multi_scores.append(m)
+                scores.append(m["exact_match"])
+            else:
+                scores.append(accuracy_fn(pred, sample["answers"]))
+
+    if skipped:
+        logger.warning(f"  {dataset_name}: skipped {skipped}/{len(samples)} samples due to errors")
+
+    n_evaluated = len(scores)
     stats = profiler.stats()
-    avg_acc   = sum(scores) / len(scores) if scores else 0.0
+    avg_acc   = sum(scores) / n_evaluated if n_evaluated else 0.0
     avg_lat   = sum(latencies) / len(latencies) if latencies else 0.0
     throughput = len(latencies) / stats.wall_time_s if stats.wall_time_s > 0 else 0.0
 
-    logger.info(
-        f"  {dataset_name}: acc={avg_acc:.4f}  "
-        f"lat={avg_lat:.3f}s  mem={stats.peak_memory_mb:.0f}MB  "
-        f"tput={throughput:.2f} samp/s"
-    )
-    return {
+    # Flag suspicious results
+    if n_evaluated == 0:
+        logger.error(
+            f"  {dataset_name}: ALL {len(samples)} samples failed! "
+            f"Inference is broken — accuracy=0.0 is NOT valid."
+        )
+    elif avg_acc == 0.0 and n_evaluated >= 5:
+        logger.error(
+            f"  {dataset_name}: acc=0.0 on {n_evaluated} samples — "
+            f"model output is likely broken (empty/garbage predictions)."
+        )
+
+    # Aggregate multi-metric scores
+    if use_multi and multi_scores:
+        metric_names = list(multi_scores[0].keys())
+        metric_avgs = {
+            name: round(sum(m[name] for m in multi_scores) / len(multi_scores), 4)
+            for name in metric_names
+        }
+        logger.info(
+            f"  {dataset_name}: "
+            + "  ".join(f"{k}={v:.4f}" for k, v in metric_avgs.items())
+            + f"  lat={avg_lat:.3f}s  mem={stats.peak_memory_mb:.0f}MB  "
+            + f"tput={throughput:.2f} samp/s  "
+            + f"evaluated={n_evaluated}/{len(samples)}"
+        )
+    else:
+        metric_avgs = {}
+        logger.info(
+            f"  {dataset_name}: acc={avg_acc:.4f}  "
+            f"lat={avg_lat:.3f}s  mem={stats.peak_memory_mb:.0f}MB  "
+            f"tput={throughput:.2f} samp/s  "
+            f"evaluated={n_evaluated}/{len(samples)}"
+        )
+
+    result = {
         "accuracy":        round(avg_acc,   4),
         "avg_latency_s":   round(avg_lat,   4),
         "peak_memory_mb":  round(stats.peak_memory_mb, 1),
@@ -311,7 +556,17 @@ def evaluate_dataset(model, processor, samples: list, family: str,
         "avg_power_w":     round(stats.avg_power_w,    1),
         "avg_gpu_util_pct":round(stats.avg_gpu_util_pct, 1),
         "n_samples":       len(samples),
+        "n_evaluated":     n_evaluated,
+        "n_skipped":       skipped,
+        "all_failed":      n_evaluated == 0,
+        "zero_accuracy_warning": avg_acc == 0.0 and n_evaluated >= 5,
     }
+
+    # Add multi-metric averages (only for VQA-style datasets)
+    if metric_avgs:
+        result["metrics"] = metric_avgs
+
+    return result
 
 
 # ── Main ─────────────────────────────────────────────────────────────────────
