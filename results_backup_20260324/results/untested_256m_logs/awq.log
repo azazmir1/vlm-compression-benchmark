@@ -1,0 +1,46 @@
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Skipping import of cpp extensions due to incompatible torch version 2.8.0 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+/home/cselab/.local/lib/python3.10/site-packages/awq/__init__.py:21: DeprecationWarning: 
+I have left this message as the final dev message to help you transition.
+
+Important Notice:
+- AutoAWQ is officially deprecated and will no longer be maintained.
+- The last tested configuration used Torch 2.6.0 and Transformers 4.51.3.
+- If future versions of Transformers break AutoAWQ compatibility, please report the issue to the Transformers project.
+
+Alternative:
+- AutoAWQ has been adopted by the vLLM Project: https://github.com/vllm-project/llm-compressor
+
+For further inquiries, feel free to reach out:
+- X: https://x.com/casper_hansen_
+- LinkedIn: https://www.linkedin.com/in/casper-hansen-804005170/
+
+  warnings.warn(_FINAL_DEV_MESSAGE, category=DeprecationWarning, stacklevel=1)
+Traceback (most recent call last):
+  File "/home/cselab/vlm-compression-benchmark/compression/ptq/run_awq.py", line 59, in quantize_awq
+    from awq import AutoAWQForCausalLM
+  File "/home/cselab/.local/lib/python3.10/site-packages/awq/__init__.py", line 24, in <module>
+    from awq.models.auto import AutoAWQForCausalLM
+  File "/home/cselab/.local/lib/python3.10/site-packages/awq/models/__init__.py", line 1, in <module>
+    from .mpt import MptAWQForCausalLM
+  File "/home/cselab/.local/lib/python3.10/site-packages/awq/models/mpt.py", line 1, in <module>
+    from .base import BaseAWQForCausalLM
+  File "/home/cselab/.local/lib/python3.10/site-packages/awq/models/base.py", line 49, in <module>
+    from awq.quantize.quantizer import AwqQuantizer
+  File "/home/cselab/.local/lib/python3.10/site-packages/awq/quantize/quantizer.py", line 11, in <module>
+    from awq.quantize.scale import apply_scale, apply_clip
+  File "/home/cselab/.local/lib/python3.10/site-packages/awq/quantize/scale.py", line 12, in <module>
+    from transformers.activations import NewGELUActivation, PytorchGELUTanh, GELUActivation
+ImportError: cannot import name 'PytorchGELUTanh' from 'transformers.activations' (/home/cselab/.local/lib/python3.10/site-packages/transformers/activations.py)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/cselab/vlm-compression-benchmark/compression/ptq/run_awq.py", line 202, in <module>
+    main()
+  File "/home/cselab/vlm-compression-benchmark/compression/ptq/run_awq.py", line 159, in main
+    quantize_awq(model_id, family, awq_save_dir,
+  File "/home/cselab/vlm-compression-benchmark/compression/ptq/run_awq.py", line 61, in quantize_awq
+    raise ImportError(
+ImportError: AutoAWQ not installed. Install with: pip install autoawq

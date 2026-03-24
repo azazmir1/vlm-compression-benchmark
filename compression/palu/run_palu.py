@@ -116,9 +116,10 @@ class PALULinear(nn.Module):
 
     def forward(self, x):
         # Two-step: x @ B^T → (batch, seq, rank), then @ A^T → (batch, seq, out)
-        out = (x @ self.B.t()) @ self.A.t()
+        dtype = x.dtype
+        out = (x @ self.B.to(dtype).t()) @ self.A.to(dtype).t()
         if self.bias is not None:
-            out = out + self.bias
+            out = out + self.bias.to(dtype)
         return out
 
 
