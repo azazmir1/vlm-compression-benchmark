@@ -353,7 +353,29 @@ def run_inference(model, processor, sample: dict, family: str,
             )
         pred = processor.batch_decode(ids, skip_special_tokens=True)[0]
 
-    elif family in ("smolvlm", "nanovlm", "fastvlm"):
+    elif family == "nanovlm":
+        messages = [{
+            "role": "user",
+            "content": [{"type": "image"}, {"type": "text", "text": question}],
+        }]
+        prompt = processor.apply_chat_template(messages, add_generation_prompt=True)
+        inputs = processor(text=prompt, images=[image], return_tensors="pt").to(device)
+        # Cast image tensors to model dtype (ToTensor produces float32)
+        model_dtype = next(model.parameters()).dtype
+        images_list = inputs.get("images")
+        if images_list is not None:
+            images_list = [t.to(dtype=model_dtype) for t in images_list]
+        with torch.no_grad():
+            ids = model.generate(
+                input_ids=inputs["input_ids"],
+                images=images_list,
+                attention_mask=inputs.get("attention_mask"),
+                max_new_tokens=max_new_tokens,
+                greedy=True,
+            )
+        pred = processor.batch_decode(ids, skip_special_tokens=True)[0]
+
+    elif family == "smolvlm":
         messages = [{
             "role": "user",
             "content": [{"type": "image"}, {"type": "text", "text": question}],
@@ -364,6 +386,46 @@ def run_inference(model, processor, sample: dict, family: str,
             ids = model.generate(**inputs, max_new_tokens=max_new_tokens)
         pred = processor.batch_decode(ids[:, inputs["input_ids"].shape[1]:],
                                       skip_special_tokens=True)[0]
+
+    elif family == "fastvlm":
+        # FastVLM (LlavaQwen2) needs the special IMAGE_TOKEN_INDEX = -200
+        # inserted into input_ids so the model knows where to inject vision
+        # features.  Follow the same pattern as the working profiling framework.
+        IMAGE_TOKEN_INDEX = -200
+        messages = [{"role": "user", "content": f"<image>\n{question}"}]
+        rendered = processor.apply_chat_template(
+            messages, add_generation_prompt=True, tokenize=False,
+        )
+        # Split at <image> placeholder and tokenize each segment
+        pre, post = rendered.split("<image>", 1)
+        pre_ids = processor.tokenizer(
+            pre, return_tensors="pt", add_special_tokens=False,
+        ).input_ids
+        post_ids = processor.tokenizer(
+            post, return_tensors="pt", add_special_tokens=False,
+        ).input_ids
+        img_tok = torch.tensor([[IMAGE_TOKEN_INDEX]], dtype=pre_ids.dtype)
+        input_ids = torch.cat([pre_ids, img_tok, post_ids], dim=1).to(device)
+        attention_mask = torch.ones_like(input_ids, device=device)
+        # Get pixel values from the vision tower's image processor
+        image_rgb = image.convert("RGB")
+        pixel_values = model.get_vision_tower().image_processor(
+            images=image_rgb, return_tensors="pt",
+        )["pixel_values"]
+        pixel_values = pixel_values.to(device, dtype=next(model.parameters()).dtype)
+        with torch.no_grad():
+            ids = model.generate(
+                inputs=input_ids,
+                attention_mask=attention_mask,
+                images=pixel_values,
+                max_new_tokens=max_new_tokens,
+                do_sample=False,
+            )
+        # FastVLM's custom generate() returns only new tokens (not
+        # input_ids prefix), so decode directly without slicing.
+        pred = processor.batch_decode(ids, skip_special_tokens=True)[0]
+        # Take only the first line — FastVLM tends to repeat/ramble after it.
+        pred = pred.split("\n")[0].strip()
 
     elif family == "lfm2vl":
         messages = [{

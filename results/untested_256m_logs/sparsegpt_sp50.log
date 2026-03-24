@@ -1,0 +1,24 @@
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Skipping import of cpp extensions due to incompatible torch version 2.8.0 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+23:22:18 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct (fp16) for SparseGPT pruning...
+23:22:18 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct  family=smolvlm  quant=fp16  dtype=torch.float16
+23:22:18 | INFO | [GPU mem] before load: 2271.3 MB used
+`torch_dtype` is deprecated! Use `dtype` instead!
+23:22:22 | INFO | [GPU mem] after load: 2815.9 MB used
+23:22:22 | INFO | Loaded HuggingFaceTB/SmolVLM-256M-Instruct | VRAM delta: 544.7 MB
+23:22:22 | INFO | Calibration pass: collecting Hessians (32 samples)...
+23:22:22 | INFO | Loading VQAv2 validation (n=32)...
+23:22:25 | INFO |   Loaded 32 VQAv2 samples.
+23:23:29 | INFO |   Collected Hessians for 212 layers
+23:23:29 | INFO | Applying SparseGPT pruning at sparsity=0.5...
+Traceback (most recent call last):
+  File "/home/cselab/vlm-compression-benchmark/compression/pruning/run_sparsegpt.py", line 372, in <module>
+    main()
+  File "/home/cselab/vlm-compression-benchmark/compression/pruning/run_sparsegpt.py", line 336, in main
+    prune_stats = apply_sparsegpt_pruning(model, collector, args.sparsity,
+  File "/home/cselab/vlm-compression-benchmark/compression/pruning/run_sparsegpt.py", line 245, in apply_sparsegpt_pruning
+    stats = spg.prune(sparsity, blocksize=blocksize)
+  File "/home/cselab/vlm-compression-benchmark/compression/pruning/run_sparsegpt.py", line 121, in prune
+    H_inv = torch.linalg.cholesky(H)
+RuntimeError: Error in dlopen: /home/cselab/.local/lib/python3.10/site-packages/torch/lib/libtorch_cuda_linalg.so: undefined symbol: cusolverDnXsyevBatched_bufferSize, version libcusolver.so.11

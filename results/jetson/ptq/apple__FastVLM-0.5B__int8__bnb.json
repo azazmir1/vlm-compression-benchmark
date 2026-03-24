@@ -1,0 +1,23 @@
+{
+  "model_id": "apple/FastVLM-0.5B",
+  "family": "fastvlm",
+  "param_M": 500,
+  "precision": "int8",
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-20T14:48:39",
+  "status": "ERROR",
+  "metrics": {
+    "status": "ERROR",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 25,
+    "error_msg": "Traceback (most recent call last):\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 212, in _load_fastvlm\n    processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/auto/processing_auto.py\", line 416, in from_pretrained\n    return PROCESSOR_MAPPING[type(config)].from_pretrained(pretrained_model_name_or_path, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/processing_utils.py\", line 1403, in from_pretrained\n    args = cls._get_arguments_from_pretrained(pretrained_model_name_or_path, processor_dict, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/processing_utils.py\", line 1524, in _get_arguments_from_pretrained\n    sub_processor = auto_processor_class.from_pretrained(\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/auto/image_processing_auto.py\", line 519, in from_pretrained\n    raise initial_exception\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/auto/image_processing_auto.py\", line 501, in from_pretrained\n    config_dict, _ = ImageProcessingMixin.get_image_processor_dict(\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/image_processing_base.py\", line 334, in get_image_processor_dict\n    raise OSError(\nOSError: Can't load image processor for 'apple/FastVLM-0.5B'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'apple/FastVLM-0.5B' is the correct path to a directory containing a preprocessor_config.json file\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/cselab/vlm-compression-benchmark/jetson/safety.py\", line 154, in safe_load_model\n    model, processor, meta = load_model(model_id, quant=quant, family=family)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 408, in load_model\n    model, processor = loader(model_id, bnb, dtype, device_map)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 214, in _load_fastvlm\n    raise RuntimeError(\nRuntimeError: Cannot load processor for FastVLM 'apple/FastVLM-0.5B': Can't load image processor for 'apple/FastVLM-0.5B'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'apple/FastVLM-0.5B' is the correct path to a directory containing a preprocessor_config.json file. The HuggingFace repo may be missing preprocessor_config.json.\n"
+  }
+}

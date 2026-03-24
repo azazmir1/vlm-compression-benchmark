@@ -1,0 +1,12 @@
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Skipping import of cpp extensions due to incompatible torch version 2.8.0 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+00:13:18 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct (fp16) for Wanda pruning...
+00:13:18 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct  family=smolvlm  quant=fp16  dtype=torch.float16
+00:13:18 | INFO | [GPU mem] before load: 3247.3 MB used
+`torch_dtype` is deprecated! Use `dtype` instead!
+00:13:21 | INFO | [GPU mem] after load: 3310.2 MB used
+00:13:21 | INFO | Loaded HuggingFaceTB/SmolVLM-256M-Instruct | VRAM delta: 62.9 MB
+00:13:21 | INFO | Calibration pass: collecting activation norms (128 samples)...
+00:13:22 | INFO | Loading VQAv2 validation (n=128)...
+00:13:25 | INFO |   Loaded 128 VQAv2 samples.

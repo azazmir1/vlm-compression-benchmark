@@ -1,0 +1,288 @@
+{
+  "description": "Pre-quantized HuggingFace counterparts for baseline VLM models",
+  "last_updated": "2026-03-21",
+  "notes": [
+    "INT4 GPTQ/AWQ are the most useful for Jetson (4x memory reduction)",
+    "No INT8 GPTQ/AWQ variants exist — community standardized on INT4",
+    "GGUF requires llama.cpp runtime, not PyTorch — separate pipeline",
+    "Models without counterparts need SVD-LLM or cannot be compressed"
+  ],
+  "models": {
+    "Qwen/Qwen2.5-VL-3B-Instruct": {
+      "params_M": 3755,
+      "fp16_est_gb": 7.5,
+      "family": "qwen25vl",
+      "jetson_fp16_status": "OOM_LOAD",
+      "quantized": {
+        "int4_awq": {
+          "model_id": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+          "source": "official",
+          "est_gb": 2.0
+        },
+        "int4_gptq": {
+          "model_id": "hfl/Qwen2.5-VL-3B-Instruct-GPTQ-Int4",
+          "source": "community",
+          "est_gb": 2.0
+        },
+        "gguf": {
+          "model_id": "Mungert/Qwen2.5-VL-3B-Instruct-GGUF",
+          "source": "community"
+        }
+      }
+    },
+    "Qwen/Qwen2.5-VL-7B-Instruct": {
+      "params_M": 8292,
+      "fp16_est_gb": 16.6,
+      "family": "qwen25vl",
+      "jetson_fp16_status": "OOM_LOAD",
+      "quantized": {
+        "int4_awq": {
+          "model_id": "Qwen/Qwen2.5-VL-7B-Instruct-AWQ",
+          "source": "official",
+          "est_gb": 4.0
+        },
+        "int4_gptq": {
+          "model_id": "hfl/Qwen2.5-VL-7B-Instruct-GPTQ-Int4",
+          "source": "community",
+          "est_gb": 4.0
+        },
+        "gguf": {
+          "model_id": "lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF",
+          "source": "community"
+        }
+      }
+    },
+    "OpenGVLab/InternVL2_5-4B": {
+      "params_M": 3713,
+      "fp16_est_gb": 7.4,
+      "family": "internvl25",
+      "jetson_fp16_status": "OOM_LOAD",
+      "quantized": {
+        "int4_awq": {
+          "model_id": "OpenGVLab/InternVL2_5-4B-AWQ",
+          "source": "official",
+          "est_gb": 2.5
+        },
+        "gguf": {
+          "model_id": "ggml-org/InternVL2_5-4B-GGUF",
+          "source": "community"
+        }
+      }
+    },
+    "OpenGVLab/InternVL2_5-8B": {
+      "params_M": 8075,
+      "fp16_est_gb": 16.2,
+      "family": "internvl25",
+      "jetson_fp16_status": "OOM_LOAD",
+      "quantized": {
+        "int4_awq": {
+          "model_id": "OpenGVLab/InternVL2_5-8B-AWQ",
+          "source": "official",
+          "est_gb": 4.0
+        }
+      }
+    },
+    "OpenGVLab/InternVL2_5-1B": {
+      "params_M": 938,
+      "fp16_est_gb": 1.9,
+      "family": "internvl25",
+      "jetson_fp16_status": "PASS",
+      "quantized": {
+        "gguf": {
+          "model_id": "ggml-org/InternVL2_5-1B-GGUF",
+          "source": "community"
+        }
+      }
+    },
+    "OpenGVLab/InternVL2_5-2B": {
+      "params_M": 2206,
+      "fp16_est_gb": 4.4,
+      "family": "internvl25",
+      "jetson_fp16_status": "PASS",
+      "quantized": {}
+    },
+    "AIDC-AI/Ovis2-1B": {
+      "params_M": 1131,
+      "fp16_est_gb": 2.3,
+      "family": "ovis2",
+      "jetson_fp16_status": "ERROR",
+      "quantized": {}
+    },
+    "AIDC-AI/Ovis2-2B": {
+      "params_M": 2223,
+      "fp16_est_gb": 4.4,
+      "family": "ovis2",
+      "jetson_fp16_status": "ERROR",
+      "quantized": {
+        "int4_gptq": {
+          "model_id": "AIDC-AI/Ovis2-2B-GPTQ-Int4",
+          "source": "official",
+          "est_gb": 1.5
+        }
+      }
+    },
+    "AIDC-AI/Ovis2-4B": {
+      "params_M": 4305,
+      "fp16_est_gb": 8.6,
+      "family": "ovis2",
+      "jetson_fp16_status": "ERROR",
+      "quantized": {
+        "int4_gptq": {
+          "model_id": "AIDC-AI/Ovis2-4B-GPTQ-Int4",
+          "source": "official",
+          "est_gb": 2.5
+        }
+      }
+    },
+    "AIDC-AI/Ovis2-8B": {
+      "params_M": 8935,
+      "fp16_est_gb": 17.9,
+      "family": "ovis2",
+      "jetson_fp16_status": "ERROR",
+      "quantized": {
+        "int4_gptq": {
+          "model_id": "AIDC-AI/Ovis2-8B-GPTQ-Int4",
+          "source": "official",
+          "est_gb": 4.5
+        }
+      }
+    },
+    "google/gemma-3-4b-it": {
+      "params_M": 4300,
+      "fp16_est_gb": 8.6,
+      "family": "gemma3",
+      "jetson_fp16_status": "OOM_LOAD",
+      "quantized": {
+        "int4_gptq": {
+          "model_id": "ISTA-DASLab/gemma-3-4b-it-GPTQ-4b-128g",
+          "source": "community",
+          "est_gb": 2.5
+        },
+        "int4_awq": {
+          "model_id": "gaunernst/gemma-3-4b-it-int4-awq",
+          "source": "community",
+          "est_gb": 2.5
+        },
+        "gguf_qat": {
+          "model_id": "google/gemma-3-4b-it-qat-q4_0-gguf",
+          "source": "official"
+        },
+        "gguf": {
+          "model_id": "ggml-org/gemma-3-4b-it-GGUF",
+          "source": "community"
+        }
+      }
+    },
+    "google/gemma-3-12b-it": {
+      "params_M": 12187,
+      "fp16_est_gb": 24.4,
+      "family": "gemma3",
+      "jetson_fp16_status": "OOM_LOAD",
+      "quantized": {
+        "int4_gptq": {
+          "model_id": "ISTA-DASLab/gemma-3-12b-it-GPTQ-4b-128g",
+          "source": "community",
+          "est_gb": 6.0
+        },
+        "int4_awq": {
+          "model_id": "pytorch/gemma-3-12b-it-AWQ-INT4",
+          "source": "community",
+          "est_gb": 6.0
+        },
+        "gguf_qat": {
+          "model_id": "google/gemma-3-12b-it-qat-q4_0-gguf",
+          "source": "official"
+        }
+      }
+    },
+    "HuggingFaceTB/SmolVLM-256M-Instruct": {
+      "params_M": 257,
+      "fp16_est_gb": 0.5,
+      "family": "smolvlm",
+      "jetson_fp16_status": "PASS",
+      "quantized": {
+        "int4_gptq": {
+          "model_id": "vasanth0475/SmolVLM-256M-Instruct-GPTQ-Int4",
+          "source": "community",
+          "est_gb": 0.2
+        },
+        "gguf": {
+          "model_id": "ggml-org/SmolVLM-256M-Instruct-GGUF",
+          "source": "community"
+        }
+      }
+    },
+    "HuggingFaceTB/SmolVLM-500M-Instruct": {
+      "params_M": 508,
+      "fp16_est_gb": 1.0,
+      "family": "smolvlm",
+      "jetson_fp16_status": "PASS",
+      "quantized": {
+        "gguf": {
+          "model_id": "ggml-org/SmolVLM-500M-Instruct-GGUF",
+          "source": "community"
+        }
+      }
+    },
+    "HuggingFaceTB/SmolVLM-Instruct": {
+      "params_M": 2246,
+      "fp16_est_gb": 4.5,
+      "family": "smolvlm",
+      "jetson_fp16_status": "PASS_BORDERLINE",
+      "quantized": {
+        "int4_gptq": {
+          "model_id": "ronantakizawa/SmolVLM-Instruct-gptq",
+          "source": "community",
+          "est_gb": 1.2
+        },
+        "int4_awq": {
+          "model_id": "ronantakizawa/SmolVLM-Instruct-awq",
+          "source": "community",
+          "est_gb": 1.2
+        },
+        "gguf": {
+          "model_id": "ggml-org/SmolVLM-Instruct-GGUF",
+          "source": "community"
+        }
+      }
+    },
+    "LiquidAI/LFM2-VL-450M": {
+      "params_M": 451,
+      "fp16_est_gb": 0.9,
+      "family": "lfm2vl",
+      "jetson_fp16_status": "PASS",
+      "quantized": {
+        "gguf": {
+          "model_id": "LiquidAI/LFM2-VL-450M-GGUF",
+          "source": "official"
+        }
+      }
+    },
+    "LiquidAI/LFM2-VL-1.6B": {
+      "params_M": 1585,
+      "fp16_est_gb": 3.2,
+      "family": "lfm2vl",
+      "jetson_fp16_status": "PASS",
+      "quantized": {}
+    },
+    "LiquidAI/LFM2-VL-3B": {
+      "params_M": 2999,
+      "fp16_est_gb": 6.0,
+      "family": "lfm2vl",
+      "jetson_fp16_status": "MEM_CRITICAL",
+      "quantized": {}
+    },
+    "vikhyatk/moondream2": {
+      "params_M": 1927,
+      "fp16_est_gb": 3.9,
+      "family": "moondream",
+      "jetson_fp16_status": "PASS",
+      "quantized": {
+        "gguf": {
+          "model_id": "moondream/moondream2-gguf",
+          "source": "official"
+        }
+      }
+    }
+  }
+}

@@ -3,17 +3,17 @@
   "family": "smolvlm",
   "quant": "fp16",
   "num_params_M": 507.5,
-  "gpu_mem_load_mb": 1046.0,
+  "gpu_mem_load_mb": 1405.4921875,
   "benchmarks": {
     "vqav2": {
-      "accuracy": 0.7387,
-      "avg_latency_s": 0.3953,
-      "peak_memory_mb": 1943.1,
-      "avg_memory_mb": 1922.5,
-      "throughput_sps": 2.529,
-      "avg_power_w": 115.0,
-      "avg_gpu_util_pct": 17.7,
-      "n_samples": 1000
+      "accuracy": 0.6333,
+      "avg_latency_s": 1.5004,
+      "peak_memory_mb": 1433.3,
+      "avg_memory_mb": 1049.3,
+      "throughput_sps": 0.666,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 20
     }
   }
 }

@@ -15,7 +15,11 @@ Provides
 
 import gc
 import logging
+import os
+import signal
+import sys
 import threading
+import time
 import traceback
 from typing import Any, Callable, Optional, Tuple
 
@@ -26,6 +30,8 @@ logger = logging.getLogger(__name__)
 # ── Tunable thresholds ────────────────────────────────────────────────────────
 
 CRITICAL_FREE_MB = 700           # Abort if MemAvailable drops below this
+WATCHDOG_FREE_MB = 500           # Watchdog kills process below this (last resort)
+WATCHDOG_POLL_S = 0.5            # How often the watchdog checks memory
 INFERENCE_TIMEOUT_S = 150        # Hard timeout per single inference (seconds)
 WARMUP_TIMEOUT_S = 200           # First inference (includes JIT/compilation)
 LATENCY_CEILING_S = 30           # Flag model as TOO_SLOW if avg latency > this
@@ -81,6 +87,116 @@ def get_gpu_memory_used_mb() -> float:
 def is_memory_critical() -> bool:
     """True if system memory is dangerously low."""
     return get_available_memory_mb() < CRITICAL_FREE_MB
+
+
+# ── OOM score adjustment ─────────────────────────────────────────────────────
+
+def make_self_oom_preferred():
+    """Raise this process's oom_score_adj so the kernel's OOM killer
+    targets us before sshd or other system services.
+
+    Call this early in every subprocess that loads a model.
+    """
+    try:
+        with open(f"/proc/{os.getpid()}/oom_score_adj", "w") as f:
+            f.write("900\n")       # range -1000..1000; 900 = very killable
+        logger.debug("Set oom_score_adj=900 for PID %d", os.getpid())
+    except (PermissionError, IOError) as e:
+        logger.debug("Could not set oom_score_adj: %s", e)
+
+
+# ── Memory watchdog ──────────────────────────────────────────────────────────
+
+class MemoryWatchdog:
+    """Background thread that monitors available memory and kills the
+    current process cleanly when it drops below ``WATCHDOG_FREE_MB``.
+
+    This is the last line of defence *before* the Linux OOM killer.  The
+    OOM killer kills indiscriminately (it killed sshd last time), while the
+    watchdog only kills the model-loading process — keeping the system
+    alive and SSH accessible.
+
+    Usage::
+
+        with MemoryWatchdog():
+            model = load_big_model()   # watchdog active during load
+            run_inference(model)       # still active
+        # watchdog stopped automatically
+
+    Or via ``start()`` / ``stop()``.
+    """
+
+    def __init__(self, threshold_mb: float = WATCHDOG_FREE_MB,
+                 poll_interval: float = WATCHDOG_POLL_S):
+        self._threshold = threshold_mb
+        self._interval = poll_interval
+        self._stop_event = threading.Event()
+        self._thread: Optional[threading.Thread] = None
+        self._triggered = False
+
+    @property
+    def triggered(self) -> bool:
+        """Whether the watchdog had to intervene."""
+        return self._triggered
+
+    # ── context manager ──────────────────────────────────────────────────
+    def __enter__(self):
+        self.start()
+        return self
+
+    def __exit__(self, *exc):
+        self.stop()
+        return False
+
+    # ── start / stop ─────────────────────────────────────────────────────
+    def start(self):
+        if self._thread is not None:
+            return
+        self._stop_event.clear()
+        self._triggered = False
+        self._thread = threading.Thread(target=self._monitor, daemon=True,
+                                        name="mem-watchdog")
+        self._thread.start()
+        logger.info("Memory watchdog started (kill below %d MB free)",
+                    int(self._threshold))
+
+    def stop(self):
+        if self._thread is None:
+            return
+        self._stop_event.set()
+        self._thread.join(timeout=2)
+        self._thread = None
+        logger.debug("Memory watchdog stopped")
+
+    # ── monitor loop ─────────────────────────────────────────────────────
+    def _monitor(self):
+        consecutive = 0          # require 2 consecutive readings to avoid blips
+        while not self._stop_event.is_set():
+            avail = get_available_memory_mb()
+            if avail < self._threshold:
+                consecutive += 1
+                if consecutive >= 2:
+                    self._triggered = True
+                    logger.critical(
+                        "WATCHDOG: Available memory %d MB < %d MB threshold — "
+                        "aborting process to prevent system OOM",
+                        int(avail), int(self._threshold))
+                    # Try to free memory first
+                    _emergency_cleanup()
+                    avail_after = get_available_memory_mb()
+                    if avail_after < self._threshold:
+                        # Still critical — kill ourselves cleanly
+                        logger.critical("WATCHDOG: Still at %d MB after cleanup "
+                                        "— sending SIGKILL to self",
+                                        int(avail_after))
+                        os.kill(os.getpid(), signal.SIGKILL)
+                    else:
+                        logger.warning("WATCHDOG: Cleanup freed memory to %d MB "
+                                       "— continuing", int(avail_after))
+                        consecutive = 0
+            else:
+                consecutive = 0
+            self._stop_event.wait(self._interval)
 
 
 # ── Timeout-wrapped execution ─────────────────────────────────────────────────
@@ -193,17 +309,18 @@ def safe_load_model(model_id: str,
     Returns ``(model, processor, meta, status, error_msg)``.
     On failure *model*, *processor*, *meta* are all ``None``.
     """
-    # Preflight: refuse to even try if the model clearly won't fit
-    if param_M is not None:
-        ok, msg = preflight_memory_check(param_M, quant)
-        if not ok:
-            return None, None, None, "oom", msg
+    # NOTE: No preflight rejection — always attempt the load.  Memory
+    # estimates are too architecture-dependent to be reliable.  The
+    # MemoryWatchdog + oom_score_adj protect the system if it fails.
 
     # Import here to keep safety.py importable without the full project on sys.path
     from models.model_loader import load_model
 
+    watchdog = MemoryWatchdog()
     try:
+        watchdog.start()
         model, processor, meta = load_model(model_id, quant=quant, family=family)
+        watchdog.stop()
 
         # Post-load check: did loading leave the system in a critical state?
         free_after = get_available_memory_mb()
@@ -221,14 +338,17 @@ def safe_load_model(model_id: str,
 
         return model, processor, meta, "ok", None
     except torch.cuda.OutOfMemoryError:
+        watchdog.stop()
         _emergency_cleanup()
         return None, None, None, "oom", "CUDA OOM during model loading"
     except RuntimeError as e:
+        watchdog.stop()
         _emergency_cleanup()
         if "out of memory" in str(e).lower():
             return None, None, None, "oom", str(e)
         return None, None, None, "error", traceback.format_exc()
     except Exception:
+        watchdog.stop()
         _emergency_cleanup()
         return None, None, None, "error", traceback.format_exc()
 

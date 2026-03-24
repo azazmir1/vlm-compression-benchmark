@@ -1,0 +1,23 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-450M",
+  "family": "lfm2vl",
+  "param_M": 450,
+  "precision": "int4",
+  "status": "ERROR",
+  "metrics": {
+    "status": "ERROR",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 25,
+    "error_msg": "Child exited with code 1, no result written"
+  },
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-20T14:41:41"
+}

@@ -1,0 +1,23 @@
+{
+  "model_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "family": "qwen25vl",
+  "param_M": 3000,
+  "precision": "fp16",
+  "status": "OOM_LOAD",
+  "metrics": {
+    "status": "OOM_LOAD",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 10,
+    "error_msg": "Child killed by signal 9 (likely OOM-killer)"
+  },
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-21T18:57:40"
+}

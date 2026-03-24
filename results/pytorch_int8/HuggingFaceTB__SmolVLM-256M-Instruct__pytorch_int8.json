@@ -1,0 +1,36 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-256M-Instruct",
+  "family": "smolvlm",
+  "method": "pytorch_int8",
+  "quant_bits": 8,
+  "skip_vision_quant": true,
+  "n_linear_quantized": 211,
+  "num_params_M": 256.5,
+  "gpu_mem_before_mb": 3607.8,
+  "gpu_mem_after_mb": 3939.3,
+  "gpu_mem_load_mb": 331.5,
+  "load_time_s": 4.5,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.3667,
+      "avg_latency_s": 1.6226,
+      "peak_memory_mb": 841.8,
+      "avg_memory_mb": 442.5,
+      "throughput_sps": 0.616,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 30,
+      "n_evaluated": 30,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.3667,
+        "contains": 0.4,
+        "token_f1": 0.4222,
+        "bleu": 0.4123,
+        "rouge_l": 0.4222
+      }
+    }
+  }
+}

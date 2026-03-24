@@ -1,0 +1,25 @@
+{
+  "model_id": "AIDC-AI/Ovis2-1B",
+  "family": "ovis2",
+  "param_M": 1000,
+  "precision": "fp16",
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-21T18:51:52",
+  "num_params_M": 1257.5,
+  "gpu_mem_load_mb": 1891.5,
+  "status": "ERROR",
+  "metrics": {
+    "status": "ERROR",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 10,
+    "error_msg": "Error during warmup: Traceback (most recent call last):\n  File \"/home/cselab/vlm-compression-benchmark/jetson/safety.py\", line 208, in _worker\n    result[\"value\"] = fn(*args, **kwargs)\n  File \"/home/cselab/vlm-compression-benchmark/jetson/run_jetson.py\", line 744, in _do\n    return run_inference(model, processor, sample, family, device)\n  File \"/home/cselab/vlm-compression-benchmark/evaluation/run_baseline.py\", line 453, in run_inference\n    ids = model.generate(input_ids, pixel_values=pixel_values,\n  File \"/home/cselab/.cache/huggingface/modules/transformers_modules/AIDC_hyphen_AI/Ovis2_hyphen_1B/642d0807bf09b89ed52ea97230ceab26c9a6ed2d/modeling_ovis.py\", line 577, in generate\n    _, inputs_embeds, labels, attention_mask = self.merge_multimodal(\n  File \"/home/cselab/.cache/huggingface/modules/transformers_modules/AIDC_hyphen_AI/Ovis2_hyphen_1B/642d0807bf09b89ed52ea97230ceab26c9a6ed2d/modeling_ovis.py\", line 395, in merge_multimodal\n    visual_tokens = self.visual_tokenizer(torch.cat([x for x in pixel_values if x is not None], dim=0))\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/cselab/.cache/huggingface/modules/transformers_modules/AIDC_hyphen_AI/Ovis2_hyphen_1B/642d0807bf09b89ed52ea97230ceab26c9a6ed2d/modeling_ovis.py\", line 236, in forward\n    features = self.encode(pixel_values)\n  File \"/home/cselab/.cache/huggingface/modules/transformers_modules/AIDC_hyphen_AI/Ovis2_hyphen_1B/642d0807bf09b89ed52ea97230ceab26c9a6ed2d/modeling_ovis.py\", line 211, in encode\n    output = self.backbone(pixel_values, output_hidden_states=True, return_dict=True)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/utils/generic.py\", line 843, in wrapper\n    output = func(self, *args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/aimv2/modeling_aimv2.py\", line 718, in forward\n    vision_outputs: BaseModelOutputWithPooling = self.vision_model(\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/utils/generic.py\", line 917, in wrapper\n    output = func(self, *args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/utils/output_capturing.py\", line 253, in wrapper\n    outputs = func(self, *args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/aimv2/modeling_aimv2.py\", line 483, in forward\n    hidden_states = self.embeddings(pixel_values)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/aimv2/modeling_aimv2.py\", line 152, in forward\n    _, _, height, width = pixel_values.size()\nAttributeError: 'NoneType' object has no attribute 'size'\n"
+  }
+}

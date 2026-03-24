@@ -1,0 +1,22 @@
+{
+  "model_id": "hfl/Qwen2.5-VL-3B-Instruct-GPTQ-Int4",
+  "base_model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "family": "qwen25vl",
+  "quant_method": "gptq",
+  "quant_bits": 4,
+  "source": "pretrained_quantized",
+  "gpu_mem_load_mb": 3247.4,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.6333,
+      "avg_latency_s": 2.5823,
+      "peak_memory_mb": 3352.7,
+      "n_evaluated": 10,
+      "n_skipped_timeout": 0,
+      "n_oom": 0,
+      "n_errors": 0,
+      "n_total": 10
+    }
+  },
+  "timestamp": "2026-03-20T18:21:40"
+}

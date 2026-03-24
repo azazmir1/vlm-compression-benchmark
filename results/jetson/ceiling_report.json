@@ -1,0 +1,60 @@
+{
+  "families": {
+    "fastvlm": {
+      "models_tested": [
+        "apple/FastVLM-0.5B",
+        "apple/FastVLM-1.5B",
+        "apple/FastVLM-7B"
+      ],
+      "fp16_ceiling": {
+        "model_id": "apple/FastVLM-0.5B",
+        "param_M": 500
+      },
+      "int8_ceiling": null,
+      "int4_ceiling": null,
+      "fp16_pass": [
+        {
+          "model_id": "apple/FastVLM-0.5B",
+          "param_M": 500
+        }
+      ],
+      "int8_pass": [],
+      "int4_pass": [],
+      "pruning_results": [],
+      "all_trials": [
+        {
+          "model_id": "apple/FastVLM-0.5B",
+          "param_M": 500,
+          "precision": "fp16",
+          "status": "PASS",
+          "accuracy": 0.0,
+          "avg_latency_s": 2.8907,
+          "peak_memory_mb": 1563.5,
+          "deployable": true
+        },
+        {
+          "model_id": "apple/FastVLM-1.5B",
+          "param_M": 1500,
+          "precision": "fp16",
+          "status": "OOM_LOAD"
+        },
+        {
+          "model_id": "apple/FastVLM-7B",
+          "param_M": 7000,
+          "precision": "fp16",
+          "status": "SKIPPED_TOO_LARGE"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "fastvlm": {
+      "fp16_ceiling_M": 500,
+      "int8_ceiling_M": 0,
+      "int4_ceiling_M": 0,
+      "compression_extends_ceiling": false,
+      "max_usable_M": 500,
+      "max_usable_precision": "fp16"
+    }
+  }
+}

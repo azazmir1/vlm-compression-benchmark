@@ -1,0 +1,371 @@
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:25:42 | INFO | Jetson VLM Benchmark
+16:25:42 | INFO |   Models to test : 6
+16:25:42 | INFO |   VQAv2 samples  : 25
+16:25:42 | INFO |   Scan only      : False
+16:25:42 | INFO |   Max param M    : unlimited
+16:25:42 | INFO |   Timeout        : 150s per inference
+16:25:42 | INFO |   Available mem  : 2692 MB
+16:25:42 | INFO | 
+16:25:42 | INFO | Loading VQAv2 evaluation dataset ...
+16:25:43 | INFO | Loading VQAv2 validation (n=25)...
+16:25:43 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:25:43 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:25:43 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:25:43 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:25:43 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:25:43 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:25:43 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:25:44 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:25:44 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:25:44 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:25:44 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:25:44 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212544Z&X-Amz-Expires=3600&X-Amz-Signature=c6b06f8bedf9fb827e03bec2bcea610edb2be50571d7953b1539ad4bd677d007&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959144&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE0NH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=X8kKz4Whe%7Etz1u6JBP7GH5tFcJVTNlsgtWuKv3kSK6ucpoTztJAPBFx9qYYwjuZ9lK7cfc6%7EAY1qlxsgoH6ETqcRL7r75be5PZTB7k2J35RWcsXSO2JbE7sAJkG7t20UEXUE5toD5X8KKg5fPV6f4plXgYbiyPnolNmlN76%7EMOOF7GeKtO9N3Uvzszpcj6x023GcR7T7ytLbkE5kmfdBWvUzvaAs%7Em1CmUhO-2UB22zm8f9FC3-Pj7KuvTE7XxNcYzLtQqUQao-qa2ytqroFPhJADD4qR477cec2RBJboZK6vAptE3Epi%7E%7ENxm1tz1l8iJuxw4hXGsJ3oSjpr9GZKQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:25:44 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:25:44 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212544Z&X-Amz-Expires=3600&X-Amz-Signature=c6b06f8bedf9fb827e03bec2bcea610edb2be50571d7953b1539ad4bd677d007&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959144&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE0NH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=X8kKz4Whe%7Etz1u6JBP7GH5tFcJVTNlsgtWuKv3kSK6ucpoTztJAPBFx9qYYwjuZ9lK7cfc6%7EAY1qlxsgoH6ETqcRL7r75be5PZTB7k2J35RWcsXSO2JbE7sAJkG7t20UEXUE5toD5X8KKg5fPV6f4plXgYbiyPnolNmlN76%7EMOOF7GeKtO9N3Uvzszpcj6x023GcR7T7ytLbkE5kmfdBWvUzvaAs%7Em1CmUhO-2UB22zm8f9FC3-Pj7KuvTE7XxNcYzLtQqUQao-qa2ytqroFPhJADD4qR477cec2RBJboZK6vAptE3Epi%7E%7ENxm1tz1l8iJuxw4hXGsJ3oSjpr9GZKQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:25:45 | INFO |   Loaded 25 VQAv2 samples.
+16:25:45 | INFO |   25 samples loaded.
+
+16:25:45 | INFO | ============================================================
+16:25:45 | INFO | PHASE 1: BASELINE SCAN (FP16)
+16:25:45 | INFO | ============================================================
+
+16:25:45 | INFO | ── Family: smolvlm (3 variants) ──
+16:25:45 | INFO | 
+[FP16] SmolVLM-256M-Instruct (256M)
+16:25:45 | INFO |   [CACHED] HuggingFaceTB__SmolVLM-256M-Instruct.json
+16:25:45 | INFO | 
+[FP16] SmolVLM-500M-Instruct (500M)
+16:25:45 | INFO |   [CACHED] HuggingFaceTB__SmolVLM-500M-Instruct.json
+16:25:45 | INFO | 
+[FP16] SmolVLM-Instruct (2200M)
+16:25:45 | INFO |   SKIPPED (ceiling already reached at FP16)
+16:25:45 | INFO | 
+16:25:45 | INFO | ── Family: lfm2vl (3 variants) ──
+16:25:45 | INFO | 
+[FP16] LFM2-VL-450M (450M)
+16:25:45 | INFO |   [CACHED] LiquidAI__LFM2-VL-450M.json
+16:25:45 | INFO | 
+[FP16] LFM2-VL-1.6B (1600M)
+16:25:45 | INFO |   [CACHED] LiquidAI__LFM2-VL-1.6B.json
+16:25:45 | INFO | 
+[FP16] LFM2-VL-3B (3000M)
+16:25:45 | INFO |   SKIPPED (ceiling already reached at FP16)
+16:25:45 | INFO | 
+16:25:45 | INFO | 
+============================================================
+16:25:45 | INFO | PHASE 2: COMPRESSION RECOVERY (INT8 / INT4)
+16:25:45 | INFO | ============================================================
+
+16:25:45 | INFO | ── Family: smolvlm ──
+16:25:45 | INFO | 
+[INT8] SmolVLM-256M-Instruct (256M)
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:25:53 | INFO | Loading VQAv2 validation (n=25)...
+16:25:53 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:25:53 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:25:53 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:25:53 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:25:54 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:25:54 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:25:54 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:25:54 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:25:54 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:25:54 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:25:54 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:25:54 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212554Z&X-Amz-Expires=3600&X-Amz-Signature=938ac51741ff07e986e1c6faaf6f8f6c35ae74093571a93b384c579d03a79042&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959154&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE1NH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=C9inxCWSDaWWMimk1sg1pMYLYcLrFIou%7ECEqpapXs5RJM7H4W0uOXkr6wXIZlfPVHy6SmkWeSFQf7L7z9WT85vmQ3YH9jaZzyOSISm2uU7ujcvNkw9zFfS%7EKgb-mOQ2f-zy0ojZz6yxjOubKfuACIb2B0ltZ3fQ57IpqrWDxIiJBs5c5GUUiG491MgzgpSVrY13koJM6gwwTdT%7EN6-LXmle6flgsM5X1EDso%7Ey1MWcD-dH04gTbvpg%7EevfMyndeEiAjvrEsNTOiAK-rl4YixP8-oj2iFgFvSOFpasg6KnF5c8W%7EN1kgrmi4gdHoOrpFoQjWVZVjPmcxKxjZMrMxWrQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:25:54 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:25:54 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212554Z&X-Amz-Expires=3600&X-Amz-Signature=938ac51741ff07e986e1c6faaf6f8f6c35ae74093571a93b384c579d03a79042&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959154&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE1NH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=C9inxCWSDaWWMimk1sg1pMYLYcLrFIou%7ECEqpapXs5RJM7H4W0uOXkr6wXIZlfPVHy6SmkWeSFQf7L7z9WT85vmQ3YH9jaZzyOSISm2uU7ujcvNkw9zFfS%7EKgb-mOQ2f-zy0ojZz6yxjOubKfuACIb2B0ltZ3fQ57IpqrWDxIiJBs5c5GUUiG491MgzgpSVrY13koJM6gwwTdT%7EN6-LXmle6flgsM5X1EDso%7Ey1MWcD-dH04gTbvpg%7EevfMyndeEiAjvrEsNTOiAK-rl4YixP8-oj2iFgFvSOFpasg6KnF5c8W%7EN1kgrmi4gdHoOrpFoQjWVZVjPmcxKxjZMrMxWrQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:25:55 | INFO |   Loaded 25 VQAv2 samples.
+16:25:55 | INFO |   Loading HuggingFaceTB/SmolVLM-256M-Instruct @ int8 ...
+16:25:55 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct  family=smolvlm  quant=int8  dtype=torch.float32
+16:25:55 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:25:55 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212555Z&X-Amz-Expires=3600&X-Amz-Signature=a040b82ecb44cebf0fa57d030e8ca1f515ae1531e59120eb96d7e2efda3d7e0d&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959155&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE1NX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=YONldPCal-6udJblIfuQWvEXoW-6CaRetVfivj%7ErbukWg7aGV%7ECsoQmuXXvl73UD56Qcv8VHWTBq0CvAL3w9gwc9LIL1TfMucmPEaUg%7EendNeS9tKsw6XF-Ak%7EFEItObhs7iUAL4DVj7IjhjKR7BN-szNAID6NARpQLuDMB0TQxT2rb0OgDrY5aani%7E3wb6WjW0gCq5HCOr2lrcXIRMII2UGtD20PNSrKxExxVXs4g8ORo3zj8r-NPbHfftTvH2k5iqVSvz3v8KKGp6HHbu2CLei7pDZ5ozP3gYVY74%7EksMmHWTPvJCHYuVqfy2vk3YxmIGJ28m0OLsYWkNk7XZmKw__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:25:55 | INFO | [GPU mem] before load: 6023.5 MB used
+16:25:55 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:55 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:25:55 | INFO | HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM-256M-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:25:55 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:55 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/chat_template.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/chat_template.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:25:56 | INFO | HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM-256M-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/chat_template.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/chat_template.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/preprocessor_config.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/preprocessor_config.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/config.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:56 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/tokenizer_config.json "HTTP/1.1 200 OK"
+16:25:56 | INFO | HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM-256M-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:25:56 | INFO | HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM-256M-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:25:57 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:25:57 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/471 [00:00<?, ?it/s]Error named symbol not found at line 399 in file /src/csrc/ops.cu
+terminate called recursively
+terminate called recursively
+16:26:03 | WARNING |   OOM_LOAD: Child killed by signal 6 (likely OOM-killer)
+16:26:03 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/ptq/HuggingFaceTB__SmolVLM-256M-Instruct__int8__bnb.json
+16:26:07 | INFO | 
+[INT4] SmolVLM-256M-Instruct (256M)
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:26:16 | INFO | Loading VQAv2 validation (n=25)...
+16:26:16 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:26:16 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:26:16 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:26:16 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:26:16 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:26:16 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:26:16 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:26:17 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:26:17 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:26:17 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:26:17 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:26:17 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212617Z&X-Amz-Expires=3600&X-Amz-Signature=4e9cda690bf85b29a68c196a25208ef2c0c30ef4fda5f0f2de8c700fd3e8be8b&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959177&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE3N319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=RVif2SOn26VSeuY%7Eesm%7ECLEA23p27zcaEMKKKryMfg9QwVn%7EgHnZyPT843ekVW5OrZwBOWXJarK6tc0THhspWi340PBqWUdWr6BRp1JFdBenqXpuFRQyBb1WoAbbzIvXvYCmr-7rali1PL%7EX-owCTOK3HVxm-cPsfivwNv2NJSCz9F%7E1JcopZbK3Nh6QgjJeCMZZeUDRvcdwwUCE84Lk0GNRM2nc695IPGZ7n98iLMbDbZPyWvbtMQYtpvQ25uV%7EybBQP%7EN09SVy4wqiV%7EtuVUsHdIyMUff1KxqqK-SmClAalCHiCPqkAMi1D0xh59Go%7EdRItCF%7Ep-vJMy4K2oPxdw__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:26:17 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:26:17 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212544Z&X-Amz-Expires=3600&X-Amz-Signature=c6b06f8bedf9fb827e03bec2bcea610edb2be50571d7953b1539ad4bd677d007&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959144&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE0NH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=X8kKz4Whe%7Etz1u6JBP7GH5tFcJVTNlsgtWuKv3kSK6ucpoTztJAPBFx9qYYwjuZ9lK7cfc6%7EAY1qlxsgoH6ETqcRL7r75be5PZTB7k2J35RWcsXSO2JbE7sAJkG7t20UEXUE5toD5X8KKg5fPV6f4plXgYbiyPnolNmlN76%7EMOOF7GeKtO9N3Uvzszpcj6x023GcR7T7ytLbkE5kmfdBWvUzvaAs%7Em1CmUhO-2UB22zm8f9FC3-Pj7KuvTE7XxNcYzLtQqUQao-qa2ytqroFPhJADD4qR477cec2RBJboZK6vAptE3Epi%7E%7ENxm1tz1l8iJuxw4hXGsJ3oSjpr9GZKQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:26:18 | INFO |   Loaded 25 VQAv2 samples.
+16:26:18 | INFO |   Loading HuggingFaceTB/SmolVLM-256M-Instruct @ int4 ...
+16:26:18 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct  family=smolvlm  quant=int4  dtype=torch.float32
+16:26:18 | INFO | [GPU mem] before load: 5646.3 MB used
+16:26:18 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:18 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:26:18 | INFO | HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM-256M-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:26:18 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:18 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:26:18 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/chat_template.json "HTTP/1.1 307 Temporary Redirect"
+16:26:18 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/chat_template.json "HTTP/1.1 200 OK"
+16:26:18 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+16:26:18 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:26:19 | INFO | HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM-256M-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/chat_template.json "HTTP/1.1 307 Temporary Redirect"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/chat_template.json "HTTP/1.1 200 OK"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/preprocessor_config.json "HTTP/1.1 200 OK"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/processor_config.json "HTTP/1.1 200 OK"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/preprocessor_config.json "HTTP/1.1 200 OK"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/config.json "HTTP/1.1 200 OK"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:19 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/tokenizer_config.json "HTTP/1.1 200 OK"
+16:26:19 | INFO | HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM-256M-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:26:19 | INFO | HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM-256M-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:26:20 | INFO | HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:20 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/471 [00:00<?, ?it/s]Error named symbol not found at line 62 in file /src/csrc/ops.cu
+terminate called after throwing an instance of 'c10::AcceleratorError'
+terminate called recursively
+16:26:26 | WARNING |   OOM_LOAD: Child killed by signal 6 (likely OOM-killer)
+16:26:26 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/ptq/HuggingFaceTB__SmolVLM-256M-Instruct__int4__bnb.json
+16:26:30 | INFO |   [INT8] SmolVLM-500M-Instruct — SKIPPED (ceiling)
+16:26:30 | INFO |   [INT4] SmolVLM-500M-Instruct — SKIPPED (ceiling)
+16:26:30 | INFO |   [INT8] SmolVLM-Instruct — SKIPPED (ceiling)
+16:26:30 | INFO |   [INT4] SmolVLM-Instruct — SKIPPED (ceiling)
+16:26:30 | INFO | 
+16:26:30 | INFO | ── Family: lfm2vl ──
+16:26:30 | INFO | 
+[INT8] LFM2-VL-450M (450M)
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:26:38 | INFO | Loading VQAv2 validation (n=25)...
+16:26:38 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:26:38 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:26:39 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:26:39 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:26:39 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:26:39 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:26:39 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:26:39 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:26:39 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:26:39 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:26:40 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:26:40 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212639Z&X-Amz-Expires=3600&X-Amz-Signature=77ea49259249489c71580aef45d0c4d7de39bb168456cf66979ff718ed355bf1&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959199&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE5OX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=aN6UVU7P%7E9znotEhALRrn%7EQ1HwFNYeIRwKDi1epBt9alH7o2rv9C9EaANkTev6-EixNoogGaVvVEL8Fk63L%7EPbMIdyVVUS-qwqNuN7G0u2I7of9EcqZLyXsh7DHCA1jEt1dxzXCZolwLrsKfN1dUrx2NfHvqxUYFvGS%7EFzaturOgpOYk3u8e6uJN1t7UIodlWx%7EiGLNs3%7EzCaxVxDhf1TS6O3lHfj0O3RYRVzvnN7iBw073ssYcq8eJNPv8Okghn%7EiLour0f8fqV6TKKjadhaJkUBFd7Y7VmQmFAGrPFoJQgFq2ltFTgYLwGJW4svzPgEX168kGcBJ9DmXBIUG09wg__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:26:40 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:26:40 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212640Z&X-Amz-Expires=3600&X-Amz-Signature=89f0c86e010bb6547b716a3e1a324e3d1d0c01afe1792d7280c1c4d63ad82336&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959200&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTIwMH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=R9aBzpSm82fFbE2wVp5gh4jyuKsFR6IQEFzAKn1wIk2Y%7Euf40EU0KzTJNAkbhKxh7X2jFxsUmnrcHeOP-T4my-G46ZSPaHSLl3H8L5gGuBSxeogP00hIcEekCKZpUxdeXnXR7-ZgSAASJovsijGdCvtL%7Ens9huR5aUjI3OkpWYVImj92khpLR-NipMH7EFKfhLy-V3nhEVHXDvwAgMUDnMyqNbCkMGEJPaxed4O2%7E8j1KtmoLYjpaW7yCUDXdn4OFVt2biEm7KtDIvaXojrl-htiTkUmEL44qqp2Af7i2iK4JT11205zS3XuHdOUnK7uRpll6SsFsAtHi3I91JkPGQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:26:40 | INFO |   Loaded 25 VQAv2 samples.
+16:26:40 | INFO |   Loading LiquidAI/LFM2-VL-450M @ int8 ...
+16:26:40 | INFO | Loading LiquidAI/LFM2-VL-450M  family=lfm2vl  quant=int8  dtype=torch.float32
+16:26:40 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:26:40 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212640Z&X-Amz-Expires=3600&X-Amz-Signature=89f0c86e010bb6547b716a3e1a324e3d1d0c01afe1792d7280c1c4d63ad82336&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959200&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTIwMH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=R9aBzpSm82fFbE2wVp5gh4jyuKsFR6IQEFzAKn1wIk2Y%7Euf40EU0KzTJNAkbhKxh7X2jFxsUmnrcHeOP-T4my-G46ZSPaHSLl3H8L5gGuBSxeogP00hIcEekCKZpUxdeXnXR7-ZgSAASJovsijGdCvtL%7Ens9huR5aUjI3OkpWYVImj92khpLR-NipMH7EFKfhLy-V3nhEVHXDvwAgMUDnMyqNbCkMGEJPaxed4O2%7E8j1KtmoLYjpaW7yCUDXdn4OFVt2biEm7KtDIvaXojrl-htiTkUmEL44qqp2Af7i2iK4JT11205zS3XuHdOUnK7uRpll6SsFsAtHi3I91JkPGQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:26:40 | INFO | [GPU mem] before load: 5712.4 MB used
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:26:41 | INFO | HTTP Request: GET https://huggingface.co/api/models/LiquidAI/LFM2-VL-450M/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/chat_template.json "HTTP/1.1 404 Not Found"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/chat_template.jinja "HTTP/1.1 200 OK"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:26:41 | INFO | HTTP Request: GET https://huggingface.co/api/models/LiquidAI/LFM2-VL-450M/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/chat_template.json "HTTP/1.1 404 Not Found"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/chat_template.jinja "HTTP/1.1 200 OK"
+16:26:41 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/preprocessor_config.json "HTTP/1.1 200 OK"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/preprocessor_config.json "HTTP/1.1 200 OK"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/config.json "HTTP/1.1 200 OK"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:42 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/tokenizer_config.json "HTTP/1.1 200 OK"
+16:26:42 | INFO | HTTP Request: GET https://huggingface.co/api/models/LiquidAI/LFM2-VL-450M/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:26:42 | INFO | HTTP Request: GET https://huggingface.co/api/models/LiquidAI/LFM2-VL-450M/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:26:43 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:26:43 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/351 [00:00<?, ?it/s]Error named symbol not found at line 399 in file /src/csrc/ops.cu
+16:26:48 | WARNING |   ERROR: Child exited with code 1, no result written
+16:26:48 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/ptq/LiquidAI__LFM2-VL-450M__int8__bnb.json
+16:26:52 | INFO | 
+[INT4] LFM2-VL-450M (450M)
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:27:00 | INFO | Loading VQAv2 validation (n=25)...
+16:27:00 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:27:00 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:27:00 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:27:01 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:27:01 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:27:01 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:27:01 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:27:01 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:27:01 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:27:01 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:27:01 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:27:01 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212639Z&X-Amz-Expires=3600&X-Amz-Signature=77ea49259249489c71580aef45d0c4d7de39bb168456cf66979ff718ed355bf1&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959199&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTE5OX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=aN6UVU7P%7E9znotEhALRrn%7EQ1HwFNYeIRwKDi1epBt9alH7o2rv9C9EaANkTev6-EixNoogGaVvVEL8Fk63L%7EPbMIdyVVUS-qwqNuN7G0u2I7of9EcqZLyXsh7DHCA1jEt1dxzXCZolwLrsKfN1dUrx2NfHvqxUYFvGS%7EFzaturOgpOYk3u8e6uJN1t7UIodlWx%7EiGLNs3%7EzCaxVxDhf1TS6O3lHfj0O3RYRVzvnN7iBw073ssYcq8eJNPv8Okghn%7EiLour0f8fqV6TKKjadhaJkUBFd7Y7VmQmFAGrPFoJQgFq2ltFTgYLwGJW4svzPgEX168kGcBJ9DmXBIUG09wg__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:27:01 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:27:01 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T212701Z&X-Amz-Expires=3600&X-Amz-Signature=79956301c06fd1a020e74cf8aa2fb23683e28dbdab6fcd033a4b9f2c61dcfa30&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773959221&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1OTIyMX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=Gm1tV7WBSdp7x7FtqQt1xZsQJTR9S00Bdv%7EGHb53ci9W1jDO9HbFz6ryJU5G-GCCUuERfj7TYX6TsyJKw7OETUHJZnIpzzwBk86b-O4tFhO5LzPj8WiAk8-CjVZiDPGzH8YOIRtEtnMY5TXVgFO%7EBLVoPTtsOQeuPIConY2XEoV3wrTKOA3hA4gVFFHt0EN0vojVAN6d3hwHhqje5GT4z9TbvaMxYu1nl0mqJ5gfmDdU3T1a9GPsrofWAOWHQWgraUoSLfRV6Xxwduu5ThrzCLdM9gqetNWRXX0lsm5gQqhgTWc8j9YG1baumTsAZjFszAEMxSMsXbQCVDgVUpLAOw__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:27:02 | INFO |   Loaded 25 VQAv2 samples.
+16:27:02 | INFO |   Loading LiquidAI/LFM2-VL-450M @ int4 ...
+16:27:02 | INFO | Loading LiquidAI/LFM2-VL-450M  family=lfm2vl  quant=int4  dtype=torch.float32
+16:27:02 | INFO | [GPU mem] before load: 5661.3 MB used
+16:27:02 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: GET https://huggingface.co/api/models/LiquidAI/LFM2-VL-450M/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/chat_template.json "HTTP/1.1 404 Not Found"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/chat_template.jinja "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:27:03 | INFO | HTTP Request: GET https://huggingface.co/api/models/LiquidAI/LFM2-VL-450M/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/chat_template.json "HTTP/1.1 404 Not Found"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/chat_template.jinja "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/preprocessor_config.json "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/processor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/processor_config.json "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/preprocessor_config.json "HTTP/1.1 200 OK"
+16:27:03 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:04 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/config.json "HTTP/1.1 200 OK"
+16:27:04 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:04 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/tokenizer_config.json "HTTP/1.1 200 OK"
+16:27:04 | INFO | HTTP Request: GET https://huggingface.co/api/models/LiquidAI/LFM2-VL-450M/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:27:04 | INFO | HTTP Request: GET https://huggingface.co/api/models/LiquidAI/LFM2-VL-450M/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:27:05 | INFO | HTTP Request: HEAD https://huggingface.co/LiquidAI/LFM2-VL-450M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:27:05 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/LiquidAI/LFM2-VL-450M/44a8f27271942eb08cdc7a7d2483ed44b5bbe7bf/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/351 [00:00<?, ?it/s]Error named symbol not found at line 62 in file /src/csrc/ops.cu
+16:27:09 | WARNING |   ERROR: Child exited with code 1, no result written
+16:27:09 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/ptq/LiquidAI__LFM2-VL-450M__int4__bnb.json
+16:27:13 | INFO |   [INT8] LFM2-VL-1.6B — SKIPPED (ceiling)
+16:27:13 | INFO |   [INT4] LFM2-VL-1.6B — SKIPPED (ceiling)
+16:27:13 | INFO |   [INT8] LFM2-VL-3B — SKIPPED (ceiling)
+16:27:13 | INFO |   [INT4] LFM2-VL-3B — SKIPPED (ceiling)
+16:27:13 | INFO | 
+16:27:13 | INFO | 
+============================================================
+16:27:13 | INFO | PHASE 4: GENERATING REPORT
+16:27:13 | INFO | ============================================================
+
+16:27:13 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/ceiling_report.json
+16:27:13 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/all_trials.json
+16:27:13 | INFO | Ceiling report : /home/cselab/vlm-compression-benchmark/results/jetson/ceiling_report.json
+16:27:13 | INFO | Full results   : /home/cselab/vlm-compression-benchmark/results/jetson/all_trials.json
+16:27:13 | INFO | Done.
+
+========================================================================
+  JETSON ORIN NANO 8 GB — VLM CEILING REPORT
+========================================================================
+
+────────────────────────────────────────────────────────────
+  Family: smolvlm
+────────────────────────────────────────────────────────────
+  FP16 ceiling :    256 M params
+  INT8 ceiling :   NONE
+  INT4 ceiling :   NONE
+  Max usable   :    256 M @ fp16
+
+────────────────────────────────────────────────────────────
+  Family: lfm2vl
+────────────────────────────────────────────────────────────
+  FP16 ceiling :    450 M params
+  INT8 ceiling :   NONE
+  INT4 ceiling :   NONE
+  Max usable   :    450 M @ fp16
+
+========================================================================
+  DETAILED TRIAL RESULTS
+========================================================================
+  Model                                      Prec   Status            Acc     Lat     Mem Deploy
+  ────────────────────────────────────────── ────── ────────────── ────── ─────── ─────── ──────
+  SmolVLM-256M-Instruct                      fp16   PASS           0.4000   1.40s   766MB    YES
+  SmolVLM-500M-Instruct                      fp16   PREFLIGHT_FAIL      -       -       -      -
+  SmolVLM-Instruct                           fp16   SKIPPED             -       -       -      -
+  SmolVLM-256M-Instruct                      int8   OOM_LOAD            -       -       -      -
+  SmolVLM-256M-Instruct                      int4   OOM_LOAD            -       -       -      -
+  SmolVLM-500M-Instruct                      int8   SKIPPED             -       -       -      -
+  SmolVLM-500M-Instruct                      int4   SKIPPED             -       -       -      -
+  SmolVLM-Instruct                           int8   SKIPPED             -       -       -      -
+  SmolVLM-Instruct                           int4   SKIPPED             -       -       -      -
+  LFM2-VL-450M                               fp16   PASS           0.7333   0.26s   892MB    YES
+  LFM2-VL-1.6B                               fp16   PREFLIGHT_FAIL      -       -       -      -
+  LFM2-VL-3B                                 fp16   SKIPPED             -       -       -      -
+  LFM2-VL-450M                               int8   ERROR               -       -       -      -
+  LFM2-VL-450M                               int4   ERROR               -       -       -      -
+  LFM2-VL-1.6B                               int8   SKIPPED             -       -       -      -
+  LFM2-VL-1.6B                               int4   SKIPPED             -       -       -      -
+  LFM2-VL-3B                                 int8   SKIPPED             -       -       -      -
+  LFM2-VL-3B                                 int4   SKIPPED             -       -       -      -
+
+========================================================================
+
+/usr/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 4 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

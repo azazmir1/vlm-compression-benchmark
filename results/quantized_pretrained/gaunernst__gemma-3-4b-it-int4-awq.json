@@ -1,0 +1,11 @@
+{
+  "model_id": "gaunernst/gemma-3-4b-it-int4-awq",
+  "base_model_id": "google/gemma-3-4b-it",
+  "family": "gemma3",
+  "quant_method": "awq",
+  "quant_bits": 4,
+  "source": "unknown",
+  "status": "ERROR",
+  "error": "<class 'gptqmodel.nn_modules.qlinear.exllamav2_awq.AwqExllamaV2QuantLinear'>: `out_features`: 4304 must be divisible by [32].",
+  "timestamp": "2026-03-22T07:07:47"
+}

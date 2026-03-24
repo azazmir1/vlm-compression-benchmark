@@ -1,0 +1,38 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-Instruct",
+  "family": "smolvlm",
+  "method": "palu",
+  "quant": "fp16",
+  "rank_ratio": 0.25,
+  "compressed_kv_layers": 48,
+  "original_kv_params": 201326592,
+  "compressed_kv_params": 100663296,
+  "kv_compression_ratio": 2.0,
+  "kv_param_reduction": 0.5,
+  "num_params_before_M": 2246.3,
+  "num_params_after_M": 2145.6,
+  "gpu_mem_load_mb": 5011.69921875,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.0,
+      "avg_latency_s": 5.3637,
+      "peak_memory_mb": 4505.8,
+      "avg_memory_mb": 4297.0,
+      "throughput_sps": 0.186,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 10,
+      "n_evaluated": 10,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": true,
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 0.1,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l": 0.0
+      }
+    }
+  }
+}

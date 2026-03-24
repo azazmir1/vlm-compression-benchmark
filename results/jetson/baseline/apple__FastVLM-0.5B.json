@@ -1,0 +1,25 @@
+{
+  "model_id": "apple/FastVLM-0.5B",
+  "family": "fastvlm",
+  "param_M": 500,
+  "precision": "fp16",
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-21T19:58:53",
+  "num_params_M": 758.8,
+  "gpu_mem_load_mb": 1989.0,
+  "status": "PASS",
+  "metrics": {
+    "status": "PASS",
+    "deployable": true,
+    "accuracy": 0.0,
+    "avg_latency_s": 2.8907,
+    "peak_memory_mb": 1563.5,
+    "avg_memory_mb": 1482.8,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.346,
+    "n_evaluated": 10,
+    "n_total": 10,
+    "error_msg": null
+  }
+}
