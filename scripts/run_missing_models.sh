@@ -10,7 +10,7 @@ export PATH="/home/azaz/miniconda3/envs/vlm-bench/bin:/usr/bin:/bin:$PATH"
 cd /home/azaz/vlm-compression-benchmark
 
 VQAV2_N=50
-GPU=0
+GPU=4
 LOG_DIR="logs/full_benchmark"
 mkdir -p "$LOG_DIR"
 

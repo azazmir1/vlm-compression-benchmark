@@ -46,29 +46,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── Jetson-safe SVD wrapper ──────────────────────────────────────────────────
-_LINALG_SAFE = None
-
-
-def _safe_svd(tensor_cpu: torch.Tensor, full_matrices: bool = False):
-    """SVD that works on Jetson by catching cuSOLVER dlopen failures."""
-    global _LINALG_SAFE
-    if _LINALG_SAFE is None:
-        try:
-            _test = torch.randn(2, 2)
-            torch.linalg.svd(_test, full_matrices=False)
-            _LINALG_SAFE = True
-        except RuntimeError:
-            _LINALG_SAFE = False
-            logger.warning("torch.linalg.svd broken (cuSOLVER) — using torch.svd fallback")
-
-    tensor_cpu = tensor_cpu.cpu().float()
-    if _LINALG_SAFE:
-        return torch.linalg.svd(tensor_cpu, full_matrices=full_matrices)
-    else:
-        U, S, V = torch.svd(tensor_cpu, some=not full_matrices)
-        return U, S, V.t()
-
 RESULTS_DIR = Path(__file__).resolve().parents[2] / "results" / "palu"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -116,19 +93,19 @@ class PALULinear(nn.Module):
 
     def forward(self, x):
         # Two-step: x @ B^T → (batch, seq, rank), then @ A^T → (batch, seq, out)
-        dtype = x.dtype
-        out = (x @ self.B.to(dtype).t()) @ self.A.to(dtype).t()
+        out = (x @ self.B.t()) @ self.A.t()
         if self.bias is not None:
-            out = out + self.bias.to(dtype)
+            out = out + self.bias
         return out
 
 
-def apply_palu_compression(model: nn.Module, rank_ratio: float,
+def apply_palu_compression(model: nn.Module, energy_target: float = 0.99,
                            min_rank: int = 8) -> dict:
     """
     Apply PALU low-rank compression to K and V projection layers.
 
-    rank_ratio: fraction of original rank to keep (e.g., 0.25 = 25% of dim).
+    energy_target: fraction of singular value energy to preserve (0.99 = 99%).
+    Only compresses layers where truncation actually saves parameters.
 
     Returns compression stats.
     """
@@ -136,6 +113,7 @@ def apply_palu_compression(model: nn.Module, rank_ratio: float,
     original_kv_params = 0
     compressed_kv_params = 0
     replacements = []
+    energy_retained_sum = 0.0
 
     # Build name->module mapping for parent lookup
     module_dict = dict(model.named_modules())
@@ -152,42 +130,44 @@ def apply_palu_compression(model: nn.Module, rank_ratio: float,
         out_features, in_features = W.shape
         orig_count = out_features * in_features
 
-        # Target rank — enforce minimum to prevent destroying small KV dims
+        # SVD decomposition
+        try:
+            U, S, Vt = torch.linalg.svd(W, full_matrices=False)
+        except RuntimeError:
+            logger.debug(f"  SVD failed for {name}, skipping")
+            original_kv_params += orig_count
+            compressed_kv_params += orig_count
+            continue
+
+        # Energy-based rank selection
+        energy = S.float().pow(2)
+        total_energy = energy.sum()
+        cumulative = energy.cumsum(0) / total_energy
+        rank = (cumulative < energy_target).sum().item() + 1
         full_rank = min(out_features, in_features)
-        rank = max(int(full_rank * rank_ratio), min_rank)
+        rank = max(rank, min_rank)
         rank = min(rank, full_rank)
 
-        # Safety: skip if compression would save < 10% params (not worth the quality loss)
-        new_count_est = out_features * rank + rank * in_features
-        if new_count_est >= orig_count * 0.9:
-            logger.debug(f"  Skipping {name}: rank={rank} saves <10% params")
+        new_count = out_features * rank + rank * in_features
+
+        # Only decompose if it actually saves parameters
+        if new_count >= orig_count * 0.95:
+            original_kv_params += orig_count
+            compressed_kv_params += orig_count
             continue
 
-        # Safety: warn if rank is very small relative to dim
-        if rank < 32 and full_rank >= 64:
-            logger.warning(
-                f"  {name}: rank={rank} is very small (full={full_rank}). "
-                f"This may destroy model quality. Consider higher rank_ratio."
-            )
-
-        # SVD decomposition (Jetson-safe: falls back to torch.svd if cuSOLVER broken)
-        try:
-            U, S, Vt = _safe_svd(W.cpu(), full_matrices=False)
-            U, S, Vt = U.to(W.device), S.to(W.device), Vt.to(W.device)
-        except RuntimeError as e:
-            logger.debug(f"  SVD failed for {name} ({e}), skipping")
-            continue
+        energy_kept = S[:rank].pow(2).sum() / total_energy
+        energy_retained_sum += energy_kept.item()
 
         # Truncate
-        U_trunc = U[:, :rank]       # (out, rank)
-        S_trunc = S[:rank]           # (rank,)
-        Vt_trunc = Vt[:rank, :]     # (rank, in)
+        U_trunc = U[:, :rank]
+        S_trunc = S[:rank]
+        Vt_trunc = Vt[:rank, :]
 
         # A = U * S, B = Vt
         A = (U_trunc * S_trunc.unsqueeze(0)).to(module.weight.dtype)
         B = Vt_trunc.to(module.weight.dtype)
 
-        new_count = out_features * rank + rank * in_features
         original_kv_params += orig_count
         compressed_kv_params += new_count
 
@@ -214,18 +194,22 @@ def apply_palu_compression(model: nn.Module, rank_ratio: float,
     kv_compression = original_kv_params / compressed_kv_params if compressed_kv_params > 0 else 1.0
     kv_param_reduction = 1 - (compressed_kv_params / original_kv_params) if original_kv_params > 0 else 0.0
 
+    avg_energy = energy_retained_sum / compressed_layers if compressed_layers > 0 else 1.0
+
     logger.info(
         f"PALU compressed {compressed_layers} KV projection layers | "
         f"KV param reduction = {kv_param_reduction:.4f} | "
-        f"KV compression = {kv_compression:.2f}x"
+        f"KV compression = {kv_compression:.2f}x | "
+        f"avg energy retained = {avg_energy:.4f}"
     )
     return {
-        "rank_ratio": rank_ratio,
+        "energy_target": energy_target,
         "compressed_kv_layers": compressed_layers,
         "original_kv_params": original_kv_params,
         "compressed_kv_params": compressed_kv_params,
         "kv_compression_ratio": round(kv_compression, 2),
         "kv_param_reduction": round(kv_param_reduction, 4),
+        "avg_energy_retained": round(avg_energy, 4),
     }
 
 
@@ -234,8 +218,8 @@ def apply_palu_compression(model: nn.Module, rank_ratio: float,
 def main():
     parser = argparse.ArgumentParser(description="PALU KV-cache compression")
     parser.add_argument("--model_id", required=True)
-    parser.add_argument("--rank_ratio", type=float, default=0.25,
-                        help="Fraction of rank to keep for KV projections (default 0.25)")
+    parser.add_argument("--energy", type=float, default=0.95,
+                        help="Fraction of singular value energy to preserve (default 0.95)")
     parser.add_argument("--min_rank", type=int, default=8)
     parser.add_argument("--vqav2_n", type=int, default=1000)
     parser.add_argument("--skip_vqav2", action="store_true")
@@ -246,7 +230,7 @@ def main():
 
     model_id = args.model_id
     safe_name = model_id.replace("/", "__")
-    tag = f"{safe_name}__palu_r{int(args.rank_ratio * 100)}"
+    tag = f"{safe_name}__palu_e{int(args.energy * 100)}"
     out_path = RESULTS_DIR / f"{tag}.json"
 
     if out_path.exists() and not args.force:
@@ -261,8 +245,8 @@ def main():
     num_params_before = sum(p.numel() for p in model.parameters())
 
     # ── Apply PALU ────────────────────────────────────────────────────────
-    logger.info(f"Applying PALU with rank_ratio={args.rank_ratio}...")
-    palu_stats = apply_palu_compression(model, args.rank_ratio, args.min_rank)
+    logger.info(f"Applying PALU with energy={args.energy}...")
+    palu_stats = apply_palu_compression(model, args.energy, args.min_rank)
 
     num_params_after = sum(p.numel() for p in model.parameters())
 

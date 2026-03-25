@@ -1,0 +1,30 @@
+{
+  "model_id": "apple/FastVLM-1.5B",
+  "family": "fastvlm",
+  "quant": "fp16",
+  "num_params_M": 1675.9,
+  "gpu_mem_load_mb": 3732.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.1867,
+      "avg_latency_s": 0.9454,
+      "peak_memory_mb": 25249.1,
+      "avg_memory_mb": 25249.1,
+      "throughput_sps": 1.057,
+      "avg_power_w": 78.8,
+      "avg_gpu_util_pct": 8.9,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.1867,
+        "contains": 0.6,
+        "token_f1": 0.2761,
+        "bleu": 0.2467,
+        "rouge_l": 0.2761
+      }
+    }
+  }
+}
