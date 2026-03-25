@@ -9,7 +9,6 @@
 #   PTQ     : INT4 only    (not INT8+INT4)
 #   Pruning : 20% + 40%    (unchanged — cheap with reduced samples)
 #   QLoRA   : sub-3B models, rank 16 only, 2K train samples
-#   ONNX    : sub-500M models only
 #
 # Usage:
 #   bash scripts/run_1day.sh
@@ -43,10 +42,7 @@ bash scripts/run_all_ptq.sh
 log "STAGE 4 — Pruning (20% + 40%)"
 bash scripts/run_all_pruning.sh
 
-log "STAGE 5 — ONNX Export + INT8 quantization"
-bash scripts/run_all_onnx.sh
-
-log "STAGE 6 — Deployability Report"
+log "STAGE 5 — Deployability Report"
 python analysis/deployability_report.py
 
 log "1-DAY RUN COMPLETE — open notebooks/results_analysis.ipynb to analyse results"

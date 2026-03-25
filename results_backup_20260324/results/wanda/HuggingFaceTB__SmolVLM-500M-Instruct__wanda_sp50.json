@@ -1,0 +1,24 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-500M-Instruct",
+  "family": "smolvlm",
+  "quant": "fp16",
+  "pruning_method": "wanda",
+  "target_sparsity": 0.5,
+  "actual_sparsity": 0.5,
+  "pruned_layers": 226,
+  "n_calib_samples": 128,
+  "num_params_M": 507.5,
+  "gpu_mem_load_mb": 924.93359375,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.2,
+      "avg_latency_s": 1.4037,
+      "peak_memory_mb": 1435.5,
+      "avg_memory_mb": 1048.6,
+      "throughput_sps": 0.712,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 20
+    }
+  }
+}

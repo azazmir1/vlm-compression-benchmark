@@ -1,0 +1,13 @@
+{
+  "model_id": "AIDC-AI/Ovis2-4B",
+  "family": "ovis2",
+  "param_M": 4000,
+  "precision": "fp16",
+  "status": "ERROR",
+  "metrics": {
+    "status": "ERROR",
+    "error_msg": "Using `flash_attention_2` requires having `flash_attn>=2.6.3` installed."
+  },
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-20T16:43:29"
+}

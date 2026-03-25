@@ -46,6 +46,29 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# ── Jetson-safe SVD wrapper ──────────────────────────────────────────────────
+_LINALG_SAFE = None
+
+
+def _safe_svd(tensor_cpu: torch.Tensor, full_matrices: bool = False):
+    """SVD that works on Jetson by catching cuSOLVER dlopen failures."""
+    global _LINALG_SAFE
+    if _LINALG_SAFE is None:
+        try:
+            _test = torch.randn(2, 2)
+            torch.linalg.svd(_test, full_matrices=False)
+            _LINALG_SAFE = True
+        except RuntimeError:
+            _LINALG_SAFE = False
+            logger.warning("torch.linalg.svd broken (cuSOLVER) — using torch.svd fallback")
+
+    tensor_cpu = tensor_cpu.cpu().float()
+    if _LINALG_SAFE:
+        return torch.linalg.svd(tensor_cpu, full_matrices=full_matrices)
+    else:
+        U, S, V = torch.svd(tensor_cpu, some=not full_matrices)
+        return U, S, V.t()
+
 RESULTS_DIR = Path(__file__).resolve().parents[2] / "results" / "palu"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -93,9 +116,10 @@ class PALULinear(nn.Module):
 
     def forward(self, x):
         # Two-step: x @ B^T → (batch, seq, rank), then @ A^T → (batch, seq, out)
-        out = (x @ self.B.t()) @ self.A.t()
+        dtype = x.dtype
+        out = (x @ self.B.to(dtype).t()) @ self.A.to(dtype).t()
         if self.bias is not None:
-            out = out + self.bias
+            out = out + self.bias.to(dtype)
         return out
 
 
@@ -128,16 +152,30 @@ def apply_palu_compression(model: nn.Module, rank_ratio: float,
         out_features, in_features = W.shape
         orig_count = out_features * in_features
 
-        # Target rank
+        # Target rank — enforce minimum to prevent destroying small KV dims
         full_rank = min(out_features, in_features)
         rank = max(int(full_rank * rank_ratio), min_rank)
         rank = min(rank, full_rank)
 
-        # SVD decomposition
+        # Safety: skip if compression would save < 10% params (not worth the quality loss)
+        new_count_est = out_features * rank + rank * in_features
+        if new_count_est >= orig_count * 0.9:
+            logger.debug(f"  Skipping {name}: rank={rank} saves <10% params")
+            continue
+
+        # Safety: warn if rank is very small relative to dim
+        if rank < 32 and full_rank >= 64:
+            logger.warning(
+                f"  {name}: rank={rank} is very small (full={full_rank}). "
+                f"This may destroy model quality. Consider higher rank_ratio."
+            )
+
+        # SVD decomposition (Jetson-safe: falls back to torch.svd if cuSOLVER broken)
         try:
-            U, S, Vt = torch.linalg.svd(W, full_matrices=False)
-        except RuntimeError:
-            logger.debug(f"  SVD failed for {name}, skipping")
+            U, S, Vt = _safe_svd(W.cpu(), full_matrices=False)
+            U, S, Vt = U.to(W.device), S.to(W.device), Vt.to(W.device)
+        except RuntimeError as e:
+            logger.debug(f"  SVD failed for {name} ({e}), skipping")
             continue
 
         # Truncate

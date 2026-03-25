@@ -1,0 +1,93 @@
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:04:58 | INFO | Jetson VLM Benchmark
+16:04:58 | INFO |   Models to test : 4
+16:04:58 | INFO |   VQAv2 samples  : 25
+16:04:58 | INFO |   Scan only      : True
+16:04:58 | INFO |   Max param M    : unlimited
+16:04:58 | INFO |   Timeout        : 150s per inference
+16:04:58 | INFO |   Available mem  : 3472 MB
+16:04:58 | INFO | 
+16:04:58 | INFO | Loading VQAv2 evaluation dataset ...
+16:04:59 | INFO | Loading VQAv2 validation (n=25)...
+16:04:59 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:04:59 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:04:59 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:04:59 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:04:59 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:04:59 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:04:59 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:05:00 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:05:00 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:05:00 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:05:00 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:05:00 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210500Z&X-Amz-Expires=3600&X-Amz-Signature=10527f5e879c6e602909f86983ba8565ad8f53593e3620219ff3341bcd6118a1&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957900&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1NzkwMH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=jQg0bcODkdPSF7awaw4uQvbG-tbPKe3fkUYrXDvzKlnoOigRo%7E4P7UP7o8Zls5%7ERaL3fYjA2Mv0T62US1xqrzyWvcvizrFBv%7E9fe6XC8E2Pzpmp1TjZYA9lgQbD9IMavh85F58eSOH5K3zR5UapuMULfcBAjJsV9m9ZurHU%7ETKke4gNeoF4M5f93cbonVwbbO96J%7ENN0kihrIEupdGZZgRX4ZSEQrAYROb7HzhhZIA2iniTH%7Ee9LiRx4ikR1Rp6ao0KOaU92AHTIpqWgvZKBhPemctyTgdAIpR5b-UGZFHhraAfwY5upPxAKR2Ia5VXfRBHTOBWadmeZgbdnR%7EqXcA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:05:00 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:05:00 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T205617Z&X-Amz-Expires=3600&X-Amz-Signature=cff436d7772ae7632b6873b340c952d1492a9caac4d89889274e82fdaa76ed2f&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957377&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1NzM3N319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=nX4W-ywmLze2H7cqhurEFtP-sl69V5yNi43M5pEmvS5-RAgoRNCl8gT5dEaL%7EkVB0DtKe45pPc%7EwHYMiNLgZ%7EmULzSRtFksal41bG8eSvFgE8CItlXFrOBX0PDKG7NX58O3uW9gP8COjwQuAcT1Bu4qDv2yLBRtJBuHEHrpnKred6S20ZuydPRRVRVtleZOqmZ7B2a-eAruvrQ%7EJE47N7YIC7l7iIMk8buwcUGZGRUBhxeb6JPA4N5Vq-IAT2Cr2OT-L5J3DGHv5PYQH9Sz2vnmw4IDm6-SPHBT98jpBtsKxwDAgevNrc9FE%7EmO1kzfONY5jQQf%7EPTEYL-iLvPPImw__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:05:01 | INFO |   Loaded 25 VQAv2 samples.
+16:05:01 | INFO |   25 samples loaded.
+
+16:05:01 | INFO | ============================================================
+16:05:01 | INFO | PHASE 1: BASELINE SCAN (FP16)
+16:05:01 | INFO | ============================================================
+
+16:05:01 | INFO | ── Family: ovis2 (4 variants) ──
+16:05:01 | INFO | 
+[FP16] Ovis2-1B (1000M)
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:05:09 | INFO | Loading VQAv2 validation (n=25)...
+16:05:09 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:05:09 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:05:09 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:05:09 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:05:10 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:05:10 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:05:10 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:05:10 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:05:10 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:05:10 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:05:10 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:05:10 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210510Z&X-Amz-Expires=3600&X-Amz-Signature=76fa906a281eac250ab682ff528d56ffae4ef893d3be42c57cf7c39ed7177fad&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957910&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1NzkxMH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=ZAyOON4lYZe62lMh78TkgTOVxSKFgg1HiPL3S9GWLPd%7EXhus2fiXGYwL%7ECD-jZpspE%7EJufPJUpGa8T71560nrmksBDptdBdJR3znsD7Ky1r9E4ssklnupF6G2moiqfkbq8uaNDz8R6LROkyInxbUmYfAvcmELjcYItDvcikGNunb6B5PAL8-fgZCMR6d7bM%7EAQJiH7mUFZzYCEl7hT-1RkmjsbnzuoBPlUWpnvUsUCutVRPn8AXa%7E2Cy0%7EujQwVqli0Vp7VrKl7Hodd13jlVCROKlQ2lvlTR4BuGsSeQqUocBQMMN8cSGGqb2ZicQQ6tXbjeQ0MopI%7Ei8gN-7m0FEA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:05:10 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:05:10 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210510Z&X-Amz-Expires=3600&X-Amz-Signature=76fa906a281eac250ab682ff528d56ffae4ef893d3be42c57cf7c39ed7177fad&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957910&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1NzkxMH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=ZAyOON4lYZe62lMh78TkgTOVxSKFgg1HiPL3S9GWLPd%7EXhus2fiXGYwL%7ECD-jZpspE%7EJufPJUpGa8T71560nrmksBDptdBdJR3znsD7Ky1r9E4ssklnupF6G2moiqfkbq8uaNDz8R6LROkyInxbUmYfAvcmELjcYItDvcikGNunb6B5PAL8-fgZCMR6d7bM%7EAQJiH7mUFZzYCEl7hT-1RkmjsbnzuoBPlUWpnvUsUCutVRPn8AXa%7E2Cy0%7EujQwVqli0Vp7VrKl7Hodd13jlVCROKlQ2lvlTR4BuGsSeQqUocBQMMN8cSGGqb2ZicQQ6tXbjeQ0MopI%7Ei8gN-7m0FEA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:05:11 | INFO |   Loaded 25 VQAv2 samples.
+16:05:11 | WARNING |   PREFLIGHT FAIL: AIDC-AI/Ovis2-1B @ fp16 estimated 3200 MB > available 2530 MB
+16:05:11 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/baseline/AIDC-AI__Ovis2-1B.json
+16:05:17 | INFO | 
+[FP16] Ovis2-2B (2000M)
+16:05:17 | INFO |   SKIPPED (ceiling already reached at FP16)
+16:05:17 | INFO | 
+[FP16] Ovis2-4B (4000M)
+16:05:17 | INFO |   SKIPPED (ceiling already reached at FP16)
+16:05:17 | INFO | 
+[FP16] Ovis2-8B (8000M)
+16:05:17 | INFO |   SKIPPED (ceiling already reached at FP16)
+16:05:17 | INFO | 
+16:05:17 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/ceiling_report.json
+16:05:17 | INFO | Ceiling report: /home/cselab/vlm-compression-benchmark/results/jetson/ceiling_report.json
+
+========================================================================
+  JETSON ORIN NANO 8 GB — VLM CEILING REPORT
+========================================================================
+
+────────────────────────────────────────────────────────────
+  Family: ovis2
+────────────────────────────────────────────────────────────
+  FP16 ceiling :   NONE (no model passed)
+  INT8 ceiling :   NONE
+  INT4 ceiling :   NONE
+  Max usable   :      0 M @ fp16
+
+========================================================================
+  DETAILED TRIAL RESULTS
+========================================================================
+  Model                                      Prec   Status            Acc     Lat     Mem Deploy
+  ────────────────────────────────────────── ────── ────────────── ────── ─────── ─────── ──────
+  Ovis2-1B                                   fp16   PREFLIGHT_FAIL      -       -       -      -
+  Ovis2-2B                                   fp16   SKIPPED             -       -       -      -
+  Ovis2-4B                                   fp16   SKIPPED             -       -       -      -
+  Ovis2-8B                                   fp16   SKIPPED             -       -       -      -
+
+========================================================================
+

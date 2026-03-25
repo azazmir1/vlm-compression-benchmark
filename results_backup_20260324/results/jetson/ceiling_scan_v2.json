@@ -1,0 +1,325 @@
+{
+  "timestamp": "2026-03-22 06:50:38",
+  "available_memory_mb": 5655,
+  "ceilings": {
+    "smolvlm": {
+      "model_id": "HuggingFaceTB/SmolVLM-500M-Instruct",
+      "family": "smolvlm",
+      "status": "PASS",
+      "gpu_mem_before_mb": 3557.3,
+      "gpu_mem_after_mb": 4305.2,
+      "gpu_mem_delta_mb": 747.9,
+      "gpu_mem_peak_mb": 5758.3,
+      "num_params_M": 507.5,
+      "latency_s": 2.677,
+      "prediction": "Up.",
+      "error": null,
+      "approx_params_M": 508
+    },
+    "nanovlm": null,
+    "lfm2vl": {
+      "model_id": "LiquidAI/LFM2-VL-1.6B",
+      "family": "lfm2vl",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2656.3,
+      "gpu_mem_after_mb": 5727.4,
+      "gpu_mem_delta_mb": 3071.0,
+      "gpu_mem_peak_mb": 6417.4,
+      "num_params_M": 1584.8,
+      "latency_s": 1.501,
+      "prediction": "Up",
+      "error": null,
+      "approx_params_M": 1585
+    },
+    "moondream": {
+      "model_id": "vikhyatk/moondream2",
+      "family": "moondream",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2311.6,
+      "gpu_mem_after_mb": 5319.4,
+      "gpu_mem_delta_mb": 3007.7,
+      "gpu_mem_peak_mb": 6719.6,
+      "num_params_M": 1927.2,
+      "latency_s": 2.473,
+      "prediction": "",
+      "error": null,
+      "approx_params_M": 1927
+    },
+    "fastvlm": {
+      "model_id": "apple/FastVLM-0.5B",
+      "family": "fastvlm",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2281.9,
+      "gpu_mem_after_mb": 3773.1,
+      "gpu_mem_delta_mb": 1491.2,
+      "gpu_mem_peak_mb": 4898.2,
+      "num_params_M": 758.8,
+      "latency_s": 4.137,
+      "prediction": "I don't know where he is looking. It could be the audience, the ground, the sky, or the camera.",
+      "error": null,
+      "approx_params_M": 759
+    },
+    "qwen25vl": null,
+    "internvl25": {
+      "model_id": "OpenGVLab/InternVL2_5-1B",
+      "family": "internvl25",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2034.8,
+      "gpu_mem_after_mb": 3852.9,
+      "gpu_mem_delta_mb": 1818.1,
+      "gpu_mem_peak_mb": 4851.4,
+      "num_params_M": 938.2,
+      "latency_s": 1.616,
+      "prediction": "Up",
+      "error": null,
+      "approx_params_M": 938
+    },
+    "gemma3": null,
+    "ovis2": null
+  },
+  "all_results": [
+    {
+      "model_id": "HuggingFaceTB/SmolVLM-256M-Instruct",
+      "family": "smolvlm",
+      "status": "PASS",
+      "gpu_mem_before_mb": 3573.9,
+      "gpu_mem_after_mb": 3978.3,
+      "gpu_mem_delta_mb": 404.4,
+      "gpu_mem_peak_mb": 5030.4,
+      "num_params_M": 256.5,
+      "latency_s": 2.573,
+      "prediction": "Up.",
+      "error": null,
+      "approx_params_M": 256
+    },
+    {
+      "model_id": "HuggingFaceTB/SmolVLM-500M-Instruct",
+      "family": "smolvlm",
+      "status": "PASS",
+      "gpu_mem_before_mb": 3557.3,
+      "gpu_mem_after_mb": 4305.2,
+      "gpu_mem_delta_mb": 747.9,
+      "gpu_mem_peak_mb": 5758.3,
+      "num_params_M": 507.5,
+      "latency_s": 2.677,
+      "prediction": "Up.",
+      "error": null,
+      "approx_params_M": 508
+    },
+    {
+      "model_id": "HuggingFaceTB/SmolVLM-Instruct",
+      "family": "smolvlm",
+      "status": "MEM_CRITICAL",
+      "gpu_mem_before_mb": 3571.2,
+      "gpu_mem_after_mb": 7426.7,
+      "gpu_mem_delta_mb": 3855.5,
+      "gpu_mem_peak_mb": 0,
+      "num_params_M": 2246.3,
+      "latency_s": 0,
+      "prediction": "",
+      "error": "Only 231 MB free after load",
+      "approx_params_M": 2200
+    },
+    {
+      "model_id": "lusxvr/nanoVLM-222M",
+      "family": "nanovlm",
+      "approx_params_M": 222,
+      "status": "CRASH",
+      "error": "Process exited with code 1"
+    },
+    {
+      "model_id": "lusxvr/nanoVLM-450M",
+      "family": "nanovlm",
+      "approx_params_M": 450,
+      "status": "SKIPPED"
+    },
+    {
+      "model_id": "LiquidAI/LFM2-VL-450M",
+      "family": "lfm2vl",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2637.4,
+      "gpu_mem_after_mb": 3213.8,
+      "gpu_mem_delta_mb": 576.4,
+      "gpu_mem_peak_mb": 3985.2,
+      "num_params_M": 450.8,
+      "latency_s": 1.126,
+      "prediction": "Up",
+      "error": null,
+      "approx_params_M": 451
+    },
+    {
+      "model_id": "LiquidAI/LFM2-VL-1.6B",
+      "family": "lfm2vl",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2656.3,
+      "gpu_mem_after_mb": 5727.4,
+      "gpu_mem_delta_mb": 3071.0,
+      "gpu_mem_peak_mb": 6417.4,
+      "num_params_M": 1584.8,
+      "latency_s": 1.501,
+      "prediction": "Up",
+      "error": null,
+      "approx_params_M": 1585
+    },
+    {
+      "model_id": "LiquidAI/LFM2-VL-3B",
+      "family": "lfm2vl",
+      "status": "MEM_CRITICAL",
+      "gpu_mem_before_mb": 2537.0,
+      "gpu_mem_after_mb": 7465.0,
+      "gpu_mem_delta_mb": 4928.0,
+      "gpu_mem_peak_mb": 0,
+      "num_params_M": 2999.0,
+      "latency_s": 0,
+      "prediction": "",
+      "error": "Only 155 MB free after load",
+      "approx_params_M": 3000
+    },
+    {
+      "model_id": "vikhyatk/moondream2",
+      "family": "moondream",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2311.6,
+      "gpu_mem_after_mb": 5319.4,
+      "gpu_mem_delta_mb": 3007.7,
+      "gpu_mem_peak_mb": 6719.6,
+      "num_params_M": 1927.2,
+      "latency_s": 2.473,
+      "prediction": "",
+      "error": null,
+      "approx_params_M": 1927
+    },
+    {
+      "model_id": "apple/FastVLM-0.5B",
+      "family": "fastvlm",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2281.9,
+      "gpu_mem_after_mb": 3773.1,
+      "gpu_mem_delta_mb": 1491.2,
+      "gpu_mem_peak_mb": 4898.2,
+      "num_params_M": 758.8,
+      "latency_s": 4.137,
+      "prediction": "I don't know where he is looking. It could be the audience, the ground, the sky, or the camera.",
+      "error": null,
+      "approx_params_M": 759
+    },
+    {
+      "model_id": "apple/FastVLM-1.5B",
+      "family": "fastvlm",
+      "status": "MEM_CRITICAL",
+      "gpu_mem_before_mb": 2346.1,
+      "gpu_mem_after_mb": 7432.8,
+      "gpu_mem_delta_mb": 5086.6,
+      "gpu_mem_peak_mb": 0,
+      "num_params_M": 1909.2,
+      "latency_s": 0,
+      "prediction": "",
+      "error": "Only 187 MB free after load",
+      "approx_params_M": 1500
+    },
+    {
+      "model_id": "apple/FastVLM-7B",
+      "family": "fastvlm",
+      "approx_params_M": 7000,
+      "status": "SKIPPED"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+      "family": "qwen25vl",
+      "approx_params_M": 3800,
+      "status": "OOM_LOAD",
+      "error": "Process exited with code -9 (SIGKILL \u2014 likely OOM killed)"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "family": "qwen25vl",
+      "approx_params_M": 8300,
+      "status": "SKIPPED"
+    },
+    {
+      "model_id": "OpenGVLab/InternVL2_5-1B",
+      "family": "internvl25",
+      "status": "PASS",
+      "gpu_mem_before_mb": 2034.8,
+      "gpu_mem_after_mb": 3852.9,
+      "gpu_mem_delta_mb": 1818.1,
+      "gpu_mem_peak_mb": 4851.4,
+      "num_params_M": 938.2,
+      "latency_s": 1.616,
+      "prediction": "Up",
+      "error": null,
+      "approx_params_M": 938
+    },
+    {
+      "model_id": "OpenGVLab/InternVL2_5-2B",
+      "family": "internvl25",
+      "status": "MEM_CRITICAL",
+      "gpu_mem_before_mb": 2181.4,
+      "gpu_mem_after_mb": 6968.3,
+      "gpu_mem_delta_mb": 4786.9,
+      "gpu_mem_peak_mb": 0,
+      "num_params_M": 2205.8,
+      "latency_s": 0,
+      "prediction": "",
+      "error": "Only 686 MB free after load",
+      "approx_params_M": 2200
+    },
+    {
+      "model_id": "OpenGVLab/InternVL2_5-4B",
+      "family": "internvl25",
+      "approx_params_M": 3700,
+      "status": "SKIPPED"
+    },
+    {
+      "model_id": "OpenGVLab/InternVL2_5-8B",
+      "family": "internvl25",
+      "approx_params_M": 8100,
+      "status": "SKIPPED"
+    },
+    {
+      "model_id": "google/gemma-3-4b-it",
+      "family": "gemma3",
+      "approx_params_M": 4300,
+      "status": "OOM_LOAD",
+      "error": "Process exited with code -9 (SIGKILL \u2014 likely OOM killed)"
+    },
+    {
+      "model_id": "google/gemma-3-12b-it",
+      "family": "gemma3",
+      "approx_params_M": 12200,
+      "status": "SKIPPED"
+    },
+    {
+      "model_id": "AIDC-AI/Ovis2-1B",
+      "family": "ovis2",
+      "status": "ERROR",
+      "gpu_mem_before_mb": 2035.6,
+      "gpu_mem_after_mb": 4300.5,
+      "gpu_mem_delta_mb": 2265.0,
+      "gpu_mem_peak_mb": 0,
+      "num_params_M": 1257.5,
+      "latency_s": 0,
+      "prediction": "",
+      "error": "site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/aimv2/modeling_aimv2.py\", line 152, in forward\n    _, _, height, width = pixel_values.size()\nAttributeError: 'NoneType' object has no attribute 'size'\n",
+      "approx_params_M": 1258
+    },
+    {
+      "model_id": "AIDC-AI/Ovis2-2B",
+      "family": "ovis2",
+      "approx_params_M": 2200,
+      "status": "SKIPPED"
+    },
+    {
+      "model_id": "AIDC-AI/Ovis2-4B",
+      "family": "ovis2",
+      "approx_params_M": 4300,
+      "status": "SKIPPED"
+    },
+    {
+      "model_id": "AIDC-AI/Ovis2-8B",
+      "family": "ovis2",
+      "approx_params_M": 8900,
+      "status": "SKIPPED"
+    }
+  ]
+}

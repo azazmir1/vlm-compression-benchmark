@@ -8,6 +8,7 @@ tokenizers>=0.19.0
 bitsandbytes>=0.43.0
 auto-gptq>=0.7.1
 autoawq>=0.2.5
+optimum>=1.19.0
 llmcompressor>=0.4.0
 
 # Evaluation
@@ -36,11 +37,6 @@ plotly>=5.21.0
 # Notebook
 jupyter>=1.0.0
 ipywidgets>=8.1.0
-
-# ONNX — onnxruntime-gpu 1.18+ supports CUDA 12.x
-onnx>=1.16.0
-onnxruntime-gpu>=1.18.0
-optimum[onnxruntime-gpu]>=1.20.0
 
 # Utilities
 tqdm>=4.66.0

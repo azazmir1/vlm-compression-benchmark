@@ -1,0 +1,21 @@
+{
+  "model_id": "moondream/moondream-2b-2025-04-14-4bit",
+  "family": "moondream",
+  "quant": "int4",
+  "backend": "native (torchao QAT)",
+  "num_params_M": 1312.9,
+  "gpu_mem_load_mb": 2020.0,
+  "compression_ratio": 1.83,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8047,
+      "avg_latency_s": 0.2675,
+      "peak_memory_mb": 3529.1,
+      "avg_memory_mb": 3484.7,
+      "throughput_sps": 3.735,
+      "avg_power_w": 264.0,
+      "avg_gpu_util_pct": 81.0,
+      "n_samples": 1000
+    }
+  }
+}

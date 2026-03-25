@@ -1,0 +1,27 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-1B",
+  "family": "internvl25",
+  "param_M": 1000,
+  "precision": "fp16",
+  "method": "magnitude_l1_unstructured",
+  "sparsity": 0.2,
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-20T15:17:59",
+  "actual_sparsity": 0.2,
+  "pruned_layers": 171,
+  "status": "MEM_CRITICAL",
+  "metrics": {
+    "status": "MEM_CRITICAL",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 1799.9,
+    "avg_memory_mb": 1799.9,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 10,
+    "error_msg": "System memory critically low (195 MB free) after 0 samples"
+  }
+}

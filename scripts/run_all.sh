@@ -60,13 +60,7 @@ if [ -z "${ONLY}" ] || [ "${ONLY}" = "pruning" ]; then
     bash scripts/run_all_pruning.sh
 fi
 
-# ── Stage 5: ONNX Export + INT8 Quantization ─────────────────────────────
-if [ -z "${ONLY}" ] || [ "${ONLY}" = "onnx" ]; then
-    log "STAGE 5 — ONNX Export + INT8 Quantization"
-    bash scripts/run_all_onnx.sh
-fi
-
-# ── Stage 6: Deployability Report ────────────────────────────────────────
+# ── Stage 5: Deployability Report ────────────────────────────────────────
 if [ -z "${ONLY}" ] || [ "${ONLY}" = "report" ]; then
     log "STAGE 6 — Deployability Report"
     python analysis/deployability_report.py

@@ -1,0 +1,145 @@
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:02:46 | INFO | Jetson VLM Benchmark
+16:02:46 | INFO |   Models to test : 3
+16:02:46 | INFO |   VQAv2 samples  : 25
+16:02:46 | INFO |   Scan only      : True
+16:02:46 | INFO |   Max param M    : unlimited
+16:02:46 | INFO |   Timeout        : 150s per inference
+16:02:46 | INFO |   Available mem  : 3482 MB
+16:02:46 | INFO | 
+16:02:46 | INFO | Loading VQAv2 evaluation dataset ...
+16:02:46 | INFO | Loading VQAv2 validation (n=25)...
+16:02:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:02:47 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:02:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:02:47 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:02:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:02:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:02:47 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:02:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:02:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:02:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:02:48 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:02:48 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210248Z&X-Amz-Expires=3600&X-Amz-Signature=9dc93485a16e830f9882de304b5a4250904e19b0d9f66cce22a8b0d98bcc3c3b&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957768&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1Nzc2OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=jWqiwsMFD6TEkPD952dqKYt8Y4O1yVvM1U%7EXM4XzSBrNGC7WtCniurMMH9fyNkoZXEA2OiI-pKw%7ED7AQh03MCztM5YX5e9xXhy5nqPstdnck2MJ6hfvAxhSEY5-O1ZNB2XgyE9wYKEhc5VVvUm%7Ej6ULgALWcY6zHxWAbqfoO0fuzZTRcjLMGAsG2zJEYVZ93DmFcFavXg0ttooTUO1huRZcK6kJVcpxE1C8TYMCysfEG1YG3Cv%7Ey3b2oyAl3%7EOkvAlFCYS9n8Au-b7Vus4RmWPoHRF8pcjGhe7Q-yQ12-Q8r8ICcnl2raSAWKH8z7yRQ9y6n4osHBqEbwdzdTxrShA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:02:48 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:02:48 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210248Z&X-Amz-Expires=3600&X-Amz-Signature=9dc93485a16e830f9882de304b5a4250904e19b0d9f66cce22a8b0d98bcc3c3b&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957768&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1Nzc2OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=jWqiwsMFD6TEkPD952dqKYt8Y4O1yVvM1U%7EXM4XzSBrNGC7WtCniurMMH9fyNkoZXEA2OiI-pKw%7ED7AQh03MCztM5YX5e9xXhy5nqPstdnck2MJ6hfvAxhSEY5-O1ZNB2XgyE9wYKEhc5VVvUm%7Ej6ULgALWcY6zHxWAbqfoO0fuzZTRcjLMGAsG2zJEYVZ93DmFcFavXg0ttooTUO1huRZcK6kJVcpxE1C8TYMCysfEG1YG3Cv%7Ey3b2oyAl3%7EOkvAlFCYS9n8Au-b7Vus4RmWPoHRF8pcjGhe7Q-yQ12-Q8r8ICcnl2raSAWKH8z7yRQ9y6n4osHBqEbwdzdTxrShA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:02:48 | INFO |   Loaded 25 VQAv2 samples.
+16:02:48 | INFO |   25 samples loaded.
+
+16:02:48 | INFO | ============================================================
+16:02:48 | INFO | PHASE 1: BASELINE SCAN (FP16)
+16:02:48 | INFO | ============================================================
+
+16:02:48 | INFO | ── Family: fastvlm (3 variants) ──
+16:02:48 | INFO | 
+[FP16] FastVLM-0.5B (500M)
+16:02:48 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:02:48 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210248Z&X-Amz-Expires=3600&X-Amz-Signature=9dc93485a16e830f9882de304b5a4250904e19b0d9f66cce22a8b0d98bcc3c3b&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957768&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1Nzc2OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=jWqiwsMFD6TEkPD952dqKYt8Y4O1yVvM1U%7EXM4XzSBrNGC7WtCniurMMH9fyNkoZXEA2OiI-pKw%7ED7AQh03MCztM5YX5e9xXhy5nqPstdnck2MJ6hfvAxhSEY5-O1ZNB2XgyE9wYKEhc5VVvUm%7Ej6ULgALWcY6zHxWAbqfoO0fuzZTRcjLMGAsG2zJEYVZ93DmFcFavXg0ttooTUO1huRZcK6kJVcpxE1C8TYMCysfEG1YG3Cv%7Ey3b2oyAl3%7EOkvAlFCYS9n8Au-b7Vus4RmWPoHRF8pcjGhe7Q-yQ12-Q8r8ICcnl2raSAWKH8z7yRQ9y6n4osHBqEbwdzdTxrShA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+16:02:57 | INFO | Loading VQAv2 validation (n=25)...
+16:02:57 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+16:02:57 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
+16:02:57 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
+16:02:57 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
+16:02:57 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
+16:02:57 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
+16:02:58 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
+16:02:58 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+16:02:58 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
+16:02:58 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
+16:02:58 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:02:58 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210258Z&X-Amz-Expires=3600&X-Amz-Signature=572780e891f87b437fcaeb91e0c96f0aee863b59e832a0c2f77124a7913d9de4&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957778&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1Nzc3OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=fjs-xw9JuUONZPvM7umeRP%7EZ0T6hegO69ADZj7tVjGc0scFN5XglEZZIIPAVhj17pTFeVoDiBj1HVSp6wpCf5ANAF-L6qsaQgaO9oMbd5GjW2aXJIhODdXj%7ES%7EvBDQ5CGdkl8iE44%7E5dmdoF0Ase3V6reSzMJVX-0iY%7EgQlPSF3IXsZmNfgl6EKG2lqvGX4uk%7EXvmrpWUDF4z5ywtxzi31au-00Ns6NS0o9IJHdTgAY5EswZCc6JQevNxG9ovWGtKbe27bSM5Vdq%7EXgk4WtAgYacytPC3OL-lbrj%7EvJEi1WcbUuMeehxpFuDQ5TjdHsIoWLg%7Ea6TgP3GpSMheezF6w__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:02:58 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:02:58 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210229Z&X-Amz-Expires=3600&X-Amz-Signature=6229fad975e105cb5c1b1526668ee9da9b2411d6b444d7893efb7b1a2e81a3cc&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957749&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1Nzc0OX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=DDkmUCHgYOjFjLISHSFfgYMiC%7ECqXLyRRRWIUsSJ9GPffVuBoGNZ3NTdHnsxadvo4mNbXOf47nKIw-GQ8R5lVRuXDiEhR8SbWvVpufzZ%7ErBuQaT6QPRP0WrYfdH4UHQchH1bq%7EifGZZCdSAR1Gq29F%7EMhO%7E025J7huzYPGRJsHdpU1K9xNcAHgEWWMp4MlqXIUBRM3X7-vHiS1N0dgs7ahyiHTM2ZnMQDhTNQkQEKa5nk98g90R1GTVAiby-83sGDiKlqkDxDwFx-Bm25TPBLwBYZRZ6xcOWxpF5V0NfaeZTRauRk7OY4wUBZB1mwsrA%7E%7Eg6UI5TP3qeB4uwtzxdMA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:02:59 | INFO |   Loaded 25 VQAv2 samples.
+16:02:59 | INFO |   Loading apple/FastVLM-0.5B @ fp16 ...
+16:02:59 | INFO | Loading apple/FastVLM-0.5B  family=fastvlm  quant=None  dtype=torch.float16
+16:02:59 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
+16:02:59 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260319%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260319T210259Z&X-Amz-Expires=3600&X-Amz-Signature=604b2c348c861345c2769111eb821178869e9aad66973addd146d726c56f6e26&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1773957779&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3Mzk1Nzc3OX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=eTzrg4oENWaelbzlKEy3p5%7EBZyrQmCHuSyZEUfccgn32NyAw3WJvLIeMPln%7EHjC3AL7qpUjVIATVuZ1Y6lm-jklLr%7E3193kMLG59YfivbU4RbhpNMDwCX51TKoBdxV93Z2Ry7mqUqkzy0zpSUUJyhVTdRycVY8geBP8mn0basPU9TAU4OEoj%7EgV3Ozx5kv4a8lir3O4bsXyUM2P2IXuEz5kvLR-JwOiZIdejrUVJGLJJXo37EC7wMqnWIQfFgXFIbXil%7EA9WN0jStVS4i%7EoHKc5g1hpLLl-XvVRP-zH%7E2y-3m6Hru65tU2vxYCmYWG7G07eRDgt-3IDI9eHgKPEm2A__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
+16:02:59 | INFO | [GPU mem] before load: 5293.9 MB used
+16:02:59 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+16:02:59 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+16:02:59 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+16:02:59 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+16:02:59 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+16:03:00 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/apple/FastVLM-0.5B/16375720c2d673fa583e57e9876afde27549c7d0/tokenizer_config.json "HTTP/1.1 200 OK"
+16:03:00 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:03:00 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/apple/FastVLM-0.5B/16375720c2d673fa583e57e9876afde27549c7d0/config.json "HTTP/1.1 200 OK"
+16:03:00 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/llava_qwen.py "HTTP/1.1 307 Temporary Redirect"
+16:03:00 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/apple/FastVLM-0.5B/16375720c2d673fa583e57e9876afde27549c7d0/llava_qwen.py "HTTP/1.1 200 OK"
+16:03:00 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:03:00 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/apple/FastVLM-0.5B/16375720c2d673fa583e57e9876afde27549c7d0/config.json "HTTP/1.1 200 OK"
+16:03:00 | INFO | HTTP Request: GET https://huggingface.co/api/models/apple/FastVLM-0.5B/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+16:03:00 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+16:03:01 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/chat_template.json "HTTP/1.1 404 Not Found"
+16:03:01 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+16:03:01 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+16:03:01 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+16:03:01 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+16:03:01 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+16:03:01 | INFO | HTTP Request: HEAD https://huggingface.co/apple/FastVLM-0.5B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+16:03:01 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/apple/FastVLM-0.5B/16375720c2d673fa583e57e9876afde27549c7d0/config.json "HTTP/1.1 200 OK"
+16:03:02 | WARNING |   LOAD FAILED (ERROR): Traceback (most recent call last):
+  File "/home/cselab/vlm-compression-benchmark/models/model_loader.py", line 213, in _load_fastvlm
+    processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
+  File "/home/cselab/.local/lib/python3.10/site-packages/transformers/models/auto/processing_auto.py", line 416, in from_pretrained
+    return PROCESSOR_MAPPING[type(config)].from_pretrained(pretrained_model_name_or_path, **kwargs)
+  File "/home/cselab/.local/lib/python3.10/site-packages/transformers/processing_utils.py", line 1403, in from_pretrained
+    args = cls._get_arguments_from_pretrained(pretrained_model_name_or_path, processor_dict, **kwargs)
+  File "/home/cselab/.local/lib/python3.10/site-packages/transformers/processing_utils.py", line 1524, in _get_arguments_from_pretrained
+    sub_processor = auto_processor_class.from_pretrained(
+  File "/home/cselab/.local/lib/python3.10/site-packages/transformers/models/auto/image_processing_auto.py", line 519, in from_pretrained
+    raise initial_exception
+  File "/home/cselab/.local/lib/python3.10/site-packages/transformers/models/auto/image_processing_auto.py", line 501, in from_pretrained
+    config_dict, _ = ImageProcessingMixin.get_image_processor_dict(
+  File "/home/cselab/.local/lib/python3.10/site-packages/transformers/image_processing_base.py", line 334, in get_image_processor_dict
+    raise OSError(
+OSError: Can't load image processor for 'apple/FastVLM-0.5B'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'apple/FastVLM-0.5B' is the correct path to a directory containing a preprocessor_config.json file
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cselab/vlm-compression-benchmark/jetson/safety.py", line 170, in safe_load_model
+    model, processor, meta = load_model(model_id, quant=quant, family=family)
+  File "/home/cselab/vlm-compression-benchmark/models/model_loader.py", line 376, in load_model
+    model, processor = loader(model_id, bnb, dtype, device_map)
+  File "/home/cselab/vlm-compression-benchmark/models/model_loader.py", line 215, in _load_fastvlm
+    raise RuntimeError(
+RuntimeError: Cannot load processor for FastVLM 'apple/FastVLM-0.5B': Can't load image processor for 'apple/FastVLM-0.5B'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'apple/FastVLM-0.5B' is the correct path to a directory containing a preprocessor_config.json file. The HuggingFace repo may be missing preprocessor_config.json.
+
+16:03:02 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/baseline/apple__FastVLM-0.5B.json
+16:03:08 | INFO | 
+[FP16] FastVLM-1.5B (1500M)
+16:03:08 | INFO |   SKIPPED (ceiling already reached at FP16)
+16:03:08 | INFO | 
+[FP16] FastVLM-7B (7000M)
+16:03:08 | INFO |   SKIPPED (ceiling already reached at FP16)
+16:03:08 | INFO | 
+16:03:08 | INFO |   Saved → /home/cselab/vlm-compression-benchmark/results/jetson/ceiling_report.json
+16:03:08 | INFO | Ceiling report: /home/cselab/vlm-compression-benchmark/results/jetson/ceiling_report.json
+
+========================================================================
+  JETSON ORIN NANO 8 GB — VLM CEILING REPORT
+========================================================================
+
+────────────────────────────────────────────────────────────
+  Family: fastvlm
+────────────────────────────────────────────────────────────
+  FP16 ceiling :   NONE (no model passed)
+  INT8 ceiling :   NONE
+  INT4 ceiling :   NONE
+  Max usable   :      0 M @ fp16
+
+========================================================================
+  DETAILED TRIAL RESULTS
+========================================================================
+  Model                                      Prec   Status            Acc     Lat     Mem Deploy
+  ────────────────────────────────────────── ────── ────────────── ────── ─────── ─────── ──────
+  FastVLM-0.5B                               fp16   ERROR               -       -       -      -
+  FastVLM-1.5B                               fp16   SKIPPED             -       -       -      -
+  FastVLM-7B                                 fp16   SKIPPED             -       -       -      -
+
+========================================================================
+

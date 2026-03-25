@@ -1,0 +1,46 @@
+/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Skipping import of cpp extensions due to incompatible torch version 2.8.0 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+23:41:46 | INFO | Jetson memory: 4431 MB available
+23:41:46 | INFO | Loading pre-quantized model: vasanth0475/SmolVLM-256M-Instruct-GPTQ-Int4 (family=smolvlm, method=gptq, bits=4)
+23:41:46 | INFO | Loading vasanth0475/SmolVLM-256M-Instruct-GPTQ-Int4  family=smolvlm  quant=fp16  dtype=torch.float16
+23:41:46 | INFO | [GPU mem] before load: 3219.3 MB used
+`torch_dtype` is deprecated! Use `dtype` instead!
+23:42:10 | INFO | [GPU mem] after load: 3364.3 MB used
+23:42:10 | INFO | Loaded vasanth0475/SmolVLM-256M-Instruct-GPTQ-Int4 | VRAM delta: 145.0 MB
+23:42:11 | INFO | Loading VQAv2 validation (n=30)...
+23:42:13 | INFO |   Loaded 30 VQAv2 samples.
+23:42:13 | INFO |   Evaluating on VQAv2 (30 samples)...
+VQAv2:   0%|          | 0/30 [00:00<?, ?it/s]Error named symbol not found at line 81 in file /src/csrc/ops.cu
+Exception in thread Thread-3 (_poll_loop):
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/cselab/vlm-compression-benchmark/profiling/gpu_profiler.py", line 169, in _poll_loop
+    mem_mb = torch.cuda.memory_allocated() / 1024**2
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/memory.py", line 539, in memory_allocated
+    return memory_stats(device=device).get("allocated_bytes.all.current", 0)
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/memory.py", line 325, in memory_stats
+    stats = memory_stats_as_nested_dict(device=device)
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/memory.py", line 336, in memory_stats_as_nested_dict
+    device = _get_device_index(device, optional=True)
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/_utils.py", line 363, in _get_device_index
+    return _torch_get_device_index(device, optional, allow_cpu)
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/_utils.py", line 870, in _get_device_index
+    device_idx = _get_current_device_index()
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/_utils.py", line 807, in _get_current_device_index
+    return _get_device_attr(lambda m: m.current_device())
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/_utils.py", line 792, in _get_device_attr
+    return get_member(torch.cuda)
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/_utils.py", line 807, in <lambda>
+    return _get_device_attr(lambda m: m.current_device())
+  File "/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py", line 1070, in current_device
+    return torch._C._cuda_getDevice()
+torch.AcceleratorError: CUDA error: driver shutting down
+Search for `cudaErrorCudartUnloading' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

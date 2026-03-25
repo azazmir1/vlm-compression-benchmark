@@ -1,0 +1,23 @@
+{
+  "model_id": "AIDC-AI/Ovis2-2B",
+  "family": "ovis2",
+  "param_M": 2000,
+  "precision": "int4",
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-20T15:25:12",
+  "status": "ERROR",
+  "metrics": {
+    "status": "ERROR",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 10,
+    "error_msg": "Traceback (most recent call last):\n  File \"/home/cselab/vlm-compression-benchmark/jetson/safety.py\", line 154, in safe_load_model\n    model, processor, meta = load_model(model_id, quant=quant, family=family)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 495, in load_model\n    model, processor = loader(model_id, bnb, dtype, device_map)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 422, in _load_ovis2\n    model = AutoModelForCausalLM.from_pretrained(model_id, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py\", line 367, in from_pretrained\n    return model_class.from_pretrained(\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/modeling_utils.py\", line 4094, in from_pretrained\n    model = cls(config, *model_args, **model_kwargs)\n  File \"/home/cselab/.cache/huggingface/modules/transformers_modules/AIDC_hyphen_AI/Ovis2_hyphen_2B/63d303670a24612b2d0dd368490fcd7f75989d73/modeling_ovis.py\", line 293, in __init__\n    version.parse(importlib.metadata.version(\"flash_attn\")) >= version.parse(\"2.6.3\")), \\\nAssertionError: Using `flash_attention_2` requires having `flash_attn>=2.6.3` installed.\n"
+  }
+}

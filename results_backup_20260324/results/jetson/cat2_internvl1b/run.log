@@ -1,0 +1,153 @@
+2026-03-23 02:38:54 | INFO    | ======================================================================
+2026-03-23 02:38:54 | INFO    | Category 2 Compression Benchmark — InternVL2.5-1B on Jetson
+2026-03-23 02:38:54 | INFO    | ======================================================================
+2026-03-23 02:38:54 | INFO    | Model:      OpenGVLab/InternVL2_5-1B
+2026-03-23 02:38:54 | INFO    | Params:     938.2M
+2026-03-23 02:38:54 | INFO    | Eval:       VQAv2 (10 samples)
+2026-03-23 02:38:54 | INFO    | Metrics:    exact_match, contains, token_f1, bleu, rouge_l
+2026-03-23 02:38:54 | INFO    | Calib:      10 samples (Wanda)
+2026-03-23 02:38:54 | INFO    | Timeout:    900s per method
+2026-03-23 02:38:54 | INFO    | Results:    /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b
+2026-03-23 02:38:54 | INFO    | Log:        /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/run.log
+2026-03-23 02:38:54 | INFO    | ======================================================================
+2026-03-23 02:38:54 | INFO    | 
+2026-03-23 02:38:54 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:38:54 | INFO    | [1/7] baseline_fp16: FP16 baseline (no compression) — reference point
+2026-03-23 02:38:54 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:38:54 | INFO    |   Spawning subprocess for baseline_fp16 (timeout=900s)...
+2026-03-23 02:39:20 | INFO    |   [baseline_fp16] Completed in 26s — status=PASS
+2026-03-23 02:39:20 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/baseline_fp16.json
+2026-03-23 02:39:20 | INFO    |   Cleaning up memory before next method...
+2026-03-23 02:39:28 | INFO    | 
+2026-03-23 02:39:28 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:39:28 | INFO    | [2/7] magnitude_pruning_sp20: Magnitude L1 unstructured pruning at 20% sparsity
+2026-03-23 02:39:28 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:39:28 | INFO    |   Spawning subprocess for magnitude_pruning_sp20 (timeout=900s)...
+2026-03-23 02:39:59 | INFO    |   [magnitude_pruning_sp20] Completed in 31s — status=PASS
+2026-03-23 02:39:59 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/magnitude_sp20.json
+2026-03-23 02:39:59 | INFO    |   Cleaning up memory before next method...
+2026-03-23 02:40:05 | INFO    | 
+2026-03-23 02:40:05 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:40:05 | INFO    | [3/7] magnitude_pruning_sp40: Magnitude L1 unstructured pruning at 40% sparsity
+2026-03-23 02:40:05 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:40:05 | INFO    |   Spawning subprocess for magnitude_pruning_sp40 (timeout=900s)...
+2026-03-23 02:40:58 | INFO    |   [magnitude_pruning_sp40] Completed in 53s — status=PASS
+2026-03-23 02:40:58 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/magnitude_sp40.json
+2026-03-23 02:40:58 | INFO    |   Cleaning up memory before next method...
+2026-03-23 02:41:04 | INFO    | 
+2026-03-23 02:41:04 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:41:04 | INFO    | [4/7] wanda_sp20: Wanda (activation-aware) pruning at 20% sparsity
+2026-03-23 02:41:04 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:41:04 | INFO    |   Spawning subprocess for wanda_sp20 (timeout=900s)...
+2026-03-23 02:41:43 | INFO    |   [wanda_sp20] Completed in 40s — status=PASS
+2026-03-23 02:41:43 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/wanda_sp20.json
+2026-03-23 02:41:43 | INFO    |   Cleaning up memory before next method...
+2026-03-23 02:41:49 | INFO    | 
+2026-03-23 02:41:49 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:41:49 | INFO    | [5/7] wanda_sp40: Wanda (activation-aware) pruning at 40% sparsity
+2026-03-23 02:41:49 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:41:49 | INFO    |   Spawning subprocess for wanda_sp40 (timeout=900s)...
+2026-03-23 02:42:34 | INFO    |   [wanda_sp40] Completed in 45s — status=PASS
+2026-03-23 02:42:34 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/wanda_sp40.json
+2026-03-23 02:42:34 | INFO    |   Cleaning up memory before next method...
+2026-03-23 02:42:39 | INFO    | 
+2026-03-23 02:42:39 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:42:39 | INFO    | [6/7] palu_r25: PALU KV-cache low-rank compression (rank_ratio=0.25)
+2026-03-23 02:42:39 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:42:39 | INFO    |   Spawning subprocess for palu_r25 (timeout=900s)...
+2026-03-23 02:43:37 | INFO    |   [palu_r25] Completed in 58s — status=PASS
+2026-03-23 02:43:37 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/palu_r25.json
+2026-03-23 02:43:37 | INFO    |   Cleaning up memory before next method...
+2026-03-23 02:43:42 | INFO    | 
+2026-03-23 02:43:42 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:43:42 | INFO    | [7/7] pact_p30_m20: PACT visual token pruning (30%) + merging (20%)
+2026-03-23 02:43:42 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:43:42 | INFO    |   Spawning subprocess for pact_p30_m20 (timeout=900s)...
+2026-03-23 02:44:04 | INFO    |   [pact_p30_m20] Completed in 22s — status=PASS
+2026-03-23 02:44:04 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/pact_p30_m20.json
+2026-03-23 02:44:04 | INFO    |   Cleaning up memory before next method...
+2026-03-23 02:44:09 | INFO    | 
+2026-03-23 02:44:09 | INFO    | ======================================================================
+2026-03-23 02:44:09 | INFO    | FINAL REPORT — Category 2 Methods on InternVL2.5-1B
+2026-03-23 02:44:09 | INFO    | ======================================================================
+2026-03-23 02:44:09 | INFO    | Total time: 5.3 minutes
+2026-03-23 02:44:09 | INFO    | 
+2026-03-23 02:44:09 | INFO    | Method                    Status     ExMatch   Contains  F1        BLEU      ROUGE-L   Lat(s)   Mem(MB) 
+2026-03-23 02:44:09 | INFO    | ------------------------------------------------------------------------------------------------
+2026-03-23 02:44:09 | INFO    | baseline_fp16             PASS       0.5000    0.8000    0.6952    0.6667    0.6952    0.77     1849    
+2026-03-23 02:44:09 | INFO    | magnitude_pruning_sp20    PASS       0.6000    1.0000    0.8486    0.8083    0.8486    0.81     1877    
+2026-03-23 02:44:09 | INFO    | magnitude_pruning_sp40    PASS       0.1000    0.6000    0.3436    0.3236    0.3436    2.14     1847    
+2026-03-23 02:44:09 | INFO    | wanda_sp20                PASS       0.6000    0.7000    0.6286    0.6167    0.6286    0.63     1847    
+2026-03-23 02:44:09 | INFO    | wanda_sp40                PASS       0.5000    0.7000    0.6800    0.6667    0.6800    0.61     1850    
+2026-03-23 02:44:09 | INFO    | palu_r25                  PASS       0.0000    0.1000    0.0133    0.0071    0.0133    3.64     1839    
+2026-03-23 02:44:09 | INFO    | pact_p30_m20              PASS       0.0000    ?         ?         ?         ?         0.00     1875    
+2026-03-23 02:44:09 | INFO    | 
+2026-03-23 02:44:09 | INFO    | Summary saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/summary.json
+2026-03-23 02:44:09 | INFO    | Full log at /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/run.log
+2026-03-23 02:44:09 | INFO    | Done!
+2026-03-23 02:58:32 | INFO    | ======================================================================
+2026-03-23 02:58:32 | INFO    | Category 2 Compression Benchmark — InternVL2.5-1B on Jetson
+2026-03-23 02:58:32 | INFO    | ======================================================================
+2026-03-23 02:58:32 | INFO    | Model:      OpenGVLab/InternVL2_5-1B
+2026-03-23 02:58:32 | INFO    | Params:     938.2M
+2026-03-23 02:58:32 | INFO    | Eval:       VQAv2 (10 samples)
+2026-03-23 02:58:32 | INFO    | Metrics:    exact_match, contains, token_f1, bleu, rouge_l
+2026-03-23 02:58:32 | INFO    | Calib:      10 samples (Wanda)
+2026-03-23 02:58:32 | INFO    | Timeout:    900s per method
+2026-03-23 02:58:32 | INFO    | Results:    /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b
+2026-03-23 02:58:32 | INFO    | Log:        /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/run.log
+2026-03-23 02:58:32 | INFO    | ======================================================================
+2026-03-23 02:58:32 | INFO    | 
+2026-03-23 02:58:32 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:58:32 | INFO    | [1/1] pact_p30_m20: PACT visual token pruning (30%) + merging (20%)
+2026-03-23 02:58:32 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 02:58:32 | INFO    |   Spawning subprocess for pact_p30_m20 (timeout=900s)...
+2026-03-23 02:59:15 | INFO    |   [pact_p30_m20] Completed in 43s — status=PASS
+2026-03-23 02:59:15 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/pact_p30_m20.json
+2026-03-23 02:59:15 | INFO    |   Cleaning up memory before next method...
+2026-03-23 02:59:23 | INFO    | 
+2026-03-23 02:59:23 | INFO    | ======================================================================
+2026-03-23 02:59:23 | INFO    | FINAL REPORT — Category 2 Methods on InternVL2.5-1B
+2026-03-23 02:59:23 | INFO    | ======================================================================
+2026-03-23 02:59:23 | INFO    | Total time: 0.8 minutes
+2026-03-23 02:59:23 | INFO    | 
+2026-03-23 02:59:23 | INFO    | Method                    Status     ExMatch   Contains  F1        BLEU      ROUGE-L   Lat(s)   Mem(MB) 
+2026-03-23 02:59:23 | INFO    | ------------------------------------------------------------------------------------------------
+2026-03-23 02:59:23 | INFO    | pact_p30_m20              PASS       0.0000    0.0000    0.0000    0.0000    0.0000    2.59     1875    
+2026-03-23 02:59:23 | INFO    | 
+2026-03-23 02:59:23 | INFO    | Summary saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/summary.json
+2026-03-23 02:59:23 | INFO    | Full log at /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/run.log
+2026-03-23 02:59:23 | INFO    | Done!
+2026-03-23 03:26:55 | INFO    | ======================================================================
+2026-03-23 03:26:55 | INFO    | Category 2 Compression Benchmark — InternVL2.5-1B on Jetson
+2026-03-23 03:26:55 | INFO    | ======================================================================
+2026-03-23 03:26:55 | INFO    | Model:      OpenGVLab/InternVL2_5-1B
+2026-03-23 03:26:55 | INFO    | Params:     938.2M
+2026-03-23 03:26:55 | INFO    | Eval:       VQAv2 (10 samples)
+2026-03-23 03:26:55 | INFO    | Metrics:    exact_match, contains, token_f1, bleu, rouge_l
+2026-03-23 03:26:55 | INFO    | Calib:      10 samples (Wanda)
+2026-03-23 03:26:55 | INFO    | Timeout:    900s per method
+2026-03-23 03:26:55 | INFO    | Results:    /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b
+2026-03-23 03:26:55 | INFO    | Log:        /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/run.log
+2026-03-23 03:26:55 | INFO    | ======================================================================
+2026-03-23 03:26:55 | INFO    | 
+2026-03-23 03:26:55 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 03:26:55 | INFO    | [1/1] pact_p30_m20: PACT visual token pruning (30%) + merging (20%)
+2026-03-23 03:26:55 | INFO    | ────────────────────────────────────────────────────────────
+2026-03-23 03:26:55 | INFO    |   Spawning subprocess for pact_p30_m20 (timeout=900s)...
+2026-03-23 03:27:24 | INFO    |   [pact_p30_m20] Completed in 29s — status=PASS
+2026-03-23 03:27:24 | INFO    |   Result saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/pact_p30_m20.json
+2026-03-23 03:27:24 | INFO    |   Cleaning up memory before next method...
+2026-03-23 03:27:32 | INFO    | 
+2026-03-23 03:27:32 | INFO    | ======================================================================
+2026-03-23 03:27:32 | INFO    | FINAL REPORT — Category 2 Methods on InternVL2.5-1B
+2026-03-23 03:27:32 | INFO    | ======================================================================
+2026-03-23 03:27:32 | INFO    | Total time: 0.6 minutes
+2026-03-23 03:27:32 | INFO    | 
+2026-03-23 03:27:32 | INFO    | Method                    Status     ExMatch   Contains  F1        BLEU      ROUGE-L   Lat(s)   Mem(MB) 
+2026-03-23 03:27:32 | INFO    | ------------------------------------------------------------------------------------------------
+2026-03-23 03:27:32 | INFO    | pact_p30_m20              PASS       0.0000    0.0000    0.0250    0.0167    0.0250    1.06     1875    
+2026-03-23 03:27:32 | INFO    | 
+2026-03-23 03:27:32 | INFO    | Summary saved to /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/summary.json
+2026-03-23 03:27:32 | INFO    | Full log at /home/cselab/vlm-compression-benchmark/results/jetson/cat2_internvl1b/run.log
+2026-03-23 03:27:32 | INFO    | Done!

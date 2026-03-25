@@ -1,0 +1,36 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-2B",
+  "family": "internvl25",
+  "method": "pytorch_int8",
+  "quant_bits": 8,
+  "skip_vision_quant": true,
+  "n_linear_quantized": 121,
+  "num_params_M": 2205.8,
+  "gpu_mem_before_mb": 3626.3,
+  "gpu_mem_after_mb": 7552.1,
+  "gpu_mem_load_mb": 3925.8,
+  "load_time_s": 34.1,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.7,
+      "avg_latency_s": 2.0919,
+      "peak_memory_mb": 3787.2,
+      "avg_memory_mb": 3050.6,
+      "throughput_sps": 0.478,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 10,
+      "n_evaluated": 10,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.7,
+        "contains": 0.8,
+        "token_f1": 0.8,
+        "bleu": 0.8,
+        "rouge_l": 0.8
+      }
+    }
+  }
+}

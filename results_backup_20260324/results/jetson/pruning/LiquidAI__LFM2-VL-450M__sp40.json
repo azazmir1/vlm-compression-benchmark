@@ -1,0 +1,27 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-450M",
+  "family": "lfm2vl",
+  "param_M": 450,
+  "precision": "fp16",
+  "method": "magnitude_l1_unstructured",
+  "sparsity": 0.4,
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-20T15:06:58",
+  "actual_sparsity": 0.4,
+  "pruned_layers": 95,
+  "status": "MEM_CRITICAL",
+  "metrics": {
+    "status": "MEM_CRITICAL",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 875.0,
+    "avg_memory_mb": 875.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 25,
+    "error_msg": "System memory critically low (283 MB free) after 0 samples"
+  }
+}
