@@ -1,0 +1,37 @@
+{
+  "model_id": "google/gemma-3-4b-it",
+  "family": "gemma3",
+  "method": "gptq",
+  "quant": "simulated_int4",
+  "bits": 4,
+  "group_size": "per_channel",
+  "n_calib_samples": 128,
+  "quantized_layers": 239,
+  "num_params_M": 4300.1,
+  "gpu_mem_load_mb": 8204.0,
+  "gpu_mem_after_quant_mb": 11648.9,
+  "compression_ratio": 1.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.3533,
+      "avg_latency_s": 0.2311,
+      "peak_memory_mb": 12175.1,
+      "avg_memory_mb": 12174.3,
+      "throughput_sps": 4.32,
+      "avg_power_w": 221.6,
+      "avg_gpu_util_pct": 63.9,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.3533,
+        "contains": 0.46,
+        "token_f1": 0.4333,
+        "bleu": 0.43,
+        "rouge_l": 0.4333
+      }
+    }
+  }
+}

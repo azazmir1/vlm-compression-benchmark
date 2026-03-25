@@ -1,0 +1,385 @@
+{
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "gptq_model": "Azaz666/Qwen2.5-VL-7B-Instruct-GPTQ-Int4",
+  "n_samples": 10,
+  "baseline_avg": {
+    "exact_match": 0.9,
+    "contains": 1.0,
+    "token_f1": 1.0,
+    "bleu": 1.0,
+    "rouge_l": 1.0,
+    "avg_latency_s": 0.247
+  },
+  "gptq_avg": {
+    "exact_match": 0.8,
+    "contains": 0.9,
+    "token_f1": 0.9,
+    "bleu": 0.9,
+    "rouge_l": 0.9,
+    "avg_latency_s": 0.48
+  },
+  "baseline_details": [
+    {
+      "idx": 0,
+      "question": "Where is he looking?",
+      "gold": [
+        "down",
+        "down",
+        "at table"
+      ],
+      "pred": "down",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.595
+    },
+    {
+      "idx": 1,
+      "question": "What are the people in the background doing?",
+      "gold": [
+        "spectating",
+        "watching",
+        "watching"
+      ],
+      "pred": "watching",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.219
+    },
+    {
+      "idx": 2,
+      "question": "What is he on top of?",
+      "gold": [
+        "table",
+        "table",
+        "table"
+      ],
+      "pred": "picnic table",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.243
+    },
+    {
+      "idx": 3,
+      "question": "What website copyrighted the picture?",
+      "gold": [
+        "foodiebakercom",
+        "foodiebakercom",
+        "foodiebaker"
+      ],
+      "pred": "FOODIEBAKER.COM",
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.289
+    },
+    {
+      "idx": 4,
+      "question": "Is this a creamy soup?",
+      "gold": [
+        "no",
+        "no",
+        "no"
+      ],
+      "pred": "No",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.16
+    },
+    {
+      "idx": 5,
+      "question": "Is this rice noodle soup?",
+      "gold": [
+        "yes",
+        "yes",
+        "yes"
+      ],
+      "pred": "Yes",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.161
+    },
+    {
+      "idx": 6,
+      "question": "What is to the right of the soup?",
+      "gold": [
+        "chopsticks",
+        "chopsticks",
+        "chopsticks"
+      ],
+      "pred": "Chopsticks",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.211
+    },
+    {
+      "idx": 7,
+      "question": "What is the man doing in the street?",
+      "gold": [
+        "crossing it",
+        "walking",
+        "walking"
+      ],
+      "pred": "walking",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.189
+    },
+    {
+      "idx": 8,
+      "question": "How many photo's can you see?",
+      "gold": [
+        "1",
+        "1",
+        "4"
+      ],
+      "pred": "1",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.19
+    },
+    {
+      "idx": 9,
+      "question": "What does the truck on the left sell?",
+      "gold": [
+        "ice cream",
+        "ice cream",
+        "ice cream"
+      ],
+      "pred": "Ice cream",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.215
+    }
+  ],
+  "gptq_details": [
+    {
+      "idx": 0,
+      "question": "Where is he looking?",
+      "gold": [
+        "down",
+        "down",
+        "at table"
+      ],
+      "pred": "down",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 2.239
+    },
+    {
+      "idx": 1,
+      "question": "What are the people in the background doing?",
+      "gold": [
+        "spectating",
+        "watching",
+        "watching"
+      ],
+      "pred": "watching",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.292
+    },
+    {
+      "idx": 2,
+      "question": "What is he on top of?",
+      "gold": [
+        "table",
+        "table",
+        "table"
+      ],
+      "pred": "bench",
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l": 0.0
+      },
+      "latency_s": 0.239
+    },
+    {
+      "idx": 3,
+      "question": "What website copyrighted the picture?",
+      "gold": [
+        "foodiebakercom",
+        "foodiebakercom",
+        "foodiebaker"
+      ],
+      "pred": "FOODIEBAKER.COM",
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.474
+    },
+    {
+      "idx": 4,
+      "question": "Is this a creamy soup?",
+      "gold": [
+        "no",
+        "no",
+        "no"
+      ],
+      "pred": "No",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.213
+    },
+    {
+      "idx": 5,
+      "question": "Is this rice noodle soup?",
+      "gold": [
+        "yes",
+        "yes",
+        "yes"
+      ],
+      "pred": "Yes",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.214
+    },
+    {
+      "idx": 6,
+      "question": "What is to the right of the soup?",
+      "gold": [
+        "chopsticks",
+        "chopsticks",
+        "chopsticks"
+      ],
+      "pred": "chopsticks",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.318
+    },
+    {
+      "idx": 7,
+      "question": "What is the man doing in the street?",
+      "gold": [
+        "crossing it",
+        "walking",
+        "walking"
+      ],
+      "pred": "crossing",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.287
+    },
+    {
+      "idx": 8,
+      "question": "How many photo's can you see?",
+      "gold": [
+        "1",
+        "1",
+        "4"
+      ],
+      "pred": "1",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.236
+    },
+    {
+      "idx": 9,
+      "question": "What does the truck on the left sell?",
+      "gold": [
+        "ice cream",
+        "ice cream",
+        "ice cream"
+      ],
+      "pred": "Ice cream",
+      "metrics": {
+        "exact_match": 1.0,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "latency_s": 0.288
+    }
+  ]
+}

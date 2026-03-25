@@ -1,0 +1,42 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-2B",
+  "family": "internvl25",
+  "method": "svd_llm",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_layers": 0,
+  "original_params": 1220542464,
+  "compressed_params": 1220542464,
+  "compression_ratio": 1.0,
+  "param_reduction": 0.0,
+  "avg_energy_retained": 1.0,
+  "skipped_non_mlp": 49,
+  "skipped_small_layers": 0,
+  "num_params_before_M": 2205.8,
+  "num_params_after_M": 2205.8,
+  "gpu_mem_load_mb": 4754.0,
+  "gpu_mem_after_svd_mb": 5058.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.7733,
+      "avg_latency_s": 0.0845,
+      "peak_memory_mb": 5943.1,
+      "avg_memory_mb": 5914.4,
+      "throughput_sps": 11.798,
+      "avg_power_w": 203.0,
+      "avg_gpu_util_pct": 49.4,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.7733,
+        "contains": 0.84,
+        "token_f1": 0.844,
+        "bleu": 0.8439,
+        "rouge_l": 0.844
+      }
+    }
+  }
+}

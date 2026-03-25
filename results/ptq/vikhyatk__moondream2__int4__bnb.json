@@ -10,12 +10,16 @@
     "vqav2": {
       "accuracy": 0.0,
       "avg_latency_s": 0.0,
-      "peak_memory_mb": 2955.1,
-      "avg_memory_mb": 2954.4,
+      "peak_memory_mb": 2685.1,
+      "avg_memory_mb": 2682.6,
       "throughput_sps": 0.0,
-      "avg_power_w": 201.6,
-      "avg_gpu_util_pct": 51.4,
-      "n_samples": 1000
+      "avg_power_w": 83.7,
+      "avg_gpu_util_pct": 2.4,
+      "n_samples": 50,
+      "n_evaluated": 0,
+      "n_skipped": 50,
+      "all_failed": true,
+      "zero_accuracy_warning": false
     }
   }
 }

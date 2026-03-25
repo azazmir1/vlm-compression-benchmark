@@ -1,0 +1,42 @@
+{
+  "model_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "family": "qwen25vl",
+  "method": "svd_llm",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_layers": 38,
+  "original_params": 2891743232,
+  "compressed_params": 2788686488,
+  "compression_ratio": 1.04,
+  "param_reduction": 0.0356,
+  "avg_energy_retained": 0.9501,
+  "skipped_non_mlp": 209,
+  "skipped_small_layers": 0,
+  "num_params_before_M": 3754.6,
+  "num_params_after_M": 3651.6,
+  "gpu_mem_load_mb": 7236.0,
+  "gpu_mem_after_svd_mb": 8392.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8467,
+      "avg_latency_s": 0.1716,
+      "peak_memory_mb": 8907.1,
+      "avg_memory_mb": 8905.2,
+      "throughput_sps": 5.818,
+      "avg_power_w": 239.5,
+      "avg_gpu_util_pct": 64.7,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.8467,
+        "contains": 0.92,
+        "token_f1": 0.9333,
+        "bleu": 0.9274,
+        "rouge_l": 0.9333
+      }
+    }
+  }
+}

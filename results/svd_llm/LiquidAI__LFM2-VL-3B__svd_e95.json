@@ -1,0 +1,42 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-3B",
+  "family": "lfm2vl",
+  "method": "svd_llm",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_layers": 3,
+  "original_params": 1981808640,
+  "compressed_params": 1978289152,
+  "compression_ratio": 1.0,
+  "param_reduction": 0.0018,
+  "avg_energy_retained": 0.9501,
+  "skipped_non_mlp": 79,
+  "skipped_small_layers": 0,
+  "num_params_before_M": 2999.0,
+  "num_params_after_M": 2995.5,
+  "gpu_mem_load_mb": 5894.0,
+  "gpu_mem_after_svd_mb": 6282.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.86,
+      "avg_latency_s": 0.136,
+      "peak_memory_mb": 6781.1,
+      "avg_memory_mb": 6780.0,
+      "throughput_sps": 7.337,
+      "avg_power_w": 181.1,
+      "avg_gpu_util_pct": 37.9,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.86,
+        "contains": 0.92,
+        "token_f1": 0.9333,
+        "bleu": 0.9274,
+        "rouge_l": 0.9333
+      }
+    }
+  }
+}

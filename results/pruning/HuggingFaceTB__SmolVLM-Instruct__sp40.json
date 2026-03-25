@@ -11,13 +11,24 @@
   "benchmarks": {
     "vqav2": {
       "accuracy": 0.0,
-      "avg_latency_s": 0.8485,
+      "avg_latency_s": 0.8566,
       "peak_memory_mb": 8427.1,
-      "avg_memory_mb": 8427.1,
-      "throughput_sps": 1.178,
-      "avg_power_w": 199.9,
-      "avg_gpu_util_pct": 56.2,
-      "n_samples": 1000
+      "avg_memory_mb": 8426.9,
+      "throughput_sps": 1.167,
+      "avg_power_w": 198.7,
+      "avg_gpu_util_pct": 55.5,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": true,
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 0.58,
+        "token_f1": 0.1046,
+        "bleu": 0.0603,
+        "rouge_l": 0.1046
+      }
     }
   }
 }

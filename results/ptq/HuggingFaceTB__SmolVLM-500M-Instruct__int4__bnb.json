@@ -8,14 +8,25 @@
   "compression_ratio": 1.92,
   "benchmarks": {
     "vqav2": {
-      "accuracy": 0.6943,
-      "avg_latency_s": 0.509,
-      "peak_memory_mb": 22422.1,
-      "avg_memory_mb": 15035.5,
-      "throughput_sps": 1.964,
-      "avg_power_w": 191.0,
-      "avg_gpu_util_pct": 44.8,
-      "n_samples": 1000
+      "accuracy": 0.62,
+      "avg_latency_s": 0.4718,
+      "peak_memory_mb": 1889.1,
+      "avg_memory_mb": 1874.2,
+      "throughput_sps": 2.118,
+      "avg_power_w": 117.1,
+      "avg_gpu_util_pct": 17.7,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.62,
+        "contains": 0.62,
+        "token_f1": 0.62,
+        "bleu": 0.62,
+        "rouge_l": 0.62
+      }
     }
   }
 }

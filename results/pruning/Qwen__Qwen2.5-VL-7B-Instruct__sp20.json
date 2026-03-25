@@ -10,14 +10,25 @@
   "gpu_mem_load_mb": 15820.0,
   "benchmarks": {
     "vqav2": {
-      "accuracy": 0.84,
-      "avg_latency_s": 0.1872,
-      "peak_memory_mb": 14845.1,
-      "avg_memory_mb": 12903.2,
-      "throughput_sps": 5.337,
-      "avg_power_w": 219.8,
-      "avg_gpu_util_pct": 56.0,
-      "n_samples": 1000
+      "accuracy": 0.86,
+      "avg_latency_s": 0.202,
+      "peak_memory_mb": 29335.1,
+      "avg_memory_mb": 29332.1,
+      "throughput_sps": 4.942,
+      "avg_power_w": 253.7,
+      "avg_gpu_util_pct": 79.0,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.86,
+        "contains": 0.92,
+        "token_f1": 0.92,
+        "bleu": 0.92,
+        "rouge_l": 0.92
+      }
     }
   }
 }

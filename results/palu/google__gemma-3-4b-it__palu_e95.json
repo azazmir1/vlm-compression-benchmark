@@ -1,0 +1,39 @@
+{
+  "model_id": "google/gemma-3-4b-it",
+  "family": "gemma3",
+  "method": "palu",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_kv_layers": 22,
+  "original_kv_params": 178257920,
+  "compressed_kv_params": 171138560,
+  "kv_compression_ratio": 1.04,
+  "kv_param_reduction": 0.0399,
+  "avg_energy_retained": 0.9502,
+  "num_params_before_M": 4300.1,
+  "num_params_after_M": 4293.0,
+  "gpu_mem_load_mb": 8204.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.38,
+      "avg_latency_s": 0.2489,
+      "peak_memory_mb": 9385.1,
+      "avg_memory_mb": 9381.4,
+      "throughput_sps": 4.012,
+      "avg_power_w": 222.7,
+      "avg_gpu_util_pct": 61.2,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.38,
+        "contains": 0.5,
+        "token_f1": 0.4667,
+        "bleu": 0.46,
+        "rouge_l": 0.4667
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "model_id": "AIDC-AI/Ovis2-4B",
+  "family": "ovis2",
+  "method": "svd_llm",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_layers": 39,
+  "original_params": 2887778304,
+  "compressed_params": 2773485568,
+  "compression_ratio": 1.04,
+  "param_reduction": 0.0396,
+  "avg_energy_retained": 0.9501,
+  "skipped_non_mlp": 194,
+  "skipped_small_layers": 0,
+  "num_params_before_M": 4304.9,
+  "num_params_after_M": 4190.6,
+  "gpu_mem_load_mb": 9054.0,
+  "gpu_mem_after_svd_mb": 9810.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.82,
+      "avg_latency_s": 0.3151,
+      "peak_memory_mb": 10355.1,
+      "avg_memory_mb": 10342.1,
+      "throughput_sps": 3.171,
+      "avg_power_w": 257.8,
+      "avg_gpu_util_pct": 76.9,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.82,
+        "contains": 0.88,
+        "token_f1": 0.88,
+        "bleu": 0.88,
+        "rouge_l": 0.88
+      }
+    }
+  }
+}

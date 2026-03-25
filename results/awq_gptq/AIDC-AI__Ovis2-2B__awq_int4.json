@@ -1,0 +1,37 @@
+{
+  "model_id": "AIDC-AI/Ovis2-2B",
+  "family": "ovis2",
+  "method": "awq",
+  "quant": "simulated_int4",
+  "bits": 4,
+  "group_size": "per_channel",
+  "n_calib_samples": 128,
+  "quantized_layers": 318,
+  "num_params_M": 2222.9,
+  "gpu_mem_load_mb": 4808.0,
+  "gpu_mem_after_quant_mb": 5520.9,
+  "compression_ratio": 1.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.3933,
+      "avg_latency_s": 0.5495,
+      "peak_memory_mb": 6031.1,
+      "avg_memory_mb": 6026.1,
+      "throughput_sps": 1.818,
+      "avg_power_w": 179.8,
+      "avg_gpu_util_pct": 43.7,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.3933,
+        "contains": 0.72,
+        "token_f1": 0.4788,
+        "bleu": 0.4584,
+        "rouge_l": 0.4788
+      }
+    }
+  }
+}

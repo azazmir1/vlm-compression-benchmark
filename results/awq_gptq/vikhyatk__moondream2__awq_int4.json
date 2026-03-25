@@ -1,0 +1,37 @@
+{
+  "model_id": "vikhyatk/moondream2",
+  "family": "moondream",
+  "method": "awq",
+  "quant": "simulated_int4",
+  "bits": 4,
+  "group_size": "per_channel",
+  "n_calib_samples": 128,
+  "quantized_layers": 154,
+  "num_params_M": 1927.2,
+  "gpu_mem_load_mb": 3700.0,
+  "gpu_mem_after_quant_mb": 4896.9,
+  "compression_ratio": 1.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.2,
+      "avg_latency_s": 0.8605,
+      "peak_memory_mb": 5369.1,
+      "avg_memory_mb": 5369.1,
+      "throughput_sps": 1.161,
+      "avg_power_w": 191.4,
+      "avg_gpu_util_pct": 67.5,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.2,
+        "contains": 0.3,
+        "token_f1": 0.241,
+        "bleu": 0.2405,
+        "rouge_l": 0.241
+      }
+    }
+  }
+}

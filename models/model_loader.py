@@ -52,6 +52,8 @@ FAMILY_MAP: dict[str, str] = {
     "moondream/moondream": "moondream",
     # fastvlm
     "apple/fastvlm": "fastvlm",
+    # florence-2
+    "microsoft/florence-2": "florence2",
     # qwen2.5-vl
     "qwen/qwen2.5-vl": "qwen25vl",
     "qwen/qwen2-vl": "qwen25vl",
@@ -322,6 +324,7 @@ _LOADERS = {
     "lfm2vl":     _load_lfm2vl,
     "moondream":  _load_moondream,
     "fastvlm":    _load_fastvlm,
+    "florence2":  _load_florence2,
     "qwen25vl":   _load_qwen25vl,
     "internvl25": _load_internvl25,
     "gemma3":     _load_gemma3,

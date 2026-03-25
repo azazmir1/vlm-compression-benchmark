@@ -1,0 +1,39 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-1.6B",
+  "family": "lfm2vl",
+  "method": "palu",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_kv_layers": 7,
+  "original_kv_params": 12582912,
+  "compressed_kv_params": 11417600,
+  "kv_compression_ratio": 1.1,
+  "kv_param_reduction": 0.0926,
+  "avg_energy_retained": 0.9503,
+  "num_params_before_M": 1584.8,
+  "num_params_after_M": 1583.6,
+  "gpu_mem_load_mb": 3130.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.82,
+      "avg_latency_s": 0.1151,
+      "peak_memory_mb": 3967.1,
+      "avg_memory_mb": 3966.3,
+      "throughput_sps": 8.663,
+      "avg_power_w": 154.9,
+      "avg_gpu_util_pct": 28.2,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.82,
+        "contains": 0.84,
+        "token_f1": 0.855,
+        "bleu": 0.85,
+        "rouge_l": 0.855
+      }
+    }
+  }
+}
