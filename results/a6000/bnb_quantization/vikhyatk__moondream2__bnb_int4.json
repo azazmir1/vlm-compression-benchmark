@@ -1,0 +1,27 @@
+{
+  "model_id": "vikhyatk/moondream2",
+  "family": "moondream",
+  "quant": "int4",
+  "backend": "bnb",
+  "num_params_M": 1927.2,
+  "gpu_mem_load_mb": 1932.0,
+  "compression_ratio": 1.92,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.0,
+      "avg_latency_s": 0.0,
+      "peak_memory_mb": 2685.1,
+      "avg_memory_mb": 2682.6,
+      "throughput_sps": 0.0,
+      "avg_power_w": 83.7,
+      "avg_gpu_util_pct": 2.4,
+      "n_samples": 50,
+      "n_evaluated": 0,
+      "n_skipped": 50,
+      "all_failed": true,
+      "zero_accuracy_warning": false
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "bnb_int4"
+}

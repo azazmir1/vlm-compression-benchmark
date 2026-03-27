@@ -1,0 +1,34 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-1B",
+  "family": "internvl25",
+  "quant": "int4",
+  "backend": "bnb",
+  "num_params_M": 938.2,
+  "gpu_mem_load_mb": 1116.0,
+  "compression_ratio": 1.71,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.6533,
+      "avg_latency_s": 0.1816,
+      "peak_memory_mb": 1883.1,
+      "avg_memory_mb": 1882.5,
+      "throughput_sps": 5.495,
+      "avg_power_w": 108.7,
+      "avg_gpu_util_pct": 18.9,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.6533,
+        "contains": 0.78,
+        "token_f1": 0.7447,
+        "bleu": 0.7322,
+        "rouge_l": 0.7447
+      }
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "bnb_int4"
+}

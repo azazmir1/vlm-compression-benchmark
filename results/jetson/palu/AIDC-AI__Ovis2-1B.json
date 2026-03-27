@@ -1,0 +1,28 @@
+{
+  "model_id": "AIDC-AI/Ovis2-1B",
+  "family": "ovis2",
+  "method": "palu",
+  "quant": "fp16",
+  "rank_ratio": 0.25,
+  "compressed_kv_layers": 72,
+  "original_kv_params": 19660800,
+  "compressed_kv_params": 8650752,
+  "kv_compression_ratio": 2.27,
+  "kv_param_reduction": 0.56,
+  "num_params_before_M": 1257.5,
+  "num_params_after_M": 1246.5,
+  "gpu_mem_load_mb": 2037.26953125,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.0,
+      "avg_latency_s": 0.0,
+      "peak_memory_mb": 2383.3,
+      "avg_memory_mb": 2378.9,
+      "throughput_sps": 0.0,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 10
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

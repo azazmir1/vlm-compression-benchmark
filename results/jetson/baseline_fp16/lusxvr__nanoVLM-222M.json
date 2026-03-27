@@ -1,0 +1,26 @@
+{
+  "model_id": "lusxvr/nanoVLM-222M",
+  "family": "nanovlm",
+  "param_M": 222,
+  "precision": "fp16",
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-21T19:34:32",
+  "num_params_M": 222.1,
+  "gpu_mem_load_mb": 431.7,
+  "status": "ERROR",
+  "metrics": {
+    "status": "ERROR",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 10,
+    "error_msg": "Error during warmup: Traceback (most recent call last):\n  File \"/home/cselab/vlm-compression-benchmark/jetson/safety.py\", line 208, in _worker\n    result[\"value\"] = fn(*args, **kwargs)\n  File \"/home/cselab/vlm-compression-benchmark/jetson/run_jetson.py\", line 744, in _do\n    return run_inference(model, processor, sample, family, device)\n  File \"/home/cselab/vlm-compression-benchmark/evaluation/run_baseline.py\", line 362, in run_inference\n    inputs = processor(text=prompt, images=[image], return_tensors=\"pt\").to(device)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 321, in __call__\n    transformed = self._image_transform(img)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torchvision/transforms/transforms.py\", line 95, in __call__\n    img = t(img)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/tmp/nanoVLM/data/custom_transforms.py\", line 115, in forward\n    patches, grid = self.splitter(x)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/tmp/nanoVLM/data/custom_transforms.py\", line 97, in forward\n    raise ValueError(f'Image size {(h,w)} not divisible by patch_size {self.p}')\nValueError: Image size (1792, 2048) not divisible by patch_size 224\n"
+  },
+  "method": "baseline_fp16"
+}

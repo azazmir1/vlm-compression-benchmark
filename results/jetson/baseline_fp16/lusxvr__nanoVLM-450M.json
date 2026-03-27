@@ -1,0 +1,24 @@
+{
+  "model_id": "lusxvr/nanoVLM-450M",
+  "family": "nanovlm",
+  "param_M": 450,
+  "precision": "fp16",
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-21T19:35:19",
+  "status": "ERROR",
+  "metrics": {
+    "status": "ERROR",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 10,
+    "error_msg": "Traceback (most recent call last):\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/utils/_http.py\", line 761, in hf_raise_for_status\n    response.raise_for_status()\n  File \"/home/cselab/.local/lib/python3.10/site-packages/httpx/_models.py\", line 829, in raise_for_status\n    raise HTTPStatusError(message, request=request, response=self)\nhttpx.HTTPStatusError: Client error '404 Not Found' for url 'https://huggingface.co/lusxvr/nanoVLM-450M/resolve/main/config.json'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/cselab/vlm-compression-benchmark/jetson/safety.py\", line 322, in safe_load_model\n    model, processor, meta = load_model(model_id, quant=quant, family=family)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 800, in load_model\n    model, processor = loader(model_id, bnb, dtype, device_map)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 216, in _load_nanovlm\n    config_path = hf_hub_download(model_id, \"config.json\")\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py\", line 89, in _inner_fn\n    return fn(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py\", line 986, in hf_hub_download\n    return _hf_hub_download_to_cache_dir(\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py\", line 1137, in _hf_hub_download_to_cache_dir\n    _raise_on_head_call_error(head_call_error, force_download, local_files_only)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py\", line 1766, in _raise_on_head_call_error\n    raise head_call_error\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py\", line 1653, in _get_metadata_or_catch_error\n    metadata = get_hf_file_metadata(\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py\", line 89, in _inner_fn\n    return fn(*args, **kwargs)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py\", line 1576, in get_hf_file_metadata\n    response = _httpx_follow_relative_redirects_with_backoff(\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/utils/_http.py\", line 692, in _httpx_follow_relative_redirects_with_backoff\n    hf_raise_for_status(response)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/huggingface_hub/utils/_http.py\", line 847, in hf_raise_for_status\n    raise repo_err from e\nhuggingface_hub.errors.RepositoryNotFoundError: 404 Client Error. (Request ID: Root=1-69bf3947-3cdbf4965e12e3a01fdb3c66;3c45e8fe-800a-458c-8c77-b6dc61dbac6d)\n\nRepository Not Found for url: https://huggingface.co/lusxvr/nanoVLM-450M/resolve/main/config.json.\nPlease make sure you specified the correct `repo_id` and `repo_type`.\nIf you are trying to access a private or gated repo, make sure you are authenticated. For more details, see https://huggingface.co/docs/huggingface_hub/authentication\n"
+  },
+  "method": "baseline_fp16"
+}

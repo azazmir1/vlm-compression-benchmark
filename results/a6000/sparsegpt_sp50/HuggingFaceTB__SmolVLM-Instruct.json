@@ -1,0 +1,38 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-Instruct",
+  "family": "smolvlm",
+  "quant": "fp16",
+  "pruning_method": "sparsegpt",
+  "target_sparsity": 0.5,
+  "actual_sparsity": 0.5,
+  "pruned_layers": 170,
+  "blocksize": 128,
+  "n_calib_samples": 128,
+  "num_params_M": 2246.3,
+  "gpu_mem_load_mb": 4400.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.0,
+      "avg_latency_s": 0.8095,
+      "peak_memory_mb": 8593.1,
+      "avg_memory_mb": 8593.1,
+      "throughput_sps": 1.235,
+      "avg_power_w": 202.7,
+      "avg_gpu_util_pct": 58.4,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": true,
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 0.4,
+        "token_f1": 0.0517,
+        "bleu": 0.0278,
+        "rouge_l": 0.0517
+      }
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "sparsegpt_sp50"
+}

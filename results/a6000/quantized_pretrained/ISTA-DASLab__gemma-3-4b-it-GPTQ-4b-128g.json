@@ -1,0 +1,13 @@
+{
+  "model_id": "ISTA-DASLab/gemma-3-4b-it-GPTQ-4b-128g",
+  "base_model_id": "google/gemma-3-4b-it",
+  "family": "gemma3",
+  "quant_method": "gptq",
+  "quant_bits": 4,
+  "source": "unknown",
+  "status": "ERROR",
+  "error": "compressed_tensors is not installed and is required for compressed-tensors quantization. Please install it with `pip install compressed-tensors`.",
+  "timestamp": "2026-03-22T07:08:23",
+  "device": "a6000_48gb",
+  "method": "quantized_pretrained"
+}

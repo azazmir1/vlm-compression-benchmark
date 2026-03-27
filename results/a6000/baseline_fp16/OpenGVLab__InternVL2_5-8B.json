@@ -1,0 +1,32 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-8B",
+  "family": "internvl25",
+  "quant": "fp16",
+  "num_params_M": 8075.4,
+  "gpu_mem_load_mb": 16622.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.78,
+      "avg_latency_s": 0.2291,
+      "peak_memory_mb": 35854.1,
+      "avg_memory_mb": 35843.9,
+      "throughput_sps": 4.355,
+      "avg_power_w": 260.6,
+      "avg_gpu_util_pct": 83.9,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.78,
+        "contains": 0.86,
+        "token_f1": 0.8733,
+        "bleu": 0.8674,
+        "rouge_l": 0.8733
+      }
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "baseline_fp16"
+}

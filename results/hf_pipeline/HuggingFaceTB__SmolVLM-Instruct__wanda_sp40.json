@@ -1,0 +1,38 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-Instruct",
+  "hf_repo": "Azaz666/SmolVLM-Instruct-WANDA-sp40",
+  "family": "smolvlm",
+  "method": "wanda",
+  "sparsity": 0.4,
+  "actual_sparsity": 0.3085,
+  "num_params_M": 2246.3,
+  "zero_params_M": 693.1,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 4504.0,
+  "gpu_mem_load_mb": 4504.0,
+  "load_time_s": 49.6,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.0,
+      "avg_latency_s": 5.0033,
+      "peak_memory_mb": 4751.6,
+      "avg_memory_mb": 4486.5,
+      "throughput_sps": 0.2,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": true,
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 0.58,
+        "token_f1": 0.008,
+        "bleu": 0.0067,
+        "rouge_l": 0.008
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

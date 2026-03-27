@@ -1,0 +1,41 @@
+{
+  "model_id": "vikhyatk/moondream2",
+  "family": "moondream",
+  "method": "slim",
+  "quant": "fp16_simulated",
+  "svd_layers": 214,
+  "pruned_layers": 214,
+  "quantized_layers": 214,
+  "total_layers": 214,
+  "target_sparsity": 0.5,
+  "actual_sparsity": 0.502,
+  "rank_ratio": 0.3,
+  "n_calib_samples": 32,
+  "num_params_before_M": 1927.2,
+  "num_params_after_M": 1927.2,
+  "gpu_mem_load_mb": 3700.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.0,
+      "avg_latency_s": 11.5291,
+      "peak_memory_mb": 9467.1,
+      "avg_memory_mb": 9467.1,
+      "throughput_sps": 0.087,
+      "avg_power_w": 176.5,
+      "avg_gpu_util_pct": 65.6,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": true,
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 0.22,
+        "token_f1": 0.0013,
+        "bleu": 0.0005,
+        "rouge_l": 0.0008
+      }
+    }
+  },
+  "device": "a6000_48gb"
+}

@@ -1,0 +1,33 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-Instruct",
+  "hf_repo": "Azaz666/SmolVLM-Instruct-PYTORCH-INT4",
+  "family": "smolvlm",
+  "method": "pytorch_int4",
+  "num_params_M": 1466.1,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 2138.0,
+  "gpu_mem_load_mb": 2138.0,
+  "load_time_s": 12.1,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.58,
+      "avg_latency_s": 4.8418,
+      "peak_memory_mb": 2526.3,
+      "avg_memory_mb": 2229.4,
+      "throughput_sps": 0.206,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.58,
+        "contains": 0.6,
+        "token_f1": 0.6133,
+        "bleu": 0.6074,
+        "rouge_l": 0.6133
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

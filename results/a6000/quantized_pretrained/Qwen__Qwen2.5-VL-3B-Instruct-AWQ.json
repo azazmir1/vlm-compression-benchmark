@@ -1,0 +1,13 @@
+{
+  "model_id": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+  "base_model_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "family": "qwen25vl",
+  "quant_method": "awq",
+  "quant_bits": 4,
+  "source": "unknown",
+  "status": "ERROR",
+  "error": "<class 'gptqmodel.nn_modules.qlinear.exllamav2_awq.AwqExllamaV2QuantLinear'>: `out_features`: 3420 must be divisible by [32].",
+  "timestamp": "2026-03-21T13:57:45",
+  "device": "a6000_48gb",
+  "method": "quantized_pretrained"
+}

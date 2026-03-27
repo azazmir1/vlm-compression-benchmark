@@ -1,0 +1,184 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-256M-Instruct",
+  "method": "fp16",
+  "family": "smolvlm",
+  "num_samples": 1,
+  "num_warmup": 0,
+  "max_tokens": 5,
+  "accuracy": {
+    "exact_match": 0.0,
+    "contains": 0.0,
+    "token_f1": 0.0,
+    "bleu": 0.0,
+    "rouge_l": 0.0
+  },
+  "timing": {
+    "avg_preprocessing_ms": 582.36,
+    "avg_prefill_ms": 2085.6,
+    "avg_decode_ms": 344.37,
+    "avg_total_generation_ms": 2429.97,
+    "avg_decode_detokenize_ms": 4.88,
+    "avg_total_ms": 3017.21,
+    "avg_tokens_generated": 3.0,
+    "avg_input_tokens": 1149.0
+  },
+  "throughput": {
+    "avg_tok_s": 1.23,
+    "avg_decode_tok_s": 5.81,
+    "samples_per_s": 0.33
+  },
+  "memory": {
+    "gpu_peak_mb": 962.1,
+    "gpu_avg_mb": 613.8,
+    "avg_inference_peak_mb": 988.1
+  },
+  "gpu_util": {
+    "avg_pct": 0.0,
+    "peak_pct": 0.0
+  },
+  "tegrastats": {
+    "avg_power_w": 10.45,
+    "peak_power_w": 17.42,
+    "avg_gpu_temp_c": 49.8,
+    "peak_gpu_temp_c": 52.3,
+    "avg_cpu_temp_c": 47.5,
+    "peak_cpu_temp_c": 48.0,
+    "avg_ram_used_mb": 6060.9,
+    "peak_ram_used_mb": 6492,
+    "avg_gpu_util_pct": 26.6,
+    "peak_gpu_util_pct": 99.0,
+    "num_samples": 14
+  },
+  "sample_details": [
+    {
+      "preprocessing_ms": 582.3601,
+      "num_input_tokens": 1149,
+      "token_timing": {
+        "num_tokens": 3,
+        "prefill_ms": 2085.6011,
+        "decode_ms": 344.3693,
+        "total_ms": 2429.9704,
+        "per_token_ms": [
+          2085.6011,
+          206.0807,
+          138.2886
+        ],
+        "avg_decode_ms": 172.1846,
+        "decode_throughput_tok_s": 5.81
+      },
+      "decode_ms": 4.8786,
+      "total_ms": 3017.2091,
+      "gpu_mem_before_mb": 576.3,
+      "gpu_mem_peak_mb": 988.1,
+      "gpu_mem_after_mb": 585.8,
+      "generated_text": "Up.",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l": 0.0
+      },
+      "components": {
+        "text_embeddings": {
+          "total_ms": 3.83,
+          "percentage": 0.3,
+          "count": 3
+        },
+        "vision_encoder": {
+          "total_ms": 970.92,
+          "percentage": 64.9,
+          "count": 111
+        },
+        "projection": {
+          "total_ms": 2.29,
+          "percentage": 0.2,
+          "count": 1
+        },
+        "other": {
+          "total_ms": 134.4,
+          "percentage": 9.0,
+          "count": 3
+        },
+        "normalization": {
+          "total_ms": 220.22,
+          "percentage": 14.7,
+          "count": 183
+        },
+        "attention": {
+          "total_ms": 72.39,
+          "percentage": 4.8,
+          "count": 360
+        },
+        "feedforward": {
+          "total_ms": 85.33,
+          "percentage": 5.7,
+          "count": 360
+        },
+        "output": {
+          "total_ms": 5.7,
+          "percentage": 0.4,
+          "count": 3
+        }
+      }
+    }
+  ],
+  "components": {
+    "text_embeddings": {
+      "total_ms": 3.83,
+      "count": 3,
+      "samples": 1,
+      "avg_ms": 3.83,
+      "percentage": 0.3
+    },
+    "vision_encoder": {
+      "total_ms": 970.92,
+      "count": 111,
+      "samples": 1,
+      "avg_ms": 970.92,
+      "percentage": 64.9
+    },
+    "projection": {
+      "total_ms": 2.29,
+      "count": 1,
+      "samples": 1,
+      "avg_ms": 2.29,
+      "percentage": 0.2
+    },
+    "other": {
+      "total_ms": 134.4,
+      "count": 3,
+      "samples": 1,
+      "avg_ms": 134.4,
+      "percentage": 9.0
+    },
+    "normalization": {
+      "total_ms": 220.22,
+      "count": 183,
+      "samples": 1,
+      "avg_ms": 220.22,
+      "percentage": 14.7
+    },
+    "attention": {
+      "total_ms": 72.39,
+      "count": 360,
+      "samples": 1,
+      "avg_ms": 72.39,
+      "percentage": 4.8
+    },
+    "feedforward": {
+      "total_ms": 85.33,
+      "count": 360,
+      "samples": 1,
+      "avg_ms": 85.33,
+      "percentage": 5.7
+    },
+    "output": {
+      "total_ms": 5.7,
+      "count": 3,
+      "samples": 1,
+      "avg_ms": 5.7,
+      "percentage": 0.4
+    }
+  }
+}

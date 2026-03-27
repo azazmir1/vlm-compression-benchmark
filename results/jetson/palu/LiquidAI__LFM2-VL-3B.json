@@ -1,0 +1,39 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-3B",
+  "family": "lfm2vl",
+  "method": "palu",
+  "quant": "fp16",
+  "rank_ratio": 0.25,
+  "compressed_kv_layers": 16,
+  "original_kv_params": 16777216,
+  "compressed_kv_params": 5242880,
+  "kv_compression_ratio": 3.2,
+  "kv_param_reduction": 0.6875,
+  "num_params_before_M": 2999.0,
+  "num_params_after_M": 2987.4,
+  "gpu_mem_load_mb": 6185.76953125,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.1333,
+      "avg_latency_s": 2.1281,
+      "peak_memory_mb": 5740.0,
+      "avg_memory_mb": 5717.4,
+      "throughput_sps": 0.469,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 10,
+      "n_evaluated": 10,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.1333,
+        "contains": 0.3,
+        "token_f1": 0.22,
+        "bleu": 0.2111,
+        "rouge_l": 0.22
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

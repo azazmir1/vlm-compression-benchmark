@@ -1,0 +1,38 @@
+{
+  "model_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "family": "qwen25vl",
+  "method": "awq",
+  "quant": "simulated_int4",
+  "bits": 4,
+  "group_size": "per_channel",
+  "n_calib_samples": 128,
+  "quantized_layers": 415,
+  "num_params_M": 3754.6,
+  "gpu_mem_load_mb": 7236.0,
+  "gpu_mem_after_quant_mb": 8278.9,
+  "compression_ratio": 1.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.1267,
+      "avg_latency_s": 0.7889,
+      "peak_memory_mb": 8773.1,
+      "avg_memory_mb": 8773.0,
+      "throughput_sps": 1.267,
+      "avg_power_w": 193.9,
+      "avg_gpu_util_pct": 51.8,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.1267,
+        "contains": 0.66,
+        "token_f1": 0.2362,
+        "bleu": 0.199,
+        "rouge_l": 0.2362
+      }
+    }
+  },
+  "device": "a6000_48gb"
+}

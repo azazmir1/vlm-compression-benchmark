@@ -1,0 +1,33 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-1.6B",
+  "hf_repo": "Azaz666/LFM2-VL-1.6B-HQQ-INT4",
+  "family": "lfm2vl",
+  "method": "hqq_int4",
+  "num_params_M": 1584.8,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 3181.4,
+  "gpu_mem_load_mb": 3181.4,
+  "load_time_s": 12.7,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.82,
+      "avg_latency_s": 0.446,
+      "peak_memory_mb": 3076.9,
+      "avg_memory_mb": 3053.3,
+      "throughput_sps": 2.237,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.82,
+        "contains": 0.82,
+        "token_f1": 0.82,
+        "bleu": 0.82,
+        "rouge_l": 0.82
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

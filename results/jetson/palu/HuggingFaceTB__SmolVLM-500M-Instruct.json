@@ -1,0 +1,28 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-500M-Instruct",
+  "family": "smolvlm",
+  "method": "palu",
+  "quant": "fp16",
+  "rank_ratio": 0.25,
+  "compressed_kv_layers": 64,
+  "original_kv_params": 19660800,
+  "compressed_kv_params": 6553600,
+  "kv_compression_ratio": 3.0,
+  "kv_param_reduction": 0.6667,
+  "num_params_before_M": 507.5,
+  "num_params_after_M": 494.4,
+  "gpu_mem_load_mb": 715.41796875,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.0,
+      "avg_latency_s": 4.3019,
+      "peak_memory_mb": 1381.7,
+      "avg_memory_mb": 1048.3,
+      "throughput_sps": 0.232,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 20
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

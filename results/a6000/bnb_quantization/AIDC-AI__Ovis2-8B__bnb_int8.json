@@ -1,0 +1,23 @@
+{
+  "model_id": "AIDC-AI/Ovis2-8B",
+  "family": "ovis2",
+  "quant": "int8",
+  "backend": "bnb",
+  "num_params_M": 8935.3,
+  "gpu_mem_load_mb": 11040.0,
+  "compression_ratio": 1.56,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8447,
+      "avg_latency_s": 0.6473,
+      "peak_memory_mb": 22422.1,
+      "avg_memory_mb": 15039.5,
+      "throughput_sps": 1.545,
+      "avg_power_w": 192.3,
+      "avg_gpu_util_pct": 44.8,
+      "n_samples": 1000
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "bnb_int8"
+}

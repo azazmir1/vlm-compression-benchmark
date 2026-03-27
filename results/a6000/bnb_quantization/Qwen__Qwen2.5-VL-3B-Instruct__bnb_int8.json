@@ -1,0 +1,23 @@
+{
+  "model_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "family": "qwen25vl",
+  "quant": "int8",
+  "backend": "bnb",
+  "num_params_M": 3754.6,
+  "gpu_mem_load_mb": 4092.0,
+  "compression_ratio": 1.77,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8317,
+      "avg_latency_s": 0.5057,
+      "peak_memory_mb": 4975.1,
+      "avg_memory_mb": 4972.4,
+      "throughput_sps": 1.977,
+      "avg_power_w": 162.7,
+      "avg_gpu_util_pct": 35.4,
+      "n_samples": 1000
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "bnb_int8"
+}

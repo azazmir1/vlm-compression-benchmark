@@ -1,0 +1,43 @@
+{
+  "model_id": "apple/FastVLM-0.5B",
+  "family": "fastvlm",
+  "method": "svd_llm",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_layers": 3,
+  "original_params": 313786368,
+  "compressed_params": 312974976,
+  "compression_ratio": 1.0,
+  "param_reduction": 0.0026,
+  "avg_energy_retained": 0.9502,
+  "skipped_non_mlp": 99,
+  "skipped_small_layers": 0,
+  "num_params_before_M": 622.7,
+  "num_params_after_M": 621.9,
+  "gpu_mem_load_mb": 1532.0,
+  "gpu_mem_after_svd_mb": 1836.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.2067,
+      "avg_latency_s": 0.8103,
+      "peak_memory_mb": 25249.1,
+      "avg_memory_mb": 25249.1,
+      "throughput_sps": 1.233,
+      "avg_power_w": 79.8,
+      "avg_gpu_util_pct": 9.5,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.2067,
+        "contains": 0.66,
+        "token_f1": 0.3222,
+        "bleu": 0.289,
+        "rouge_l": 0.3222
+      }
+    }
+  },
+  "device": "a6000_48gb"
+}

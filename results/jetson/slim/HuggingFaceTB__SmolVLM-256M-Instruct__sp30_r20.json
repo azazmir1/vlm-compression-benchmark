@@ -1,0 +1,41 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-256M-Instruct",
+  "family": "smolvlm",
+  "method": "slim",
+  "quant": "fp16_simulated",
+  "svd_layers": 0,
+  "pruned_layers": 212,
+  "quantized_layers": 212,
+  "total_layers": 212,
+  "target_sparsity": 0.3,
+  "actual_sparsity": 0.3134,
+  "rank_ratio": 0.2,
+  "n_calib_samples": 32,
+  "num_params_before_M": 256.5,
+  "num_params_after_M": 256.5,
+  "gpu_mem_load_mb": 61.71875,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.1333,
+      "avg_latency_s": 2.2506,
+      "peak_memory_mb": 775.7,
+      "avg_memory_mb": 572.7,
+      "throughput_sps": 0.444,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 30,
+      "n_evaluated": 30,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.1333,
+        "contains": 0.1667,
+        "token_f1": 0.1394,
+        "bleu": 0.1367,
+        "rouge_l": 0.1394
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

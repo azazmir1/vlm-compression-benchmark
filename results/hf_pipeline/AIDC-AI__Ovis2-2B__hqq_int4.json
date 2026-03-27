@@ -1,0 +1,33 @@
+{
+  "model_id": "AIDC-AI/Ovis2-2B",
+  "hf_repo": "Azaz666/Ovis2-2B-HQQ-INT4",
+  "family": "ovis2",
+  "method": "hqq_int4",
+  "num_params_M": 1608.8,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 2594.5,
+  "gpu_mem_load_mb": 2594.5,
+  "load_time_s": 9.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8533,
+      "avg_latency_s": 3.2469,
+      "peak_memory_mb": 2984.9,
+      "avg_memory_mb": 2572.5,
+      "throughput_sps": 0.308,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.8533,
+        "contains": 0.9,
+        "token_f1": 0.9,
+        "bleu": 0.9,
+        "rouge_l": 0.9
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

@@ -1,0 +1,33 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-Instruct",
+  "hf_repo": "Azaz666/SmolVLM-Instruct-GPTQ-INT4",
+  "family": "smolvlm",
+  "method": "gptq_int4",
+  "num_params_M": 2246.3,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 4503.6,
+  "gpu_mem_load_mb": 4503.6,
+  "load_time_s": 35.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.4733,
+      "avg_latency_s": 3.046,
+      "peak_memory_mb": 4726.6,
+      "avg_memory_mb": 4425.5,
+      "throughput_sps": 0.328,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.4733,
+        "contains": 0.54,
+        "token_f1": 0.5767,
+        "bleu": 0.5647,
+        "rouge_l": 0.5767
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

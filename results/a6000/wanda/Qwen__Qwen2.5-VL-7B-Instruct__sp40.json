@@ -1,0 +1,37 @@
+{
+  "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "family": "qwen25vl",
+  "quant": "fp16",
+  "pruning_method": "wanda",
+  "target_sparsity": 0.4,
+  "actual_sparsity": 0.3999,
+  "pruned_layers": 359,
+  "n_calib_samples": 128,
+  "num_params_M": 8292.2,
+  "gpu_mem_load_mb": 15820.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.86,
+      "avg_latency_s": 0.1955,
+      "peak_memory_mb": 29339.1,
+      "avg_memory_mb": 29338.9,
+      "throughput_sps": 5.106,
+      "avg_power_w": 265.3,
+      "avg_gpu_util_pct": 82.4,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.86,
+        "contains": 0.92,
+        "token_f1": 0.92,
+        "bleu": 0.92,
+        "rouge_l": 0.92
+      }
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "wanda_sp40"
+}

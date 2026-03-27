@@ -1,0 +1,33 @@
+{
+  "model_id": "AIDC-AI/Ovis2-2B",
+  "hf_repo": "Azaz666/Ovis2-2B-PYTORCH-INT8",
+  "family": "ovis2",
+  "method": "pytorch_int8",
+  "num_params_M": 2457.1,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 3458.4,
+  "gpu_mem_load_mb": 3458.4,
+  "load_time_s": 45.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8467,
+      "avg_latency_s": 2.7615,
+      "peak_memory_mb": 4249.8,
+      "avg_memory_mb": 3425.9,
+      "throughput_sps": 0.362,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.8467,
+        "contains": 0.9,
+        "token_f1": 0.9,
+        "bleu": 0.9,
+        "rouge_l": 0.9
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

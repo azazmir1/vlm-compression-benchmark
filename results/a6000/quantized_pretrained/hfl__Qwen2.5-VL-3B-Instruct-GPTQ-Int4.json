@@ -1,0 +1,37 @@
+{
+  "model_id": "hfl/Qwen2.5-VL-3B-Instruct-GPTQ-Int4",
+  "base_model_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "family": "qwen25vl",
+  "quant_method": "gptq",
+  "quant_bits": 4,
+  "source": "unknown",
+  "num_params_M": 980.0,
+  "gpu_mem_load_mb": 2661.1,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.6333,
+      "avg_latency_s": 2.0914,
+      "peak_memory_mb": 3348.6,
+      "avg_memory_mb": 3288.5,
+      "throughput_sps": 0.478,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 10,
+      "n_evaluated": 10,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.6333,
+        "contains": 0.8,
+        "token_f1": 0.8667,
+        "bleu": 0.8368,
+        "rouge_l": 0.8667
+      }
+    }
+  },
+  "timestamp": "2026-03-21T13:59:52",
+  "status": "PASS",
+  "device": "a6000_48gb",
+  "method": "quantized_pretrained"
+}

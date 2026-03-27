@@ -1,0 +1,21 @@
+{
+  "model_id": "google/gemma-3-12b-it",
+  "family": "gemma3",
+  "quant": "fp16",
+  "num_params_M": 12187.3,
+  "gpu_mem_load_mb": 23250.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.5577,
+      "avg_latency_s": 0.3775,
+      "peak_memory_mb": 24247.1,
+      "avg_memory_mb": 24247.0,
+      "throughput_sps": 2.647,
+      "avg_power_w": 259.6,
+      "avg_gpu_util_pct": 80.3,
+      "n_samples": 1000
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "baseline_fp16"
+}

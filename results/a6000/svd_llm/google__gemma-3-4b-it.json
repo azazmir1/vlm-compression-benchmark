@@ -1,0 +1,43 @@
+{
+  "model_id": "google/gemma-3-4b-it",
+  "family": "gemma3",
+  "method": "svd_llm",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_layers": 0,
+  "original_params": 2673868800,
+  "compressed_params": 2673868800,
+  "compression_ratio": 1.0,
+  "param_reduction": 0.0,
+  "avg_energy_retained": 1.0,
+  "skipped_non_mlp": 137,
+  "skipped_small_layers": 0,
+  "num_params_before_M": 4300.1,
+  "num_params_after_M": 4300.1,
+  "gpu_mem_load_mb": 8204.0,
+  "gpu_mem_after_svd_mb": 8552.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.3933,
+      "avg_latency_s": 0.2377,
+      "peak_memory_mb": 9273.1,
+      "avg_memory_mb": 9267.0,
+      "throughput_sps": 4.201,
+      "avg_power_w": 225.6,
+      "avg_gpu_util_pct": 61.9,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.3933,
+        "contains": 0.48,
+        "token_f1": 0.4533,
+        "bleu": 0.45,
+        "rouge_l": 0.4533
+      }
+    }
+  },
+  "device": "a6000_48gb"
+}

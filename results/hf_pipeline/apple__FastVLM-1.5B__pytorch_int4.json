@@ -1,0 +1,33 @@
+{
+  "model_id": "apple/FastVLM-1.5B",
+  "hf_repo": "Azaz666/FastVLM-1.5B-PYTORCH-INT4",
+  "family": "fastvlm",
+  "method": "pytorch_int4",
+  "num_params_M": 1158.2,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 1557.4,
+  "gpu_mem_load_mb": 1557.4,
+  "load_time_s": 11.3,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.3267,
+      "avg_latency_s": 19.5122,
+      "peak_memory_mb": 2625.2,
+      "avg_memory_mb": 1526.2,
+      "throughput_sps": 0.051,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.3267,
+        "contains": 0.68,
+        "token_f1": 0.4403,
+        "bleu": 0.4122,
+        "rouge_l": 0.4403
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

@@ -1,0 +1,26 @@
+{
+  "model_id": "AIDC-AI/Ovis2-8B",
+  "family": "ovis2",
+  "quant": "fp16",
+  "pruning_method": "wanda",
+  "target_sparsity": 0.2,
+  "actual_sparsity": 0.1998,
+  "pruned_layers": 318,
+  "n_calib_samples": 128,
+  "num_params_M": 8935.3,
+  "gpu_mem_load_mb": 17222.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8513,
+      "avg_latency_s": 0.3641,
+      "peak_memory_mb": 41681.1,
+      "avg_memory_mb": 41681.1,
+      "throughput_sps": 2.746,
+      "avg_power_w": 257.3,
+      "avg_gpu_util_pct": 78.5,
+      "n_samples": 1000
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "wanda_sp20"
+}

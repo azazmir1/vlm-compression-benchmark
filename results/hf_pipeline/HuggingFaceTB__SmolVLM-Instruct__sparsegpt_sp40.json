@@ -1,0 +1,38 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-Instruct",
+  "hf_repo": "Azaz666/SmolVLM-Instruct-SPARSEGPT-sp40",
+  "family": "smolvlm",
+  "method": "sparsegpt",
+  "sparsity": 0.4,
+  "actual_sparsity": 0.3085,
+  "num_params_M": 2246.3,
+  "zero_params_M": 693.1,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 4504.0,
+  "gpu_mem_load_mb": 4504.0,
+  "load_time_s": 49.7,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.34,
+      "avg_latency_s": 4.9487,
+      "peak_memory_mb": 4728.8,
+      "avg_memory_mb": 4488.9,
+      "throughput_sps": 0.202,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.34,
+        "contains": 0.5,
+        "token_f1": 0.3733,
+        "bleu": 0.3674,
+        "rouge_l": 0.3733
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

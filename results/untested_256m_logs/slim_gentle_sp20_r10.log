@@ -1,21 +1,0 @@
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-Skipping import of cpp extensions due to incompatible torch version 2.8.0 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
-23:42:23 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct (fp16) for SLIM...
-23:42:23 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct  family=smolvlm  quant=fp16  dtype=torch.float16
-23:42:24 | INFO | [GPU mem] before load: 3222.5 MB used
-`torch_dtype` is deprecated! Use `dtype` instead!
-23:42:27 | INFO | [GPU mem] after load: 3298.2 MB used
-23:42:27 | INFO | Loaded HuggingFaceTB/SmolVLM-256M-Instruct | VRAM delta: 75.7 MB
-23:42:27 | INFO | Calibration: sensitivity analysis (32 samples)...
-23:42:28 | INFO | Loading VQAv2 validation (n=32)...
-23:42:30 | INFO |   Loaded 32 VQAv2 samples.
-23:43:25 | INFO |   Collected sensitivity for 212 layers
-23:43:25 | INFO | Applying SLIM: SVD + pruning@0.2 + INT4...
-23:43:27 | INFO | SLIM: 0 SVD + 212 pruned + 212 quantized | sparsity = 0.2500
-23:43:27 | INFO | Loading VQAv2 validation (n=30)...
-23:43:29 | INFO |   Loaded 30 VQAv2 samples.
-23:43:29 | INFO |   Evaluating on VQAv2 (30 samples)...
-VQAv2:   0%|          | 0/30 [00:00<?, ?it/s]VQAv2:   3%|▎         | 1/30 [00:01<00:57,  1.98s/it]VQAv2:   7%|▋         | 2/30 [00:03<00:53,  1.90s/it]VQAv2:  10%|█         | 3/30 [00:05<00:50,  1.87s/it]VQAv2:  13%|█▎        | 4/30 [00:07<00:49,  1.91s/it]VQAv2:  17%|█▋        | 5/30 [00:09<00:43,  1.73s/it]VQAv2:  20%|██        | 6/30 [00:10<00:38,  1.61s/it]VQAv2:  23%|██▎       | 7/30 [00:12<00:37,  1.61s/it]VQAv2:  27%|██▋       | 8/30 [00:13<00:37,  1.68s/it]VQAv2:  30%|███       | 9/30 [00:15<00:33,  1.58s/it]VQAv2:  33%|███▎      | 10/30 [00:17<00:36,  1.82s/it]VQAv2:  37%|███▋      | 11/30 [00:19<00:36,  1.94s/it]VQAv2:  40%|████      | 12/30 [00:21<00:33,  1.88s/it]VQAv2:  43%|████▎     | 13/30 [00:23<00:32,  1.91s/it]VQAv2:  47%|████▋     | 14/30 [00:24<00:28,  1.76s/it]VQAv2:  50%|█████     | 15/30 [00:26<00:25,  1.70s/it]VQAv2:  53%|█████▎    | 16/30 [00:27<00:22,  1.64s/it]VQAv2:  57%|█████▋    | 17/30 [00:29<00:20,  1.58s/it]VQAv2:  60%|██████    | 18/30 [00:31<00:18,  1.58s/it]VQAv2:  63%|██████▎   | 19/30 [00:32<00:16,  1.51s/it]VQAv2:  67%|██████▋   | 20/30 [00:33<00:15,  1.50s/it]VQAv2:  70%|███████   | 21/30 [00:35<00:13,  1.47s/it]VQAv2:  73%|███████▎  | 22/30 [00:36<00:11,  1.46s/it]VQAv2:  77%|███████▋  | 23/30 [00:38<00:10,  1.47s/it]VQAv2:  80%|████████  | 24/30 [00:42<00:13,  2.20s/it]VQAv2:  83%|████████▎ | 25/30 [00:43<00:10,  2.10s/it]VQAv2:  87%|████████▋ | 26/30 [00:45<00:08,  2.03s/it]VQAv2:  90%|█████████ | 27/30 [00:47<00:05,  1.94s/it]VQAv2:  93%|█████████▎| 28/30 [00:49<00:03,  1.83s/it]VQAv2:  97%|█████████▋| 29/30 [00:50<00:01,  1.83s/it]VQAv2: 100%|██████████| 30/30 [00:52<00:00,  1.75s/it]                                                      23:44:21 | INFO |   VQAv2: exact_match=0.1667  contains=0.3000  token_f1=0.2579  bleu=0.2301  rouge_l=0.2579  lat=1.749s  mem=672MB  tput=0.57 samp/s  evaluated=30/30
-23:44:21 | INFO | SLIM results saved to /home/cselab/vlm-compression-benchmark/results/casp_slim/HuggingFaceTB__SmolVLM-256M-Instruct__slim_sp20_r10.json
-23:44:22 | INFO | Model unloaded and GPU cache cleared.

@@ -27,17 +27,20 @@ Thumbs.db
 # Jupyter
 .ipynb_checkpoints/
 
-# HuggingFace cache
+# HuggingFace model weights (large binaries)
 *.safetensors
 *.bin
 *.pt
 *.pth
 
-# Logs
+# Logs (tracked separately)
 logs/
+results/_logs/
+results/profiling/run*.log
 
-# Results — tracked for reproducibility
-# results/
+# Old/backup results (reorganized into a6000/ and jetson/)
+results/_old_scattered/
+results_backup_*/
 
 # Claude Code
 .claude/

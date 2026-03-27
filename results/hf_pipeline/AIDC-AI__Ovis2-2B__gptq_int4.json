@@ -1,0 +1,33 @@
+{
+  "model_id": "AIDC-AI/Ovis2-2B",
+  "hf_repo": "Azaz666/Ovis2-2B-GPTQ-INT4",
+  "family": "ovis2",
+  "method": "gptq_int4",
+  "num_params_M": 1708.6,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 2679.1,
+  "gpu_mem_load_mb": 2679.1,
+  "load_time_s": 7.6,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.88,
+      "avg_latency_s": 3.5226,
+      "peak_memory_mb": 3735.9,
+      "avg_memory_mb": 2684.1,
+      "throughput_sps": 0.284,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.88,
+        "contains": 0.92,
+        "token_f1": 0.9333,
+        "bleu": 0.9274,
+        "rouge_l": 0.9333
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

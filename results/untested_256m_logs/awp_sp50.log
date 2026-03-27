@@ -1,26 +1,0 @@
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-Skipping import of cpp extensions due to incompatible torch version 2.8.0 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
-23:27:00 | INFO | Phase 1: Loading HuggingFaceTB/SmolVLM-256M-Instruct (fp16) for Wanda pruning...
-23:27:00 | INFO | Loading HuggingFaceTB/SmolVLM-256M-Instruct  family=smolvlm  quant=fp16  dtype=torch.float16
-23:27:00 | INFO | [GPU mem] before load: 3208.7 MB used
-`torch_dtype` is deprecated! Use `dtype` instead!
-23:27:04 | INFO | [GPU mem] after load: 3273.6 MB used
-23:27:04 | INFO | Loaded HuggingFaceTB/SmolVLM-256M-Instruct | VRAM delta: 64.9 MB
-23:27:04 | INFO | Calibration pass (128 samples)...
-23:27:04 | INFO | Loading VQAv2 validation (n=128)...
-23:27:07 | INFO |   Loaded 128 VQAv2 samples.
-23:30:36 | INFO | Applying Wanda pruning at sparsity=0.5...
-23:30:37 | INFO | Wanda pruned 212 Linear layers | actual sparsity = 0.5000 (70,815,744/141,631,488 zeros)
-23:30:37 | INFO | Post-pruning sparsity: 0.3126
-23:30:37 | INFO | Evaluating pruned-only model (before quantization)...
-23:30:37 | INFO | Loading VQAv2 validation (n=30)...
-23:30:38 | INFO |   Loaded 30 VQAv2 samples.
-23:30:38 | INFO |   Evaluating on VQAv2 (pruned-only) (30 samples)...
-VQAv2 (pruned-only):   0%|          | 0/30 [00:00<?, ?it/s]VQAv2 (pruned-only):   3%|▎         | 1/30 [00:04<02:07,  4.38s/it]VQAv2 (pruned-only):   7%|▋         | 2/30 [00:06<01:24,  3.01s/it]VQAv2 (pruned-only):  10%|█         | 3/30 [00:08<01:10,  2.60s/it]VQAv2 (pruned-only):  13%|█▎        | 4/30 [00:12<01:20,  3.11s/it]VQAv2 (pruned-only):  17%|█▋        | 5/30 [00:13<01:02,  2.50s/it]VQAv2 (pruned-only):  20%|██        | 6/30 [00:15<00:50,  2.12s/it]VQAv2 (pruned-only):  23%|██▎       | 7/30 [00:16<00:43,  1.89s/it]VQAv2 (pruned-only):  27%|██▋       | 8/30 [00:18<00:37,  1.73s/it]VQAv2 (pruned-only):  30%|███       | 9/30 [00:19<00:33,  1.61s/it]VQAv2 (pruned-only):  33%|███▎      | 10/30 [00:23<00:45,  2.29s/it]VQAv2 (pruned-only):  37%|███▋      | 11/30 [00:25<00:41,  2.19s/it]VQAv2 (pruned-only):  40%|████      | 12/30 [00:26<00:37,  2.06s/it]VQAv2 (pruned-only):  43%|████▎     | 13/30 [00:29<00:35,  2.09s/it]VQAv2 (pruned-only):  47%|████▋     | 14/30 [00:30<00:31,  1.96s/it]VQAv2 (pruned-only):  50%|█████     | 15/30 [00:32<00:26,  1.79s/it]VQAv2 (pruned-only):  53%|█████▎    | 16/30 [00:33<00:23,  1.67s/it]VQAv2 (pruned-only):  57%|█████▋    | 17/30 [00:34<00:20,  1.59s/it]VQAv2 (pruned-only):  60%|██████    | 18/30 [00:36<00:18,  1.54s/it]VQAv2 (pruned-only):  63%|██████▎   | 19/30 [00:37<00:16,  1.48s/it]VQAv2 (pruned-only):  67%|██████▋   | 20/30 [00:39<00:14,  1.44s/it]VQAv2 (pruned-only):  70%|███████   | 21/30 [00:40<00:13,  1.49s/it]VQAv2 (pruned-only):  73%|███████▎  | 22/30 [00:42<00:11,  1.46s/it]VQAv2 (pruned-only):  77%|███████▋  | 23/30 [00:43<00:10,  1.43s/it]VQAv2 (pruned-only):  80%|████████  | 24/30 [00:44<00:08,  1.42s/it]VQAv2 (pruned-only):  83%|████████▎ | 25/30 [00:46<00:07,  1.40s/it]VQAv2 (pruned-only):  87%|████████▋ | 26/30 [00:47<00:05,  1.39s/it]VQAv2 (pruned-only):  90%|█████████ | 27/30 [00:48<00:04,  1.38s/it]VQAv2 (pruned-only):  93%|█████████▎| 28/30 [00:50<00:02,  1.40s/it]VQAv2 (pruned-only):  97%|█████████▋| 29/30 [00:51<00:01,  1.39s/it]VQAv2 (pruned-only): 100%|██████████| 30/30 [00:53<00:00,  1.40s/it]                                                                    23:31:31 | INFO |   VQAv2 (pruned-only): exact_match=0.2222  contains=0.2667  token_f1=0.2800  bleu=0.2778  rouge_l=0.2800  lat=1.771s  mem=786MB  tput=0.56 samp/s  evaluated=30/30
-23:31:31 | INFO | Saving pruned model to /home/cselab/vlm-compression-benchmark/results/awp/HuggingFaceTB__SmolVLM-256M-Instruct__wanda_sp50_weights...
-23:31:34 | INFO | Model unloaded and GPU cache cleared.
-23:31:37 | INFO | Phase 2: Reloading pruned model with int4 quantization...
-23:31:37 | INFO | Loading /home/cselab/vlm-compression-benchmark/results/awp/HuggingFaceTB__SmolVLM-256M-Instruct__wanda_sp50_weights  family=smolvlm  quant=int4  dtype=torch.float32
-23:31:37 | INFO | [GPU mem] before load: 4783.4 MB used
-Error named symbol not found at line 62 in file /src/csrc/ops.cu

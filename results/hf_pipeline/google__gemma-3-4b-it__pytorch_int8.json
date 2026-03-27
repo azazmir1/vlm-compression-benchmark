@@ -1,0 +1,33 @@
+{
+  "model_id": "google/gemma-3-4b-it",
+  "hf_repo": "Azaz666/gemma-3-4b-it-PYTORCH-INT8",
+  "family": "gemma3",
+  "method": "pytorch_int8",
+  "num_params_M": 4301.1,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 5512.6,
+  "gpu_mem_load_mb": 5512.6,
+  "load_time_s": 19.1,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.3533,
+      "avg_latency_s": 3.1822,
+      "peak_memory_mb": 5426.8,
+      "avg_memory_mb": 5309.3,
+      "throughput_sps": 0.314,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.3533,
+        "contains": 0.46,
+        "token_f1": 0.4267,
+        "bleu": 0.42,
+        "rouge_l": 0.4267
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

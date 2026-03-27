@@ -1,0 +1,38 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-3B",
+  "family": "lfm2vl",
+  "method": "awq",
+  "quant": "simulated_int4",
+  "bits": 4,
+  "group_size": "per_channel",
+  "n_calib_samples": 128,
+  "quantized_layers": 169,
+  "num_params_M": 2999.0,
+  "gpu_mem_load_mb": 5894.0,
+  "gpu_mem_after_quant_mb": 6856.9,
+  "compression_ratio": 1.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.64,
+      "avg_latency_s": 0.0819,
+      "peak_memory_mb": 7335.1,
+      "avg_memory_mb": 7334.8,
+      "throughput_sps": 12.164,
+      "avg_power_w": 229.0,
+      "avg_gpu_util_pct": 61.7,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.64,
+        "contains": 0.74,
+        "token_f1": 0.7433,
+        "bleu": 0.7374,
+        "rouge_l": 0.7433
+      }
+    }
+  },
+  "device": "a6000_48gb"
+}

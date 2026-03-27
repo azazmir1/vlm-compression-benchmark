@@ -1,0 +1,30 @@
+{
+  "model_id": "AIDC-AI/Ovis2-2B",
+  "family": "ovis2",
+  "method": "pact",
+  "quant": "fp16",
+  "prune_ratio": 0.3,
+  "merge_ratio": 0.2,
+  "target_layer": 1,
+  "total_token_reduction": 0.44,
+  "num_params_M": 2222.9,
+  "gpu_mem_load_mb": 4808.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.6267,
+      "avg_latency_s": 4.648,
+      "peak_memory_mb": 5811.1,
+      "avg_memory_mb": 5617.7,
+      "throughput_sps": 0.215,
+      "avg_power_w": 100.0,
+      "avg_gpu_util_pct": 20.1,
+      "n_samples": 50
+    }
+  },
+  "pact_stats": {
+    "tokens_pruned": 9203,
+    "tokens_merged": 4279,
+    "calls": 50
+  },
+  "device": "a6000_48gb"
+}

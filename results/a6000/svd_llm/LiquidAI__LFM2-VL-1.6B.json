@@ -1,0 +1,43 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-1.6B",
+  "family": "lfm2vl",
+  "method": "svd_llm",
+  "quant": "fp16",
+  "energy_target": 0.95,
+  "compressed_layers": 0,
+  "original_params": 805306368,
+  "compressed_params": 805306368,
+  "compression_ratio": 1.0,
+  "param_reduction": 0.0,
+  "avg_energy_retained": 1.0,
+  "skipped_non_mlp": 47,
+  "skipped_small_layers": 0,
+  "num_params_before_M": 1584.8,
+  "num_params_after_M": 1584.8,
+  "gpu_mem_load_mb": 3130.0,
+  "gpu_mem_after_svd_mb": 3434.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8133,
+      "avg_latency_s": 0.1129,
+      "peak_memory_mb": 3971.1,
+      "avg_memory_mb": 3969.1,
+      "throughput_sps": 8.837,
+      "avg_power_w": 152.8,
+      "avg_gpu_util_pct": 28.8,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.8133,
+        "contains": 0.82,
+        "token_f1": 0.835,
+        "bleu": 0.83,
+        "rouge_l": 0.835
+      }
+    }
+  },
+  "device": "a6000_48gb"
+}

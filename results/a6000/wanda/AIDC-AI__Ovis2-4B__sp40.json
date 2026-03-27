@@ -1,0 +1,37 @@
+{
+  "model_id": "AIDC-AI/Ovis2-4B",
+  "family": "ovis2",
+  "quant": "fp16",
+  "pruning_method": "wanda",
+  "target_sparsity": 0.4,
+  "actual_sparsity": 0.3999,
+  "pruned_layers": 374,
+  "n_calib_samples": 128,
+  "num_params_M": 4304.9,
+  "gpu_mem_load_mb": 9054.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.8467,
+      "avg_latency_s": 0.305,
+      "peak_memory_mb": 19337.1,
+      "avg_memory_mb": 10046.1,
+      "throughput_sps": 3.275,
+      "avg_power_w": 259.5,
+      "avg_gpu_util_pct": 78.8,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.8467,
+        "contains": 0.9,
+        "token_f1": 0.9,
+        "bleu": 0.9,
+        "rouge_l": 0.9
+      }
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "wanda_sp40"
+}

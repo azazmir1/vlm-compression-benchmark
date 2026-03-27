@@ -1,0 +1,39 @@
+{
+  "model_id": "apple/FastVLM-1.5B",
+  "family": "fastvlm",
+  "method": "palu",
+  "quant": "fp16",
+  "rank_ratio": 0.25,
+  "compressed_kv_layers": 56,
+  "original_kv_params": 22020096,
+  "compressed_kv_params": 6422528,
+  "kv_compression_ratio": 3.43,
+  "kv_param_reduction": 0.7083,
+  "num_params_before_M": 1909.2,
+  "num_params_after_M": 1893.6,
+  "gpu_mem_load_mb": 5204.46484375,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.0,
+      "avg_latency_s": 3.5824,
+      "peak_memory_mb": 3752.4,
+      "avg_memory_mb": 3647.6,
+      "throughput_sps": 0.279,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 10,
+      "n_evaluated": 10,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": true,
+      "metrics": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l": 0.0
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

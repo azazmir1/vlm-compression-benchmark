@@ -1,0 +1,26 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-1.6B",
+  "family": "lfm2vl",
+  "param_M": 1600,
+  "precision": "fp16",
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-21T18:53:12",
+  "num_params_M": 1584.8,
+  "gpu_mem_load_mb": 2916.0,
+  "status": "MEM_CRITICAL",
+  "metrics": {
+    "status": "MEM_CRITICAL",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 3032.0,
+    "avg_memory_mb": 3032.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 10,
+    "error_msg": "System memory critically low (578 MB free) after 0 samples"
+  },
+  "method": "baseline_fp16"
+}

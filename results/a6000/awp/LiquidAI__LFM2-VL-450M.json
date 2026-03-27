@@ -1,0 +1,38 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-450M",
+  "family": "lfm2vl",
+  "method": "awp",
+  "quant": "fp16_simulated_int4",
+  "target_sparsity": 0.5,
+  "final_sparsity": 0.41,
+  "wanda_sparsity": 0.5,
+  "wanda_pruned_layers": 93,
+  "int4_quantized_layers": 95,
+  "n_calib_samples": 128,
+  "num_params_M": 450.8,
+  "gpu_mem_load_mb": 918.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.2733,
+      "avg_latency_s": 0.0874,
+      "peak_memory_mb": 3123.1,
+      "avg_memory_mb": 3123.1,
+      "throughput_sps": 11.407,
+      "avg_power_w": 104.3,
+      "avg_gpu_util_pct": 17.4,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.2733,
+        "contains": 0.38,
+        "token_f1": 0.3533,
+        "bleu": 0.35,
+        "rouge_l": 0.3533
+      }
+    }
+  },
+  "device": "a6000_48gb"
+}

@@ -1,0 +1,39 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-1B",
+  "family": "internvl25",
+  "method": "magnitude_sp20",
+  "quant": "fp16",
+  "pruning_method": "magnitude_l1_unstructured",
+  "target_sparsity": 0.2,
+  "actual_sparsity": 0.2,
+  "pruned_layers": 171,
+  "num_params_M": 938.2,
+  "gpu_mem_load_mb": 1490.5390625,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.6,
+      "avg_latency_s": 0.8115,
+      "peak_memory_mb": 1877.4,
+      "avg_memory_mb": 1807.4,
+      "throughput_sps": 1.23,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 10,
+      "n_evaluated": 10,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.6,
+        "contains": 1.0,
+        "token_f1": 0.8486,
+        "bleu": 0.8083,
+        "rouge_l": 0.8486
+      }
+    }
+  },
+  "status": "PASS",
+  "timestamp": "2026-03-23T02:39:56",
+  "wall_time_s": 31.2,
+  "device": "jetson_orin_nano_8gb"
+}

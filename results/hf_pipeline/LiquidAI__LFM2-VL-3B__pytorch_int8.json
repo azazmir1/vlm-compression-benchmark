@@ -1,0 +1,33 @@
+{
+  "model_id": "LiquidAI/LFM2-VL-3B",
+  "hf_repo": "Azaz666/LFM2-VL-3B-PYTORCH-INT8",
+  "family": "lfm2vl",
+  "method": "pytorch_int8",
+  "num_params_M": 2999.9,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 3671.0,
+  "gpu_mem_load_mb": 3671.0,
+  "load_time_s": 63.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.88,
+      "avg_latency_s": 1.7977,
+      "peak_memory_mb": 3612.3,
+      "avg_memory_mb": 3524.1,
+      "throughput_sps": 0.556,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.88,
+        "contains": 0.94,
+        "token_f1": 0.94,
+        "bleu": 0.94,
+        "rouge_l": 0.94
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

@@ -1,0 +1,33 @@
+{
+  "model_id": "google/gemma-3-4b-it",
+  "hf_repo": "Azaz666/gemma-3-4b-it-GPTQ-INT4",
+  "family": "gemma3",
+  "method": "gptq_int4",
+  "num_params_M": 2745.9,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 3918.2,
+  "gpu_mem_load_mb": 3918.2,
+  "load_time_s": 15.9,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.3667,
+      "avg_latency_s": 5.3625,
+      "peak_memory_mb": 3922.7,
+      "avg_memory_mb": 3792.6,
+      "throughput_sps": 0.186,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.3667,
+        "contains": 0.54,
+        "token_f1": 0.4833,
+        "bleu": 0.464,
+        "rouge_l": 0.4833
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

@@ -1,0 +1,33 @@
+{
+  "model_id": "apple/FastVLM-1.5B",
+  "hf_repo": "Azaz666/FastVLM-1.5B-GPTQ-INT4",
+  "family": "fastvlm",
+  "method": "gptq_int4",
+  "num_params_M": 1037.9,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 1432.7,
+  "gpu_mem_load_mb": 1432.7,
+  "load_time_s": 10.5,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.1867,
+      "avg_latency_s": 16.7047,
+      "peak_memory_mb": 1477.5,
+      "avg_memory_mb": 1409.6,
+      "throughput_sps": 0.06,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.1867,
+        "contains": 0.62,
+        "token_f1": 0.3015,
+        "bleu": 0.2704,
+        "rouge_l": 0.3015
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

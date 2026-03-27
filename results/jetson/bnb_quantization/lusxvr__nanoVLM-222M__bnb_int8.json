@@ -1,0 +1,24 @@
+{
+  "model_id": "lusxvr/nanoVLM-222M",
+  "family": "nanovlm",
+  "param_M": 222,
+  "precision": "int8",
+  "device": "jetson_orin_nano_8gb",
+  "timestamp": "2026-03-20T14:34:12",
+  "status": "ERROR",
+  "metrics": {
+    "status": "ERROR",
+    "deployable": false,
+    "accuracy": 0.0,
+    "avg_latency_s": 0.0,
+    "peak_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "avg_power_w": 0.0,
+    "avg_gpu_util_pct": 0.0,
+    "throughput_sps": 0.0,
+    "n_evaluated": 0,
+    "n_total": 25,
+    "error_msg": "Traceback (most recent call last):\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 168, in _load_nanovlm\n    processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)\n  File \"/home/cselab/.local/lib/python3.10/site-packages/transformers/models/auto/processing_auto.py\", line 428, in from_pretrained\n    raise ValueError(\nValueError: Unrecognized processing class in lusxvr/nanoVLM-222M. Can't instantiate a processor, a tokenizer, an image processor, a video processor or a feature extractor for this model. Make sure the repository contains the files of at least one of those processing classes.\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/cselab/vlm-compression-benchmark/jetson/safety.py\", line 154, in safe_load_model\n    model, processor, meta = load_model(model_id, quant=quant, family=family)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 408, in load_model\n    model, processor = loader(model_id, bnb, dtype, device_map)\n  File \"/home/cselab/vlm-compression-benchmark/models/model_loader.py\", line 170, in _load_nanovlm\n    raise RuntimeError(\nRuntimeError: Cannot load processor for nanoVLM 'lusxvr/nanoVLM-222M': Unrecognized processing class in lusxvr/nanoVLM-222M. Can't instantiate a processor, a tokenizer, an image processor, a video processor or a feature extractor for this model. Make sure the repository contains the files of at least one of those processing classes.. The HuggingFace repo may be missing model_type in config.json.\n"
+  },
+  "method": "bnb_int8"
+}

@@ -1,577 +1,0 @@
-============================================================
-  CEILING SCAN — FP16 on Jetson Orin Nano 8GB
-  Timeout: 300s per model
-============================================================
-
-Families to scan: smolvlm, nanovlm, lfm2vl, moondream, fastvlm, qwen25vl, internvl25, gemma3, ovis2
-
-Checking initial state...
-  [cleanup] System memory available: 4360 MB
-
-============================================================
-FAMILY: smolvlm (3 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: HuggingFaceTB/SmolVLM-256M-Instruct (~256M params)
-  Available memory: 4360 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading HuggingFaceTB/SmolVLM-256M-Instruct ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/471 [00:00<?, ?it/s]Loading weights:  18%|█▊        | 86/471 [00:00<00:00, 848.57it/s]Loading weights:  36%|███▋      | 171/471 [00:00<00:00, 739.90it/s]Loading weights:  52%|█████▏    | 246/471 [00:00<00:00, 697.93it/s]Loading weights:  67%|██████▋   | 317/471 [00:00<00:00, 669.56it/s]Loading weights:  83%|████████▎ | 389/471 [00:00<00:00, 683.82it/s]Loading weights:  97%|█████████▋| 459/471 [00:00<00:00, 684.83it/s]Loading weights: 100%|██████████| 471/471 [00:00<00:00, 712.02it/s]
-  Loaded — mem_delta=404MB, total_used=3978MB, params=256.5M
-  Loading 1 VQAv2 sample ...
-06:43:22 | INFO | Loading VQAv2 validation (n=1)...
-06:43:22 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:43:22 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:43:22 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:43:22 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:43:22 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:43:22 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:43:22 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:43:22 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:43:22 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:43:22 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:43:23 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:43:23 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114323Z&X-Amz-Expires=3600&X-Amz-Signature=35e06c84c6ca9adccf2ea617d711f3acd6816e350d743d30e1d3b7d3831c8fbd&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183403&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzQwM319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=DlGAJ6qiqg%7EakqBaekTaoELlB8i78fKfVufAT-ZhkoqrRokoyTb4hAWMFRd4wR9GhJcVacIeHozlJac7bEyB9o83grLVYpLE1VR3nSTSPX3nD%7ECwuHvxiLaSYxWpKGmR13g8kNZtSX7kyUEPnLSSJ0cDnRZSYLuByNDfiBcmtepHuiFSmZi0xRBwXZSuGbhQDxLFP2w3VYyxwg-2RErwTiL1oiYUJ%7EmQepEV8EyuUYFsJ2PUxgB61X1b7Ijf5Bew6pll5fbmKSFot6HAWUxBMacDaVs-cAl61RXBaLaVrKo-4qe8Xs7hXFfk3ymDV6Z6h9jdhIl4Mmz75vbqVCabBA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:43:23 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:43:23 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114323Z&X-Amz-Expires=3600&X-Amz-Signature=35e06c84c6ca9adccf2ea617d711f3acd6816e350d743d30e1d3b7d3831c8fbd&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183403&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzQwM319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=DlGAJ6qiqg%7EakqBaekTaoELlB8i78fKfVufAT-ZhkoqrRokoyTb4hAWMFRd4wR9GhJcVacIeHozlJac7bEyB9o83grLVYpLE1VR3nSTSPX3nD%7ECwuHvxiLaSYxWpKGmR13g8kNZtSX7kyUEPnLSSJ0cDnRZSYLuByNDfiBcmtepHuiFSmZi0xRBwXZSuGbhQDxLFP2w3VYyxwg-2RErwTiL1oiYUJ%7EmQepEV8EyuUYFsJ2PUxgB61X1b7Ijf5Bew6pll5fbmKSFot6HAWUxBMacDaVs-cAl61RXBaLaVrKo-4qe8Xs7hXFfk3ymDV6Z6h9jdhIl4Mmz75vbqVCabBA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:43:24 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-  PASS — latency=2.57s, peak_mem=5030.4MB
-  Prediction: 'Up.'
-06:43:27 | INFO | Model unloaded and GPU cache cleared.
-  [cleanup] System memory available: 4356 MB
-
-——————————————————————————————————————————————————
-  Testing: HuggingFaceTB/SmolVLM-500M-Instruct (~508M params)
-  Available memory: 4356 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading HuggingFaceTB/SmolVLM-500M-Instruct ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/489 [00:00<?, ?it/s]Loading weights:  10%|█         | 51/489 [00:00<00:00, 472.50it/s]Loading weights:  20%|██        | 99/489 [00:00<00:00, 476.33it/s]Loading weights:  30%|███       | 147/489 [00:00<00:00, 472.53it/s]Loading weights:  40%|███▉      | 195/489 [00:00<00:00, 464.96it/s]Loading weights:  49%|████▉     | 242/489 [00:00<00:00, 463.85it/s]Loading weights:  59%|█████▉    | 289/489 [00:00<00:00, 459.74it/s]Loading weights:  75%|███████▍  | 365/489 [00:00<00:00, 543.80it/s]Loading weights:  91%|█████████ | 445/489 [00:00<00:00, 620.09it/s]Loading weights: 100%|██████████| 489/489 [00:00<00:00, 554.34it/s]
-  Loaded — mem_delta=748MB, total_used=4305MB, params=507.5M
-  Loading 1 VQAv2 sample ...
-06:43:47 | INFO | Loading VQAv2 validation (n=1)...
-06:43:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:43:47 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:43:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:43:47 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:43:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:43:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:43:47 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:43:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:43:48 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:43:48 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:43:48 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:43:48 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114348Z&X-Amz-Expires=3600&X-Amz-Signature=416fe0b1b5cb1b261e437c0e4ad78e5c312a1d98b926c2511ddcfa932654dc58&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183428&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzQyOH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=JBgskdjHUFvOYmOC4XmPOTeBB5y%7EfC9LzGjMBAkIQGw5POuCkYh1dY2RN-jTJug8IhqM7FZqP8dzgN1HvRraHK5rKKSROeH2NOr4kREshBo7XXH9IeJtuExv-V9yvWuGXC%7EdLkc-xD5PGINSiUrzAhys60viwfyaUO1NaZOi9CFcrt3Rj0HqTPdJn25Cv%7EiIryhnLkouu3eXFYd6FflyDRm7oAILL4gFWe8avG4JljIL3pixObd4Bsmq0djEYysHrnMfkcJpRcYsHPftKKhWF8RI%7EaK6R9eXE7eb2y8Z0jtDylENCnM1QOOAC-7s%7Ek6nlJlgMI6cPg3eggimoXgQFg__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:43:48 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:43:48 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114348Z&X-Amz-Expires=3600&X-Amz-Signature=416fe0b1b5cb1b261e437c0e4ad78e5c312a1d98b926c2511ddcfa932654dc58&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183428&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzQyOH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=JBgskdjHUFvOYmOC4XmPOTeBB5y%7EfC9LzGjMBAkIQGw5POuCkYh1dY2RN-jTJug8IhqM7FZqP8dzgN1HvRraHK5rKKSROeH2NOr4kREshBo7XXH9IeJtuExv-V9yvWuGXC%7EdLkc-xD5PGINSiUrzAhys60viwfyaUO1NaZOi9CFcrt3Rj0HqTPdJn25Cv%7EiIryhnLkouu3eXFYd6FflyDRm7oAILL4gFWe8avG4JljIL3pixObd4Bsmq0djEYysHrnMfkcJpRcYsHPftKKhWF8RI%7EaK6R9eXE7eb2y8Z0jtDylENCnM1QOOAC-7s%7Ek6nlJlgMI6cPg3eggimoXgQFg__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:43:49 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-  PASS — latency=2.68s, peak_mem=5758.3MB
-  Prediction: 'Up.'
-06:43:52 | INFO | Model unloaded and GPU cache cleared.
-  [cleanup] System memory available: 4349 MB
-
-——————————————————————————————————————————————————
-  Testing: HuggingFaceTB/SmolVLM-Instruct (~2200M params)
-  Available memory: 4349 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading HuggingFaceTB/SmolVLM-Instruct ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/657 [00:00<?, ?it/s]Loading weights:   0%|          | 1/657 [00:00<03:47,  2.88it/s]Loading weights:   4%|▎         | 23/657 [00:00<00:09, 64.49it/s]Loading weights:   5%|▌         | 36/657 [00:00<00:08, 72.93it/s]Loading weights:   7%|▋         | 47/657 [00:00<00:09, 64.59it/s]Loading weights:   9%|▊         | 56/657 [00:00<00:09, 65.82it/s]Loading weights:  10%|▉         | 64/657 [00:01<00:08, 67.48it/s]Loading weights:  11%|█         | 72/657 [00:01<00:09, 64.70it/s]Loading weights:  12%|█▏        | 80/657 [00:01<00:10, 55.42it/s]Loading weights:  13%|█▎        | 87/657 [00:01<00:10, 54.70it/s]Loading weights:  14%|█▍        | 95/657 [00:01<00:09, 56.66it/s]Loading weights:  16%|█▌        | 104/657 [00:01<00:10, 52.70it/s]Loading weights:  17%|█▋        | 113/657 [00:01<00:09, 56.20it/s]Loading weights:  19%|█▊        | 122/657 [00:02<00:08, 59.73it/s]Loading weights:  20%|█▉        | 131/657 [00:02<00:09, 56.02it/s]Loading weights:  21%|██▏       | 140/657 [00:02<00:08, 57.64it/s]Loading weights:  23%|██▎       | 149/657 [00:02<00:09, 51.04it/s]Loading weights:  24%|██▍       | 158/657 [00:02<00:09, 54.09it/s]Loading weights:  25%|██▌       | 167/657 [00:02<00:08, 58.11it/s]Loading weights:  27%|██▋       | 176/657 [00:03<00:08, 56.45it/s]Loading weights:  28%|██▊       | 185/657 [00:03<00:09, 50.93it/s]Loading weights:  30%|██▉       | 195/657 [00:03<00:08, 57.34it/s]Loading weights:  31%|███       | 203/657 [00:03<00:08, 54.49it/s]Loading weights:  32%|███▏      | 212/657 [00:03<00:07, 60.55it/s]Loading weights:  38%|███▊      | 247/657 [00:03<00:03, 123.12it/s]Loading weights:  45%|████▍     | 293/657 [00:03<00:01, 201.91it/s]Loading weights:  51%|█████     | 335/657 [00:04<00:01, 247.68it/s]Loading weights:  57%|█████▋    | 373/657 [00:04<00:01, 276.83it/s]Loading weights:  61%|██████▏   | 403/657 [00:04<00:00, 281.34it/s]Loading weights:  67%|██████▋   | 437/657 [00:04<00:00, 274.03it/s]Loading weights:  73%|███████▎  | 479/657 [00:04<00:00, 305.16it/s]Loading weights:  78%|███████▊  | 511/657 [00:04<00:00, 309.01it/s]Loading weights:  83%|████████▎ | 543/657 [00:04<00:00, 296.50it/s]Loading weights:  87%|████████▋ | 574/657 [00:04<00:00, 281.75it/s]Loading weights:  92%|█████████▏| 604/657 [00:04<00:00, 286.59it/s]Loading weights:  97%|█████████▋| 635/657 [00:05<00:00, 292.17it/s]Loading weights: 100%|██████████| 657/657 [00:05<00:00, 128.34it/s]
-  Loaded — mem_delta=3856MB, total_used=7427MB, params=2246.3M
-  MEM_CRITICAL — only 231MB free after load
-  [cleanup] System memory available: 5267 MB
-
-============================================================
-FAMILY: nanovlm (2 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: lusxvr/nanoVLM-222M (~222M params)
-  Available memory: 5267 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading lusxvr/nanoVLM-222M ...
-Resize to max side len: True
-  Loaded — mem_delta=637MB, total_used=3234MB, params=222.1M
-  Loading 1 VQAv2 sample ...
-06:44:47 | INFO | Loading VQAv2 validation (n=1)...
-06:44:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:44:47 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:44:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:44:47 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:44:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:44:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:44:48 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:44:48 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:44:48 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:44:48 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:44:48 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:44:48 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114448Z&X-Amz-Expires=3600&X-Amz-Signature=b5539671b33682562574d540d37857c650914edb56357bbf32fa0de8eb34fc30&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183488&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzQ4OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=q0Z0a8ms837hiKuDuhJqn0hJDwYD7obiAsEbcXq4GIHseSSlFhhmNM8MrSicWqfT%7EQQHP9vVdY7-NfWJsdw6sPMXu2f%7EWkvHDCqFyfqqeY7e0lMSmjfhTR9w5NJ6qQ%7E7%7EqQRpor3XhKRhemAOLPcX7Fxe3ARiLcF4GSp4%7ESIac99tkWYO-Ircuuk7%7E0c8uf3MpmoL0ZXMYJVP%7EU6Po6d-b3oj3CaokI14yq8jJEYYOs0hSSuixY6oTpHABacNU9QCL6o0WLRvixmpz%7E92n4eb7vGJ0FRhO4TshPd8J08--HQvDGaeqDifUyn06qNNS8ojG2W4lI8VbYGsNHZXj5YiQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:44:48 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:44:48 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114448Z&X-Amz-Expires=3600&X-Amz-Signature=b5539671b33682562574d540d37857c650914edb56357bbf32fa0de8eb34fc30&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183488&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzQ4OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=q0Z0a8ms837hiKuDuhJqn0hJDwYD7obiAsEbcXq4GIHseSSlFhhmNM8MrSicWqfT%7EQQHP9vVdY7-NfWJsdw6sPMXu2f%7EWkvHDCqFyfqqeY7e0lMSmjfhTR9w5NJ6qQ%7E7%7EqQRpor3XhKRhemAOLPcX7Fxe3ARiLcF4GSp4%7ESIac99tkWYO-Ircuuk7%7E0c8uf3MpmoL0ZXMYJVP%7EU6Po6d-b3oj3CaokI14yq8jJEYYOs0hSSuixY6oTpHABacNU9QCL6o0WLRvixmpz%7E92n4eb7vGJ0FRhO4TshPd8J08--HQvDGaeqDifUyn06qNNS8ojG2W4lI8VbYGsNHZXj5YiQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:44:49 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-  ERROR during inference — CUDA error: device-side assert triggered
-Search for `cudaErrorAssert' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for m
-Process SpawnProcess-4:
-Traceback (most recent call last):
-  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/cselab/vlm-compression-benchmark/scripts/find_ceilings.py", line 245, in _try_load_and_infer
-    torch.cuda.empty_cache()
-  File "/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/memory.py", line 224, in empty_cache
-    torch._C._cuda_emptyCache()
-torch.AcceleratorError: CUDA error: device-side assert triggered
-Search for `cudaErrorAssert' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
-CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1
-Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
-
-  CRASH — subprocess died (exit code 1)
-  [cleanup] System memory available: 5233 MB
-
-  [SKIP] lusxvr/nanoVLM-450M — larger model already failed
-
-============================================================
-FAMILY: lfm2vl (3 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: LiquidAI/LFM2-VL-450M (~451M params)
-  Available memory: 5233 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading LiquidAI/LFM2-VL-450M ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/351 [00:00<?, ?it/s]Loading weights:  11%|█▏        | 40/351 [00:00<00:00, 394.32it/s]Loading weights:  23%|██▎       | 80/351 [00:00<00:00, 340.74it/s]Loading weights:  33%|███▎      | 115/351 [00:00<00:00, 300.64it/s]Loading weights:  42%|████▏     | 146/351 [00:00<00:00, 295.68it/s]Loading weights:  68%|██████▊   | 240/351 [00:00<00:00, 499.90it/s]Loading weights:  92%|█████████▏| 323/351 [00:00<00:00, 593.07it/s]Loading weights: 100%|██████████| 351/351 [00:00<00:00, 494.73it/s]
-  Loaded — mem_delta=576MB, total_used=3214MB, params=450.8M
-  Loading 1 VQAv2 sample ...
-06:45:10 | INFO | Loading VQAv2 validation (n=1)...
-06:45:10 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:45:10 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:45:10 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:45:10 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:45:10 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:45:10 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:45:10 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:45:10 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:45:10 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:45:10 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:45:11 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:45:11 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114511Z&X-Amz-Expires=3600&X-Amz-Signature=cb79f7a2298931de7b275f2144598b0c3c2f8c959a96f5e8eb8fb8f6784f4c9d&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183511&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzUxMX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=G9Sv14gjsRjW2t%7E4y0MzorSp4qJdUzY9rmEuzRnC5NtVSQbQwVYS9E0TSd9hqDec3b2P77pTY1pbpAY21P5QmKNJKp3vmNr3Dubvby%7E5NvQ9W6mORVxvb9dafCsIP3NQc%7EcR3TQXl4cEpchHxF9NW-y30wtD57edhK36nlNPSeL1qKI8hRU7%7EtbIAmTgUIsdyaXHFrB1eqn3C48tv-2r54-MaD02J97xFOSmHIeTDa-IIcrKDOCsDJmG8DrRgtULAFcUvTBV4a3wGnK0Ia3zt2VmOzGnXGoESynlX1xAIUaIvC-h72kgy%7EX0WiEfE%7Ev97oFujeo64oHMzVlyfPwbsw__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:45:11 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:45:11 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114511Z&X-Amz-Expires=3600&X-Amz-Signature=cb79f7a2298931de7b275f2144598b0c3c2f8c959a96f5e8eb8fb8f6784f4c9d&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183511&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzUxMX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=G9Sv14gjsRjW2t%7E4y0MzorSp4qJdUzY9rmEuzRnC5NtVSQbQwVYS9E0TSd9hqDec3b2P77pTY1pbpAY21P5QmKNJKp3vmNr3Dubvby%7E5NvQ9W6mORVxvb9dafCsIP3NQc%7EcR3TQXl4cEpchHxF9NW-y30wtD57edhK36nlNPSeL1qKI8hRU7%7EtbIAmTgUIsdyaXHFrB1eqn3C48tv-2r54-MaD02J97xFOSmHIeTDa-IIcrKDOCsDJmG8DrRgtULAFcUvTBV4a3wGnK0Ia3zt2VmOzGnXGoESynlX1xAIUaIvC-h72kgy%7EX0WiEfE%7Ev97oFujeo64oHMzVlyfPwbsw__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:45:11 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-  PASS — latency=1.13s, peak_mem=3985.2MB
-  Prediction: 'Up'
-06:45:13 | INFO | Model unloaded and GPU cache cleared.
-  [cleanup] System memory available: 5227 MB
-
-——————————————————————————————————————————————————
-  Testing: LiquidAI/LFM2-VL-1.6B (~1585M params)
-  Available memory: 5227 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading LiquidAI/LFM2-VL-1.6B ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/575 [00:00<?, ?it/s]Loading weights:   0%|          | 1/575 [00:00<02:32,  3.76it/s]Loading weights:   6%|▌         | 33/575 [00:00<00:05, 107.00it/s]Loading weights:   9%|▊         | 49/575 [00:00<00:05, 96.59it/s] Loading weights:  11%|█         | 62/575 [00:00<00:05, 100.37it/s]Loading weights:  13%|█▎        | 74/575 [00:00<00:05, 95.50it/s] Loading weights:  15%|█▌        | 87/575 [00:00<00:04, 102.21it/s]Loading weights:  18%|█▊        | 104/575 [00:01<00:04, 114.27it/s]Loading weights:  20%|██        | 117/575 [00:01<00:06, 67.22it/s] Loading weights:  22%|██▏       | 127/575 [00:01<00:06, 66.90it/s]Loading weights:  25%|██▍       | 142/575 [00:01<00:05, 74.57it/s]Loading weights:  31%|███       | 179/575 [00:01<00:03, 128.53it/s]Loading weights:  41%|████      | 236/575 [00:01<00:01, 222.15it/s]Loading weights:  50%|█████     | 290/575 [00:02<00:00, 294.56it/s]Loading weights:  58%|█████▊    | 331/575 [00:02<00:00, 322.96it/s]Loading weights:  65%|██████▍   | 371/575 [00:02<00:00, 330.78it/s]Loading weights:  73%|███████▎  | 419/575 [00:02<00:00, 370.29it/s]Loading weights:  81%|████████  | 464/575 [00:02<00:00, 392.11it/s]Loading weights:  90%|████████▉ | 515/575 [00:02<00:00, 413.43it/s]Loading weights:  98%|█████████▊| 563/575 [00:02<00:00, 428.74it/s]Loading weights: 100%|██████████| 575/575 [00:02<00:00, 211.99it/s]
-  Loaded — mem_delta=3071MB, total_used=5727MB, params=1584.8M
-  Loading 1 VQAv2 sample ...
-06:45:36 | INFO | Loading VQAv2 validation (n=1)...
-06:45:36 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:45:36 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:45:36 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:45:37 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:45:37 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:45:37 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:45:37 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:45:37 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:45:37 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:45:37 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:45:37 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:45:37 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114537Z&X-Amz-Expires=3600&X-Amz-Signature=e3f21c7988a30401d66a0b2629fb045b53c45e7168ab8b23525c95c5bce869e4&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183537&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzUzN319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=A1amp0Zmb96jnHB6fS%7Evmn1GiJG%7EynLzNf7e2VLQJr8L1jz6lUXBXEMCu9%7EXDmvYfgKexXUpq1e1-88gjjzeZCDZ6wKELlKRy4QGvWf-XWytlHrCneuFddX2T5HPbv7m5vvU6m4jmim7bzSATt4jfEYCD3t0CBbvFzbxUC1Z5xHNBPznEcCWMW-R8nV%7Emf0DbcrWduk4QmySv8WL-FTYvEaYikiuyYS5VP736EJ2sjFvx6ZyTbINlxONmnybsE1XZKZRKxTZQ2cKHWXC7Q3sCMeCQGZ9OZsn5NOoDKYBvUQtr3F%7EOXnjcT9CsAIVKlb-m79qYVAKfyC4GV9hDtDwow__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:45:37 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:45:37 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114537Z&X-Amz-Expires=3600&X-Amz-Signature=e3f21c7988a30401d66a0b2629fb045b53c45e7168ab8b23525c95c5bce869e4&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183537&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzUzN319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=A1amp0Zmb96jnHB6fS%7Evmn1GiJG%7EynLzNf7e2VLQJr8L1jz6lUXBXEMCu9%7EXDmvYfgKexXUpq1e1-88gjjzeZCDZ6wKELlKRy4QGvWf-XWytlHrCneuFddX2T5HPbv7m5vvU6m4jmim7bzSATt4jfEYCD3t0CBbvFzbxUC1Z5xHNBPznEcCWMW-R8nV%7Emf0DbcrWduk4QmySv8WL-FTYvEaYikiuyYS5VP736EJ2sjFvx6ZyTbINlxONmnybsE1XZKZRKxTZQ2cKHWXC7Q3sCMeCQGZ9OZsn5NOoDKYBvUQtr3F%7EOXnjcT9CsAIVKlb-m79qYVAKfyC4GV9hDtDwow__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:45:38 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-  PASS — latency=1.50s, peak_mem=6417.4MB
-  Prediction: 'Up'
-06:45:40 | INFO | Model unloaded and GPU cache cleared.
-  [cleanup] System memory available: 5320 MB
-
-——————————————————————————————————————————————————
-  Testing: LiquidAI/LFM2-VL-3B (~3000M params)
-  Available memory: 5320 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading LiquidAI/LFM2-VL-3B ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/709 [00:00<?, ?it/s]Loading weights:   3%|▎         | 20/709 [00:00<00:05, 120.31it/s]Loading weights:   5%|▍         | 34/709 [00:00<00:06, 100.64it/s]Loading weights:   6%|▋         | 45/709 [00:00<00:08, 78.98it/s] Loading weights:   8%|▊         | 60/709 [00:00<00:10, 60.07it/s]Loading weights:  10%|▉         | 68/709 [00:01<00:11, 57.06it/s]Loading weights:  11%|█         | 76/709 [00:01<00:11, 55.96it/s]Loading weights:  12%|█▏        | 83/709 [00:01<00:11, 54.50it/s]Loading weights:  13%|█▎        | 95/709 [00:01<00:11, 53.78it/s]Loading weights:  15%|█▍        | 103/709 [00:01<00:10, 55.87it/s]Loading weights:  16%|█▌        | 111/709 [00:01<00:11, 52.06it/s]Loading weights:  17%|█▋        | 118/709 [00:01<00:11, 53.59it/s]Loading weights:  18%|█▊        | 130/709 [00:02<00:10, 53.98it/s]Loading weights:  19%|█▉        | 138/709 [00:02<00:10, 52.41it/s]Loading weights:  21%|██        | 146/709 [00:02<00:11, 50.47it/s]Loading weights:  22%|██▏       | 158/709 [00:02<00:08, 64.34it/s]Loading weights:  23%|██▎       | 166/709 [00:02<00:10, 51.98it/s]Loading weights:  25%|██▍       | 175/709 [00:03<00:09, 54.57it/s]Loading weights:  26%|██▌       | 182/709 [00:03<00:10, 51.65it/s]Loading weights:  27%|██▋       | 188/709 [00:03<00:10, 52.03it/s]Loading weights:  28%|██▊       | 200/709 [00:03<00:09, 53.79it/s]Loading weights:  29%|██▉       | 208/709 [00:03<00:10, 47.67it/s]Loading weights:  30%|███       | 215/709 [00:03<00:09, 51.10it/s]Loading weights:  32%|███▏      | 227/709 [00:03<00:08, 55.92it/s]Loading weights:  33%|███▎      | 235/709 [00:04<00:08, 53.51it/s]Loading weights:  34%|███▍      | 241/709 [00:04<00:08, 52.15it/s]Loading weights:  36%|███▌      | 252/709 [00:04<00:07, 62.20it/s]Loading weights:  37%|███▋      | 259/709 [00:04<00:08, 54.13it/s]Loading weights:  37%|███▋      | 265/709 [00:04<00:08, 50.79it/s]Loading weights:  43%|████▎     | 302/709 [00:04<00:03, 120.56it/s]Loading weights:  50%|████▉     | 354/709 [00:04<00:01, 212.53it/s]Loading weights:  54%|█████▍    | 386/709 [00:05<00:01, 232.94it/s]Loading weights:  61%|██████    | 434/709 [00:05<00:00, 296.50it/s]Loading weights:  67%|██████▋   | 473/709 [00:05<00:00, 319.32it/s]Loading weights:  73%|███████▎  | 515/709 [00:05<00:00, 344.77it/s]Loading weights:  78%|███████▊  | 552/709 [00:05<00:00, 338.10it/s]Loading weights:  84%|████████▍ | 595/709 [00:05<00:00, 363.55it/s]Loading weights:  89%|████████▉ | 633/709 [00:05<00:00, 322.49it/s]Loading weights:  94%|█████████▍| 667/709 [00:05<00:00, 326.75it/s]Loading weights:  99%|█████████▉| 701/709 [00:05<00:00, 284.35it/s]Loading weights: 100%|██████████| 709/709 [00:05<00:00, 118.47it/s]
-  Loaded — mem_delta=4928MB, total_used=7465MB, params=2999.0M
-  MEM_CRITICAL — only 155MB free after load
-  [cleanup] System memory available: 5717 MB
-
-============================================================
-FAMILY: moondream (1 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: vikhyatk/moondream2 (~1927M params)
-  Available memory: 5716 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading vikhyatk/moondream2 ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/592 [00:00<?, ?it/s]Loading weights:   4%|▍         | 23/592 [00:00<00:03, 177.55it/s]Loading weights:   7%|▋         | 41/592 [00:00<00:04, 125.25it/s]Loading weights:   9%|▉         | 55/592 [00:00<00:06, 88.42it/s] Loading weights:  11%|█         | 65/592 [00:00<00:06, 81.59it/s]Loading weights:  12%|█▎        | 74/592 [00:00<00:06, 78.58it/s]Loading weights:  14%|█▍        | 84/592 [00:00<00:06, 75.45it/s]Loading weights:  16%|█▌        | 92/592 [00:01<00:07, 68.23it/s]Loading weights:  18%|█▊        | 104/592 [00:01<00:06, 74.57it/s]Loading weights:  19%|█▉        | 113/592 [00:01<00:06, 77.82it/s]Loading weights:  21%|██        | 122/592 [00:01<00:06, 72.55it/s]Loading weights:  22%|██▏       | 130/592 [00:01<00:06, 73.47it/s]Loading weights:  23%|██▎       | 138/592 [00:01<00:06, 66.08it/s]Loading weights:  25%|██▌       | 148/592 [00:01<00:06, 70.44it/s]Loading weights:  26%|██▋       | 156/592 [00:01<00:06, 71.28it/s]Loading weights:  28%|██▊       | 164/592 [00:02<00:06, 68.42it/s]Loading weights:  29%|██▉       | 172/592 [00:02<00:06, 69.72it/s]Loading weights:  31%|███       | 181/592 [00:02<00:06, 62.88it/s]Loading weights:  32%|███▏      | 192/592 [00:02<00:05, 72.26it/s]Loading weights:  34%|███▍      | 200/592 [00:02<00:05, 73.88it/s]Loading weights:  35%|███▌      | 208/592 [00:02<00:06, 62.16it/s]Loading weights:  36%|███▋      | 215/592 [00:03<00:08, 46.93it/s]Loading weights:  38%|███▊      | 224/592 [00:03<00:07, 52.18it/s]Loading weights:  39%|███▉      | 232/592 [00:03<00:06, 56.81it/s]Loading weights:  40%|████      | 239/592 [00:03<00:05, 59.69it/s]Loading weights:  42%|████▏     | 246/592 [00:03<00:05, 58.48it/s]Loading weights:  43%|████▎     | 254/592 [00:03<00:05, 57.31it/s]Loading weights:  44%|████▍     | 260/592 [00:04<00:13, 23.86it/s]Loading weights:  48%|████▊     | 283/592 [00:04<00:06, 48.83it/s]Loading weights:  52%|█████▏    | 305/592 [00:04<00:03, 73.20it/s]Loading weights:  56%|█████▌    | 329/592 [00:04<00:02, 100.39it/s]Loading weights:  60%|█████▉    | 353/592 [00:04<00:01, 122.95it/s]Loading weights:  65%|██████▍   | 383/592 [00:04<00:01, 158.11it/s]Loading weights:  69%|██████▉   | 411/592 [00:05<00:00, 186.02it/s]Loading weights:  73%|███████▎  | 435/592 [00:05<00:00, 190.52it/s]Loading weights:  80%|███████▉  | 471/592 [00:05<00:00, 233.14it/s]Loading weights:  84%|████████▍ | 498/592 [00:05<00:00, 229.52it/s]Loading weights:  89%|████████▉ | 527/592 [00:05<00:00, 239.68it/s]Loading weights:  93%|█████████▎| 553/592 [00:05<00:00, 242.80it/s]Loading weights:  98%|█████████▊| 581/592 [00:05<00:00, 248.99it/s]Loading weights: 100%|██████████| 592/592 [00:05<00:00, 102.21it/s]
-  Loaded — mem_delta=3008MB, total_used=5319MB, params=1927.2M
-  Loading 1 VQAv2 sample ...
-06:46:43 | INFO | Loading VQAv2 validation (n=1)...
-06:46:43 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:46:43 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:46:43 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:46:43 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:46:43 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:46:43 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:46:44 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:46:44 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:46:44 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:46:44 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:46:44 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:46:44 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114644Z&X-Amz-Expires=3600&X-Amz-Signature=d7ee3d2afa4e2d7db1634147c9c0eeb093df9626a5e2423c24b1902320939a64&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183604&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzYwNH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=mf5KeNdNrXDq%7E4fDOVO9HUg52o2bwjgQBhlQGhP0VImH0CoX9XAGuLavI4EjkXeJ4ijC9iIAKxPAd2uW-X4CujMbXJAYm6PLhE7rrARkb74vIInaZNJr-cvzdvZvN0hgkNduO57crByO5oSEfVArZi6YiQDCVK36aaG7rQRt1%7EFWdFRNPD3er%7Ek5pSsacWBkaSHB1zQq%7EmyD4Y0Ij9CB4Kx5QKDXoZKL94gOL63qsC1IAK7KRBGISVfFTi1zxGDBLdVkdgFZJRRAtxY6ypiSw9aLnwvo-d2TqfNatA6NeL-ak-LxHG1Resx-G%7EDil%7Epp8uOpBmL546s-tpEGXwipxA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:46:44 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:46:44 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114543Z&X-Amz-Expires=3600&X-Amz-Signature=e16ae047893359330b8e402e504228688cc105e7eae34442e3d47ed14bc28051&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183543&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzU0M319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=evnbS1CwKYwQt0fZPiycDFHrYFnuH3A6eJbbKsTUaPmXg9m2rRW%7EfS1Bdx3ZGKxAlmePP0koTqTu9oHbv5OIYcMWm4o23-kks47J1ia0hQ3mpaFjq08vqOF-W3eE7J%7Er5iv82n6xpWpCAPdCtlx4e7Ct6mfHLYTc0xgVNZG4nyKXe7dEJnG5i4IPKxF3LmKrIiZJfhn8PBJrlfHHfDKnCK-QpNJlUhvlz8Pjhp-0O-NCJscGmYMDQ3UC29t7X1BzdqczhYI9j9NuBHpN8Zph249SH6TUSft69UN7hFjy6%7ENOY%7EZd6PR%7E4EBUKNcZGs7%7EC-wmuZKVwR6vKOJntN1aeA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:46:45 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-  PASS — latency=2.47s, peak_mem=6719.6MB
-  Prediction: ''
-06:46:47 | INFO | Model unloaded and GPU cache cleared.
-  [cleanup] System memory available: 5639 MB
-
-============================================================
-FAMILY: fastvlm (3 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: apple/FastVLM-0.5B (~759M params)
-  Available memory: 5639 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading apple/FastVLM-0.5B ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/924 [00:00<?, ?it/s]Loading weights:   7%|▋         | 62/924 [00:00<00:01, 607.29it/s]Loading weights:  13%|█▎        | 123/924 [00:00<00:01, 482.25it/s]Loading weights:  19%|█▊        | 173/924 [00:00<00:01, 425.40it/s]Loading weights:  24%|██▍       | 220/924 [00:00<00:01, 431.75it/s]Loading weights:  29%|██▊       | 264/924 [00:00<00:01, 426.13it/s]Loading weights:  36%|███▋      | 336/924 [00:00<00:01, 515.93it/s]Loading weights:  51%|█████     | 467/924 [00:00<00:00, 756.59it/s]Loading weights:  61%|██████    | 561/924 [00:00<00:00, 811.74it/s]Loading weights:  70%|███████   | 650/924 [00:00<00:00, 832.80it/s]Loading weights:  80%|████████  | 743/924 [00:01<00:00, 856.53it/s]Loading weights:  90%|████████▉ | 830/924 [00:01<00:00, 804.49it/s]Loading weights:  99%|█████████▊| 912/924 [00:01<00:00, 612.86it/s]Loading weights: 100%|██████████| 924/924 [00:01<00:00, 642.07it/s]
-The tied weights mapping and config for this model specifies to tie model.embed_tokens.weight to lm_head.weight, but both are present in the checkpoints, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning
-  Loaded — mem_delta=1491MB, total_used=3773MB, params=758.8M
-  Loading 1 VQAv2 sample ...
-06:47:10 | INFO | Loading VQAv2 validation (n=1)...
-06:47:10 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:47:10 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:47:10 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:47:11 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:47:11 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:47:11 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:47:11 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:47:11 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:47:11 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:47:11 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:47:11 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:47:11 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114711Z&X-Amz-Expires=3600&X-Amz-Signature=baca64f713844966d73e1e3ce6104d227af1e394343e9538e20ba87f9bb4fdd6&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183631&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzYzMX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=uxVV7Sjzy9TckF7CcicEvNA-0RsLfaQEvs6wm1rn5tmZ%7EQeSiyI5Q7v0TlkF9i6gwCCkLi7Ncmc55Se6j1n1fVwme80mqA6P13NKbSyvA5l8k3BHV7IIg7P7iNGNy4jz7PkMkjgolWKQZU6C2IbCMA%7EUfyn3FDojohOQesoAUGp2148h4Bq8dk98MXszWiM4LP6McCj5gMROlTXa84tEiLOnUPPJYPyWPcnnDzsHY3xYBtSuoku9Jcw9mKjhsQTZp-E%7EUfJp4RIPFDkjdKUCct5VBv7Km61VaOjLUMqRYaJOxWzERLoCd4w7OkyVUuz0BvEqDVlTcNKWXJu4Y36IaQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:47:11 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:47:11 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114711Z&X-Amz-Expires=3600&X-Amz-Signature=baca64f713844966d73e1e3ce6104d227af1e394343e9538e20ba87f9bb4fdd6&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183631&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzYzMX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=uxVV7Sjzy9TckF7CcicEvNA-0RsLfaQEvs6wm1rn5tmZ%7EQeSiyI5Q7v0TlkF9i6gwCCkLi7Ncmc55Se6j1n1fVwme80mqA6P13NKbSyvA5l8k3BHV7IIg7P7iNGNy4jz7PkMkjgolWKQZU6C2IbCMA%7EUfyn3FDojohOQesoAUGp2148h4Bq8dk98MXszWiM4LP6McCj5gMROlTXa84tEiLOnUPPJYPyWPcnnDzsHY3xYBtSuoku9Jcw9mKjhsQTZp-E%7EUfJp4RIPFDkjdKUCct5VBv7Km61VaOjLUMqRYaJOxWzERLoCd4w7OkyVUuz0BvEqDVlTcNKWXJu4Y36IaQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:47:12 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-  PASS — latency=4.14s, peak_mem=4898.2MB
-  Prediction: "I don't know where he is looking. It could be the audience, the ground, the sky,"
-06:47:16 | INFO | Model unloaded and GPU cache cleared.
-  [cleanup] System memory available: 5587 MB
-
-——————————————————————————————————————————————————
-  Testing: apple/FastVLM-1.5B (~1500M params)
-  Available memory: 5587 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading apple/FastVLM-1.5B ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/972 [00:00<?, ?it/s]Loading weights:   0%|          | 1/972 [00:00<04:32,  3.57it/s]Loading weights:   4%|▍         | 40/972 [00:00<00:08, 114.18it/s]Loading weights:   6%|▋         | 62/972 [00:00<00:06, 143.26it/s]Loading weights:   8%|▊         | 80/972 [00:00<00:06, 139.73it/s]Loading weights:  10%|█         | 100/972 [00:00<00:08, 98.24it/s]Loading weights:  12%|█▏        | 113/972 [00:01<00:08, 101.45it/s]Loading weights:  13%|█▎        | 126/972 [00:01<00:08, 102.88it/s]Loading weights:  14%|█▍        | 138/972 [00:01<00:07, 104.64it/s]Loading weights:  15%|█▌        | 150/972 [00:01<00:07, 104.83it/s]Loading weights:  18%|█▊        | 172/972 [00:01<00:07, 112.37it/s]Loading weights:  20%|██        | 196/972 [00:01<00:06, 123.30it/s]Loading weights:  22%|██▏       | 209/972 [00:01<00:06, 119.06it/s]Loading weights:  23%|██▎       | 221/972 [00:02<00:07, 103.53it/s]Loading weights:  24%|██▍       | 232/972 [00:02<00:08, 89.19it/s] Loading weights:  26%|██▋       | 256/972 [00:02<00:06, 112.13it/s]Loading weights:  28%|██▊       | 269/972 [00:02<00:06, 112.45it/s]Loading weights:  29%|██▉       | 281/972 [00:02<00:06, 113.99it/s]Loading weights:  30%|███       | 293/972 [00:02<00:07, 92.99it/s] Loading weights:  33%|███▎      | 316/972 [00:03<00:07, 91.22it/s]Loading weights:  34%|███▎      | 328/972 [00:03<00:08, 77.44it/s]Loading weights:  53%|█████▎    | 511/972 [00:03<00:01, 390.74it/s]Loading weights:  59%|█████▉    | 576/972 [00:03<00:00, 439.84it/s]Loading weights:  70%|██████▉   | 679/972 [00:03<00:00, 570.73it/s]Loading weights:  78%|███████▊  | 756/972 [00:03<00:00, 614.82it/s]Loading weights:  89%|████████▉ | 866/972 [00:03<00:00, 728.47it/s]Loading weights:  98%|█████████▊| 949/972 [00:03<00:00, 631.01it/s]Loading weights: 100%|██████████| 972/972 [00:04<00:00, 231.42it/s]
-The tied weights mapping and config for this model specifies to tie model.embed_tokens.weight to lm_head.weight, but both are present in the checkpoints, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning
-  Loaded — mem_delta=5087MB, total_used=7433MB, params=1909.2M
-  MEM_CRITICAL — only 187MB free after load
-  [cleanup] System memory available: 5659 MB
-
-  [SKIP] apple/FastVLM-7B — larger model already failed
-
-============================================================
-FAMILY: qwen25vl (2 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: Qwen/Qwen2.5-VL-3B-Instruct (~3800M params)
-  Available memory: 5659 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading Qwen/Qwen2.5-VL-3B-Instruct ...
-The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
-Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2567.68it/s]
-Loading weights:   0%|          | 0/824 [00:00<?, ?it/s]Loading weights:   0%|          | 1/824 [00:00<09:27,  1.45it/s]Loading weights:   2%|▏         | 15/824 [00:00<00:35, 22.91it/s]Loading weights:   3%|▎         | 21/824 [00:01<00:32, 24.78it/s]Loading weights:   3%|▎         | 28/824 [00:01<00:25, 31.06it/s]Loading weights:   4%|▍         | 33/824 [00:01<00:23, 34.07it/s]Loading weights:   5%|▍         | 39/824 [00:01<00:21, 36.36it/s]Loading weights:   6%|▌         | 47/824 [00:01<00:17, 45.08it/s]Loading weights:   6%|▋         | 53/824 [00:01<00:20, 38.07it/s]Loading weights:   8%|▊         | 63/824 [00:01<00:15, 50.40it/s]Loading weights:   8%|▊         | 70/824 [00:02<00:16, 45.41it/s]Loading weights:   9%|▉         | 76/824 [00:02<00:16, 44.92it/s]Loading weights:  11%|█         | 87/824 [00:02<00:15, 48.90it/s]Loading weights:  12%|█▏        | 99/824 [00:02<00:12, 57.60it/s]Loading weights:  13%|█▎        | 106/824 [00:02<00:13, 53.71it/s]Loading weights:  14%|█▎        | 112/824 [00:02<00:13, 53.31it/s]Loading weights:  15%|█▍        | 123/824 [00:02<00:12, 56.63it/s]Loading weights:  16%|█▌        | 129/824 [00:03<00:12, 54.59it/s]Loading weights:  17%|█▋        | 136/824 [00:03<00:12, 53.76it/s]Loading weights:  18%|█▊        | 145/824 [00:03<00:11, 61.69it/s]Loading weights:  18%|█▊        | 152/824 [00:03<00:12, 53.67it/s]Loading weights:  19%|█▉        | 160/824 [00:03<00:13, 47.46it/s]Loading weights:  21%|██        | 172/824 [00:03<00:11, 56.87it/s]Loading weights:  22%|██▏       | 183/824 [00:04<00:12, 49.76it/s]Loading weights:  24%|██▎       | 195/824 [00:04<00:10, 59.09it/s]Loading weights:  25%|██▌       | 207/824 [00:04<00:09, 64.28it/s]Loading weights:  26%|██▌       | 214/824 [00:04<00:09, 61.88it/s]Loading weights:  27%|██▋       | 221/824 [00:04<00:11, 51.95it/s]Loading weights:  28%|██▊       | 232/824 [00:04<00:10, 57.75it/s]Loading weights:  29%|██▉       | 243/824 [00:05<00:10, 55.77it/s]Loading weights:  30%|███       | 251/824 [00:05<00:09, 59.38it/s]Loading weights:  31%|███▏      | 258/824 [00:05<00:11, 51.15it/s]Loading weights:  32%|███▏      | 266/824 [00:05<00:10, 51.92it/s]Loading weights:  34%|███▍      | 279/824 [00:05<00:08, 61.59it/s]Loading weights:  35%|███▍      | 286/824 [00:05<00:09, 55.52it/s]Loading weights:  35%|███▌      | 292/824 [00:06<00:10, 51.86it/s]Loading weights:  37%|███▋      | 303/824 [00:06<00:09, 55.80it/s]Loading weights:  38%|███▊      | 309/824 [00:06<00:10, 51.17it/s]Loading weights:  38%|███▊      | 315/824 [00:06<00:11, 44.38it/s]Loading weights:  40%|███▉      | 327/824 [00:06<00:09, 53.67it/s]Loading weights:  40%|████      | 333/824 [00:06<00:10, 46.85it/s]Loading weights:  41%|████▏     | 340/824 [00:07<00:11, 41.79it/s]Loading weights:  43%|████▎     | 351/824 [00:07<00:09, 49.16it/s]Loading weights:  43%|████▎     | 357/824 [00:07<00:09, 47.99it/s]Loading weights:  44%|████▍     | 364/824 [00:07<00:11, 39.75it/s]Loading weights:  45%|████▌     | 374/824 [00:07<00:12, 36.74it/s]Loading weights:  47%|████▋     | 388/824 [00:08<00:08, 50.25it/s]Loading weights:  48%|████▊     | 394/824 [00:08<00:08, 51.60it/s]Loading weights:  49%|████▊     | 400/824 [00:08<00:09, 45.21it/s]Loading weights:  49%|████▉     | 406/824 [00:08<00:09, 45.19it/s]Loading weights:  50%|████▉     | 411/824 [00:08<00:10, 37.76it/s]Loading weights:  51%|█████▏    | 423/824 [00:08<00:08, 45.71it/s]Loading weights:  52%|█████▏    | 428/824 [00:09<00:09, 41.38it/s]Loading weights:  54%|█████▍    | 449/824 [00:09<00:05, 73.54it/s]Loading weights:  56%|█████▌    | 461/824 [00:09<00:04, 83.34it/s]Loading weights:  58%|█████▊    | 477/824 [00:09<00:03, 90.08it/s]Loading weights:  61%|██████    | 501/824 [00:09<00:02, 122.12it/s]Loading weights:  62%|██████▎   | 515/824 [00:09<00:02, 119.96it/s]Loading weights:  65%|██████▍   | 533/824 [00:09<00:02, 118.53it/s]Loading weights:  68%|██████▊   | 558/824 [00:09<00:01, 148.29it/s]Loading weights:  70%|██████▉   | 574/824 [00:10<00:01, 126.01it/s]Loading weights:  72%|███████▏  | 596/824 [00:10<00:01, 130.61it/s]Loading weights:  74%|███████▍  | 612/824 [00:10<00:01, 136.40it/s]Loading weights:  77%|███████▋  | 632/824 [00:10<00:01, 139.93it/s]Loading weights:  79%|███████▊  | 647/824 [00:10<00:01, 125.17it/s]Loading weights:  80%|████████  | 661/824 [00:11<00:02, 66.66it/s] Loading weights:  81%|████████▏ | 671/824 [00:11<00:02, 69.02it/s]Loading weights:  83%|████████▎ | 681/824 [00:11<00:03, 44.52it/s]Loading weights:  84%|████████▎ | 689/824 [00:11<00:02, 46.23it/s]  OOM_LOAD — subprocess died (exit code -9)
-  [cleanup] System memory available: 5852 MB
-
-  [SKIP] Qwen/Qwen2.5-VL-7B-Instruct — larger model already failed
-
-============================================================
-FAMILY: internvl25 (4 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: OpenGVLab/InternVL2_5-1B (~938M params)
-  Available memory: 5852 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading OpenGVLab/InternVL2_5-1B ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-FlashAttention2 is not installed.
-Loading weights:   0%|          | 0/637 [00:00<?, ?it/s]Loading weights:   0%|          | 1/637 [00:00<02:22,  4.47it/s]Loading weights:  11%|█▏        | 72/637 [00:00<00:02, 277.01it/s]Loading weights:  18%|█▊        | 114/637 [00:00<00:01, 326.51it/s]Loading weights:  25%|██▌       | 160/637 [00:00<00:01, 358.31it/s]Loading weights:  33%|███▎      | 208/637 [00:00<00:01, 383.01it/s]Loading weights:  40%|████      | 256/637 [00:00<00:00, 408.55it/s]Loading weights:  49%|████▉     | 311/637 [00:00<00:00, 443.87it/s]Loading weights:  59%|█████▉    | 375/637 [00:00<00:00, 499.20it/s]Loading weights:  68%|██████▊   | 435/637 [00:01<00:00, 520.58it/s]Loading weights:  79%|███████▉  | 505/637 [00:01<00:00, 568.13it/s]Loading weights:  88%|████████▊ | 563/637 [00:01<00:00, 569.78it/s]Loading weights: 100%|██████████| 637/637 [00:01<00:00, 465.43it/s]
-  Loaded — mem_delta=1818MB, total_used=3853MB, params=938.2M
-  Loading 1 VQAv2 sample ...
-06:48:46 | INFO | Loading VQAv2 validation (n=1)...
-06:48:46 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:48:46 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:48:46 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:48:46 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:48:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:48:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:48:47 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:48:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:48:47 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:48:47 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:48:47 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:48:47 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114543Z&X-Amz-Expires=3600&X-Amz-Signature=e16ae047893359330b8e402e504228688cc105e7eae34442e3d47ed14bc28051&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183543&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzU0M319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=evnbS1CwKYwQt0fZPiycDFHrYFnuH3A6eJbbKsTUaPmXg9m2rRW%7EfS1Bdx3ZGKxAlmePP0koTqTu9oHbv5OIYcMWm4o23-kks47J1ia0hQ3mpaFjq08vqOF-W3eE7J%7Er5iv82n6xpWpCAPdCtlx4e7Ct6mfHLYTc0xgVNZG4nyKXe7dEJnG5i4IPKxF3LmKrIiZJfhn8PBJrlfHHfDKnCK-QpNJlUhvlz8Pjhp-0O-NCJscGmYMDQ3UC29t7X1BzdqczhYI9j9NuBHpN8Zph249SH6TUSft69UN7hFjy6%7ENOY%7EZd6PR%7E4EBUKNcZGs7%7EC-wmuZKVwR6vKOJntN1aeA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:48:47 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:48:47 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114616Z&X-Amz-Expires=3600&X-Amz-Signature=9797a56384e7ea959058d5c0a991b248ee0b99f77f4d9db9623176337f8db615&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183576&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzU3Nn19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=ggrtYWUMDZBvWFln6wDCU-JrYW8j3i5TH6V1mSZ9JJwjVrWJAqOxhTC-tNZxnLySCaDhRxvK-H7UB9IeLXxkpvKXn8gRglMtKHIfPDFQ9l8EKE%7EqD6ZxUaZ5Fc-VLrNJU1OR1L8UDAABB7n5XjYY%7EbgG2lauqFH7lR-rZI4GOf613wDLCntI49V2HBydKtjyPwyL2SJAVPToJ8%7EL81ZTybkrNq8bDr0NfgFGSCHSGeda3Xe0WQ2fSs79fbR5VTb6t1d4OfhsUoT6sZ6LDd2YO-dKkz9h416GAcxpWpfyz0sTrhfa7PsjxNpYOYFBimLnq7xO7T8hMmq2zPVI77LLIQ__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:48:48 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
-  PASS — latency=1.62s, peak_mem=4851.4MB
-  Prediction: 'Up'
-06:48:50 | INFO | Model unloaded and GPU cache cleared.
-  [cleanup] System memory available: 5707 MB
-
-——————————————————————————————————————————————————
-  Testing: OpenGVLab/InternVL2_5-2B (~2200M params)
-  Available memory: 5707 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading OpenGVLab/InternVL2_5-2B ...
-Unrecognized keys in `rope_parameters` for 'rope_type'='dynamic': {'rope_theta'}
-`torch_dtype` is deprecated! Use `dtype` instead!
-Unrecognized keys in `rope_parameters` for 'rope_type'='dynamic': {'rope_theta'}
-InternLM2ForCausalLM has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.
-  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes
-  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).
-  - If you are not the owner of the model architecture class, please contact the model code owner to update it.
-FlashAttention2 is not installed.
-Warning: Flash attention is not available, using eager attention instead.
-Loading weights:   0%|          | 0/517 [00:00<?, ?it/s]Loading weights:   5%|▍         | 25/517 [00:00<00:03, 150.17it/s]Loading weights:   8%|▊         | 41/517 [00:00<00:04, 112.36it/s]Loading weights:  10%|█         | 53/517 [00:00<00:04, 104.46it/s]Loading weights:  12%|█▏        | 64/517 [00:00<00:05, 83.92it/s] Loading weights:  14%|█▍        | 73/517 [00:00<00:05, 78.72it/s]Loading weights:  16%|█▌        | 81/517 [00:00<00:06, 72.42it/s]Loading weights:  17%|█▋        | 89/517 [00:01<00:06, 64.31it/s]Loading weights:  19%|█▊        | 96/517 [00:01<00:06, 64.03it/s]Loading weights:  20%|██        | 104/517 [00:01<00:06, 67.68it/s]Loading weights:  21%|██▏       | 111/517 [00:01<00:06, 59.98it/s]Loading weights:  23%|██▎       | 118/517 [00:01<00:06, 58.76it/s]Loading weights:  24%|██▍       | 124/517 [00:01<00:06, 56.98it/s]Loading weights:  25%|██▌       | 130/517 [00:01<00:06, 57.75it/s]Loading weights:  26%|██▋       | 137/517 [00:01<00:06, 58.75it/s]Loading weights:  28%|██▊       | 144/517 [00:02<00:06, 59.85it/s]Loading weights:  29%|██▉       | 151/517 [00:02<00:06, 56.23it/s]Loading weights:  31%|███       | 158/517 [00:02<00:06, 52.53it/s]Loading weights:  32%|███▏      | 165/517 [00:02<00:06, 54.29it/s]Loading weights:  33%|███▎      | 171/517 [00:03<00:26, 12.88it/s]Loading weights:  77%|███████▋  | 399/517 [00:03<00:00, 185.26it/s]Loading weights:  90%|█████████ | 467/517 [00:04<00:00, 231.73it/s]Loading weights: 100%|██████████| 517/517 [00:04<00:00, 124.11it/s]
-  Loaded — mem_delta=4787MB, total_used=6968MB, params=2205.8M
-  MEM_CRITICAL — only 686MB free after load
-  [cleanup] System memory available: 5677 MB
-
-  [SKIP] OpenGVLab/InternVL2_5-4B — larger model already failed
-
-  [SKIP] OpenGVLab/InternVL2_5-8B — larger model already failed
-
-============================================================
-FAMILY: gemma3 (2 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: google/gemma-3-4b-it (~4300M params)
-  Available memory: 5677 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading google/gemma-3-4b-it ...
-The image processor of type `Gemma3ImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:   0%|          | 1/883 [00:01<17:49,  1.21s/it]Loading weights:   0%|          | 4/883 [00:01<03:47,  3.86it/s]Loading weights:   1%|▏         | 13/883 [00:01<00:58, 14.90it/s]Loading weights:   2%|▏         | 18/883 [00:01<00:51, 16.91it/s]Loading weights:   3%|▎         | 29/883 [00:01<00:28, 30.10it/s]Loading weights:   4%|▍         | 35/883 [00:01<00:26, 32.15it/s]Loading weights:   5%|▍         | 43/883 [00:02<00:22, 36.62it/s]Loading weights:   6%|▌         | 52/883 [00:02<00:18, 45.62it/s]Loading weights:   7%|▋         | 58/883 [00:02<00:20, 40.42it/s]Loading weights:   8%|▊         | 68/883 [00:02<00:16, 50.56it/s]Loading weights:   8%|▊         | 75/883 [00:02<00:17, 47.23it/s]Loading weights:   9%|▉         | 82/883 [00:02<00:17, 45.98it/s]Loading weights:  10%|▉         | 88/883 [00:02<00:16, 48.40it/s]Loading weights:  11%|█         | 95/883 [00:03<00:17, 44.70it/s]Loading weights:  12%|█▏        | 104/883 [00:03<00:14, 52.96it/s]Loading weights:  12%|█▏        | 110/883 [00:03<00:18, 41.89it/s]Loading weights:  14%|█▎        | 120/883 [00:03<00:14, 52.57it/s]Loading weights:  14%|█▍        | 127/883 [00:03<00:15, 48.28it/s]Loading weights:  15%|█▌        | 133/883 [00:03<00:15, 49.30it/s]Loading weights:  16%|█▌        | 139/883 [00:04<00:17, 43.73it/s]Loading weights:  17%|█▋        | 147/883 [00:04<00:16, 45.54it/s]Loading weights:  18%|█▊        | 157/883 [00:04<00:12, 56.81it/s]Loading weights:  19%|█▊        | 164/883 [00:04<00:14, 49.57it/s]Loading weights:  20%|█▉        | 173/883 [00:04<00:14, 50.02it/s]Loading weights:  21%|██        | 182/883 [00:04<00:12, 56.86it/s]Loading weights:  21%|██▏       | 189/883 [00:05<00:14, 47.47it/s]Loading weights:  22%|██▏       | 198/883 [00:05<00:12, 54.03it/s]Loading weights:  23%|██▎       | 204/883 [00:05<00:13, 48.57it/s]Loading weights:  24%|██▍       | 211/883 [00:05<00:13, 51.64it/s]Loading weights:  25%|██▍       | 217/883 [00:05<00:14, 47.45it/s]Loading weights:  25%|██▌       | 224/883 [00:05<00:12, 51.47it/s]Loading weights:  26%|██▌       | 230/883 [00:05<00:14, 45.57it/s]Loading weights:  27%|██▋       | 238/883 [00:06<00:14, 45.90it/s]Loading weights:  28%|██▊       | 247/883 [00:06<00:11, 54.23it/s]Loading weights:  29%|██▊       | 253/883 [00:06<00:14, 42.39it/s]Loading weights:  30%|██▉       | 263/883 [00:06<00:11, 53.30it/s]Loading weights:  31%|███       | 270/883 [00:06<00:12, 50.60it/s]Loading weights:  31%|███▏      | 276/883 [00:06<00:11, 52.43it/s]Loading weights:  32%|███▏      | 282/883 [00:06<00:13, 46.11it/s]Loading weights:  33%|███▎      | 289/883 [00:07<00:11, 51.27it/s]Loading weights:  33%|███▎      | 295/883 [00:07<00:12, 47.29it/s]Loading weights:  34%|███▍      | 302/883 [00:07<00:11, 51.11it/s]Loading weights:  35%|███▍      | 308/883 [00:07<00:12, 47.74it/s]Loading weights:  36%|███▌      | 315/883 [00:07<00:11, 50.60it/s]Loading weights:  36%|███▋      | 321/883 [00:07<00:12, 46.56it/s]Loading weights:  37%|███▋      | 327/883 [00:07<00:11, 47.80it/s]Loading weights:  38%|███▊      | 332/883 [00:07<00:12, 43.64it/s]Loading weights:  39%|███▊      | 341/883 [00:08<00:10, 52.00it/s]Loading weights:  39%|███▉      | 347/883 [00:08<00:11, 47.73it/s]Loading weights:  40%|████      | 354/883 [00:08<00:10, 51.25it/s]Loading weights:  41%|████      | 360/883 [00:08<00:11, 46.35it/s]Loading weights:  42%|████▏     | 367/883 [00:08<00:09, 51.68it/s]Loading weights:  42%|████▏     | 373/883 [00:08<00:14, 34.63it/s]Loading weights:  43%|████▎     | 378/883 [00:09<00:13, 37.13it/s]Loading weights:  43%|████▎     | 383/883 [00:09<00:19, 25.27it/s]Loading weights:  44%|████▍     | 387/883 [00:09<00:22, 22.41it/s]  OOM_LOAD — subprocess died (exit code -9)
-  [cleanup] System memory available: 5842 MB
-
-  [SKIP] google/gemma-3-12b-it — larger model already failed
-
-============================================================
-FAMILY: ovis2 (4 models, smallest→largest)
-============================================================
-
-——————————————————————————————————————————————————
-  Testing: AIDC-AI/Ovis2-1B (~1258M params)
-  Available memory: 5842 MB
-——————————————————————————————————————————————————
-/home/cselab/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
-  import pynvml  # type: ignore[import]
-  Loading AIDC-AI/Ovis2-1B ...
-`torch_dtype` is deprecated! Use `dtype` instead!
-The repository AIDC-AI/Ovis2-1B contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/AIDC-AI/Ovis2-1B .
- You can inspect the repository content at https://hf.co/AIDC-AI/Ovis2-1B.
-You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
-
-Do you wish to run the custom code? [y/N] You are using a model of type `ovis` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
-The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
-Loading weights:   0%|          | 0/295 [00:00<?, ?it/s]Loading weights:   0%|          | 1/295 [00:00<00:44,  6.64it/s]Loading weights:   1%|          | 2/295 [00:00<01:06,  4.42it/s]Loading weights:   9%|▉         | 28/295 [00:00<00:03, 68.95it/s]Loading weights:  21%|██▏       | 63/295 [00:00<00:01, 143.60it/s]Loading weights:  30%|██▉       | 88/295 [00:00<00:01, 170.74it/s]Loading weights:  38%|███▊      | 113/295 [00:00<00:00, 188.02it/s]Loading weights:  50%|█████     | 148/295 [00:00<00:00, 233.03it/s]Loading weights:  59%|█████▉    | 175/295 [00:01<00:00, 231.85it/s]Loading weights:  68%|██████▊   | 202/295 [00:01<00:00, 242.17it/s]Loading weights:  78%|███████▊  | 231/295 [00:01<00:00, 255.68it/s]Loading weights:  87%|████████▋ | 258/295 [00:01<00:00, 242.53it/s]Loading weights:  98%|█████████▊| 290/295 [00:01<00:00, 263.85it/s]Loading weights: 100%|██████████| 295/295 [00:02<00:00, 128.75it/s]
-[1mOvis LOAD REPORT[0m from: AIDC-AI/Ovis2-1B
-Key                                                                                      | Status     | 
------------------------------------------------------------------------------------------+------------+-
-visual_tokenizer.backbone.trunk.blocks.{0...23}.mlp.fc2.weight                           | UNEXPECTED | 
-visual_tokenizer.backbone.trunk.blocks.{0...23}.mlp.fc3.weight                           | UNEXPECTED | 
-visual_tokenizer.backbone.trunk.blocks.{0...23}.norm_1.weight                            | UNEXPECTED | 
-visual_tokenizer.backbone.trunk.blocks.{0...23}.attn.proj.weight                         | UNEXPECTED | 
-visual_tokenizer.backbone.trunk.blocks.{0...23}.attn.qkv.weight                          | UNEXPECTED | 
-visual_tokenizer.backbone.trunk.blocks.{0...23}.norm_2.weight                            | UNEXPECTED | 
-visual_tokenizer.backbone.trunk.blocks.{0...23}.mlp.fc1.weight                           | UNEXPECTED | 
-visual_tokenizer.backbone.preprocessor.patchifier.norm.weight                            | UNEXPECTED | 
-visual_tokenizer.backbone.trunk.post_trunk_norm.weight                                   | UNEXPECTED | 
-visual_tokenizer.backbone.preprocessor.pos_embed                                         | UNEXPECTED | 
-visual_tokenizer.backbone.preprocessor.patchifier.proj.weight                            | UNEXPECTED | 
-visual_tokenizer.backbone.preprocessor.patchifier.proj.bias                              | UNEXPECTED | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.attention.k_proj.weight   | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.rms_norm2.weight            | MISSING    | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.attention.out_proj.weight | MISSING    | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.ffn.gate_proj.weight      | MISSING    | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.ffn.down_proj.weight      | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.attention.out_proj.weight   | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.ffn.up_proj.weight          | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.rms_norm1.weight            | MISSING    | 
-visual_tokenizer.backbone.text_model.rms_norm.weight                                     | MISSING    | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.rms_norm2.weight          | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.attention.k_proj.weight     | MISSING    | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.rms_norm1.weight          | MISSING    | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.attention.v_proj.weight   | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.ffn.down_proj.weight        | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.attention.v_proj.weight     | MISSING    | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.ffn.up_proj.weight        | MISSING    | 
-visual_tokenizer.backbone.vision_model.encoder.layers.{0...23}.attention.q_proj.weight   | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.ffn.gate_proj.weight        | MISSING    | 
-visual_tokenizer.backbone.vision_model.embeddings.rms_norm.weight                        | MISSING    | 
-visual_tokenizer.backbone.text_model.encoder.layers.{0...11}.attention.q_proj.weight     | MISSING    | 
-visual_tokenizer.backbone.text_model.embeddings.position_embedding.weight                | MISSING    | 
-visual_tokenizer.backbone.text_projection.weight                                         | MISSING    | 
-visual_tokenizer.backbone.vision_model.head.k_proj.weight                                | MISSING    | 
-visual_tokenizer.backbone.text_model.embeddings.token_embedding.weight                   | MISSING    | 
-visual_tokenizer.backbone.vision_model.rms_norm.weight                                   | MISSING    | 
-visual_tokenizer.backbone.vision_model.head.v_proj.weight                                | MISSING    | 
-visual_tokenizer.backbone.vision_model.embeddings.patch_embed.bias                       | MISSING    | 
-visual_tokenizer.backbone.logit_scale                                                    | MISSING    | 
-visual_tokenizer.backbone.vision_model.head.output_proj.weight                           | MISSING    | 
-visual_tokenizer.backbone.vision_model.head.cls_token                                    | MISSING    | 
-visual_tokenizer.backbone.visual_projection.weight                                       | MISSING    | 
-visual_tokenizer.backbone.vision_model.embeddings.patch_embed.weight                     | MISSING    | 
-visual_tokenizer.backbone.vision_model.head.output_proj.bias                             | MISSING    | 
-visual_tokenizer.backbone.vision_model.embeddings.position_embedding.weight              | MISSING    | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-- MISSING[3m	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.[0m
-  Loaded — mem_delta=2265MB, total_used=4301MB, params=1257.5M
-  Loading 1 VQAv2 sample ...
-06:50:28 | INFO | Loading VQAv2 validation (n=1)...
-06:50:28 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
-06:50:28 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmms-lab/VQAv2/32665d35052eb4a6d4414851c3c829a72754915a/README.md "HTTP/1.1 200 OK"
-06:50:28 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/VQAv2.py "HTTP/1.1 404 Not Found"
-06:50:28 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmms-lab/VQAv2/lmms-lab/VQAv2.py "HTTP/1.1 404 Not Found"
-06:50:28 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/revision/32665d35052eb4a6d4414851c3c829a72754915a "HTTP/1.1 200 OK"
-06:50:28 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/.huggingface.yaml "HTTP/1.1 404 Not Found"
-06:50:29 | INFO | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmms-lab/VQAv2 "HTTP/1.1 200 OK"
-06:50:29 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a/data?recursive=true&expand=false "HTTP/1.1 200 OK"
-06:50:29 | INFO | HTTP Request: GET https://huggingface.co/api/datasets/lmms-lab/VQAv2/tree/32665d35052eb4a6d4414851c3c829a72754915a?recursive=false&expand=false "HTTP/1.1 200 OK"
-06:50:29 | INFO | HTTP Request: HEAD https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/dataset_infos.json "HTTP/1.1 404 Not Found"
-06:50:29 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:50:29 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114740Z&X-Amz-Expires=3600&X-Amz-Signature=0066b5fac953a03c728ba1903a6cedfd8e0619571f5f36956eeb2290b6b44274&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183660&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzY2MH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=KNSaRgOLQ51X1BxEtHnAQakek%7Ey0lY-XFvZf%7EIltnRL5cDX0fvyjg7J36KGInlqRUOA0eyYBkhO13xXQw0sKVmoVQB29cXYEVHqxLGv79y09YlWLgN3zd48lypeaa7HmoAloHW3t5Q7XHMBmpg7Ug%7EGWc0ivXu6NwiZbOq5Js5iYVvsTGpj8OmbsIBtEo6nZf9YfsAQKAUbwUF1-rKwFx4h%7EwxfURJ%7EBD7yf1yjh-zKRTf7xQWcdnSIiaIn4TXEVGlYL8ju9i9C17WBBNNPVZNqRiNTCZYsqkkZZG4ltoMEusqeXc-zg1kLJTk6tXaOxcblT0SLIbU08gymyIY7EdA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:50:29 | INFO | HTTP Request: GET https://huggingface.co/datasets/lmms-lab/VQAv2/resolve/32665d35052eb4a6d4414851c3c829a72754915a/data/validation-00000-of-00068.parquet "HTTP/1.1 302 Found"
-06:50:29 | INFO | HTTP Request: GET https://cas-bridge.xethub.hf.co/xet-bridge-us/65aa14cf28e039cc060c6ee4/3da40cacdbe0f4a9b2ba1f540af00ca29dffad3d523db7a3491566c506a88b6e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260322T114543Z&X-Amz-Expires=3600&X-Amz-Signature=e16ae047893359330b8e402e504228688cc105e7eae34442e3d47ed14bc28051&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=64c6ca015e43ae1ab6223376&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27validation-00000-of-00068.parquet%3B+filename%3D%22validation-00000-of-00068.parquet%22%3B&x-amz-checksum-mode=ENABLED&x-id=GetObject&Expires=1774183543&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3NDE4MzU0M319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NWFhMTRjZjI4ZTAzOWNjMDYwYzZlZTQvM2RhNDBjYWNkYmUwZjRhOWIyYmExZjU0MGFmMDBjYTI5ZGZmYWQzZDUyM2RiN2EzNDkxNTY2YzUwNmE4OGI2ZSoifV19&Signature=evnbS1CwKYwQt0fZPiycDFHrYFnuH3A6eJbbKsTUaPmXg9m2rRW%7EfS1Bdx3ZGKxAlmePP0koTqTu9oHbv5OIYcMWm4o23-kks47J1ia0hQ3mpaFjq08vqOF-W3eE7J%7Er5iv82n6xpWpCAPdCtlx4e7Ct6mfHLYTc0xgVNZG4nyKXe7dEJnG5i4IPKxF3LmKrIiZJfhn8PBJrlfHHfDKnCK-QpNJlUhvlz8Pjhp-0O-NCJscGmYMDQ3UC29t7X1BzdqczhYI9j9NuBHpN8Zph249SH6TUSft69UN7hFjy6%7ENOY%7EZd6PR%7E4EBUKNcZGs7%7EC-wmuZKVwR6vKOJntN1aeA__&Key-Pair-Id=K2L8F4GPSG1IFC "HTTP/1.1 206 Partial Content"
-06:50:30 | INFO |   Loaded 1 VQAv2 samples.
-  Running inference ...
-  ERROR during inference — 'NoneType' object has no attribute 'size'
-06:50:30 | INFO | Model unloaded and GPU cache cleared.
-  [cleanup] System memory available: 5655 MB
-
-  [SKIP] AIDC-AI/Ovis2-2B — larger model already failed
-
-  [SKIP] AIDC-AI/Ovis2-4B — larger model already failed
-
-  [SKIP] AIDC-AI/Ovis2-8B — larger model already failed
-
-============================================================
-CEILING SUMMARY (per family)
-============================================================
-  smolvlm      | ceiling: HuggingFaceTB/SmolVLM-500M-Instruct      | 507.5M | 747.9MB | 2.677s
-  nanovlm      | NO CEILING (all models failed)
-  lfm2vl       | ceiling: LiquidAI/LFM2-VL-1.6B                    | 1584.8M | 3071.0MB | 1.501s
-  moondream    | ceiling: vikhyatk/moondream2                      | 1927.2M | 3007.7MB | 2.473s
-  fastvlm      | ceiling: apple/FastVLM-0.5B                       | 758.8M | 1491.2MB | 4.137s
-  qwen25vl     | NO CEILING (all models failed)
-  internvl25   | ceiling: OpenGVLab/InternVL2_5-1B                 | 938.2M | 1818.1MB | 1.616s
-  gemma3       | NO CEILING (all models failed)
-  ovis2        | NO CEILING (all models failed)
-
-All model results:
-  smolvlm      HuggingFaceTB/SmolVLM-256M-Instruct           PASS            params=256.5M  mem=404.4MB  lat=2.573s  
-  smolvlm      HuggingFaceTB/SmolVLM-500M-Instruct           PASS            params=507.5M  mem=747.9MB  lat=2.677s  
-  smolvlm      HuggingFaceTB/SmolVLM-Instruct                MEM_CRITICAL    params=2246.3M  mem=3855.5MB  lat=0s  Only 231 MB free after load
-  nanovlm      lusxvr/nanoVLM-222M                           CRASH           params=222M  mem=?MB  lat=?s  Process exited with code 1
-  nanovlm      lusxvr/nanoVLM-450M                           SKIPPED         params=450M  mem=?MB  lat=?s  
-  lfm2vl       LiquidAI/LFM2-VL-450M                         PASS            params=450.8M  mem=576.4MB  lat=1.126s  
-  lfm2vl       LiquidAI/LFM2-VL-1.6B                         PASS            params=1584.8M  mem=3071.0MB  lat=1.501s  
-  lfm2vl       LiquidAI/LFM2-VL-3B                           MEM_CRITICAL    params=2999.0M  mem=4928.0MB  lat=0s  Only 155 MB free after load
-  moondream    vikhyatk/moondream2                           PASS            params=1927.2M  mem=3007.7MB  lat=2.473s  
-  fastvlm      apple/FastVLM-0.5B                            PASS            params=758.8M  mem=1491.2MB  lat=4.137s  
-  fastvlm      apple/FastVLM-1.5B                            MEM_CRITICAL    params=1909.2M  mem=5086.6MB  lat=0s  Only 187 MB free after load
-  fastvlm      apple/FastVLM-7B                              SKIPPED         params=7000M  mem=?MB  lat=?s  
-  qwen25vl     Qwen/Qwen2.5-VL-3B-Instruct                   OOM_LOAD        params=3800M  mem=?MB  lat=?s  Process exited with code -9 (SIGKILL — likely OOM killed)
-  qwen25vl     Qwen/Qwen2.5-VL-7B-Instruct                   SKIPPED         params=8300M  mem=?MB  lat=?s  
-  internvl25   OpenGVLab/InternVL2_5-1B                      PASS            params=938.2M  mem=1818.1MB  lat=1.616s  
-  internvl25   OpenGVLab/InternVL2_5-2B                      MEM_CRITICAL    params=2205.8M  mem=4786.9MB  lat=0s  Only 686 MB free after load
-  internvl25   OpenGVLab/InternVL2_5-4B                      SKIPPED         params=3700M  mem=?MB  lat=?s  
-  internvl25   OpenGVLab/InternVL2_5-8B                      SKIPPED         params=8100M  mem=?MB  lat=?s  
-  gemma3       google/gemma-3-4b-it                          OOM_LOAD        params=4300M  mem=?MB  lat=?s  Process exited with code -9 (SIGKILL — likely OOM killed)
-  gemma3       google/gemma-3-12b-it                         SKIPPED         params=12200M  mem=?MB  lat=?s  
-  ovis2        AIDC-AI/Ovis2-1B                              ERROR           params=1257.5M  mem=2265.0MB  lat=0s  site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
-    
-  ovis2        AIDC-AI/Ovis2-2B                              SKIPPED         params=2200M  mem=?MB  lat=?s  
-  ovis2        AIDC-AI/Ovis2-4B                              SKIPPED         params=4300M  mem=?MB  lat=?s  
-  ovis2        AIDC-AI/Ovis2-8B                              SKIPPED         params=8900M  mem=?MB  lat=?s  
-
-Category 1 — Cannot Load (need compression to fit):
-  HuggingFaceTB/SmolVLM-Instruct
-  lusxvr/nanoVLM-222M
-  LiquidAI/LFM2-VL-3B
-  apple/FastVLM-1.5B
-  Qwen/Qwen2.5-VL-3B-Instruct
-  OpenGVLab/InternVL2_5-2B
-  google/gemma-3-4b-it
-
-Category 2 — Loads but Problematic:
-  apple/FastVLM-0.5B (slow: 4.137s)
-
-Results saved to /home/cselab/vlm-compression-benchmark/results/jetson/ceiling_scan_v2.json
-/usr/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 2 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '

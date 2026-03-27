@@ -1,0 +1,32 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-500M-Instruct",
+  "family": "smolvlm",
+  "quant": "fp16",
+  "num_params_M": 507.5,
+  "gpu_mem_load_mb": 1046.0,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.6133,
+      "avg_latency_s": 0.3801,
+      "peak_memory_mb": 2461.1,
+      "avg_memory_mb": 2441.2,
+      "throughput_sps": 2.628,
+      "avg_power_w": 124.5,
+      "avg_gpu_util_pct": 21.0,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.6133,
+        "contains": 0.64,
+        "token_f1": 0.64,
+        "bleu": 0.64,
+        "rouge_l": 0.64
+      }
+    }
+  },
+  "device": "a6000_48gb",
+  "method": "baseline_fp16"
+}

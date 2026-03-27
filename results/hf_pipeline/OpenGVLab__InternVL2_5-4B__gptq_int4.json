@@ -1,0 +1,33 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-4B",
+  "hf_repo": "Azaz666/InternVL2_5-4B-GPTQ-INT4",
+  "family": "internvl25",
+  "method": "gptq_int4",
+  "num_params_M": 2218.3,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 2895.5,
+  "gpu_mem_load_mb": 2895.5,
+  "load_time_s": 21.8,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.76,
+      "avg_latency_s": 3.6339,
+      "peak_memory_mb": 4268.0,
+      "avg_memory_mb": 2795.7,
+      "throughput_sps": 0.275,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.76,
+        "contains": 0.82,
+        "token_f1": 0.8333,
+        "bleu": 0.8274,
+        "rouge_l": 0.8333
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}
