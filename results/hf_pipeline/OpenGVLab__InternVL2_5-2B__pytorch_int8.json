@@ -1,0 +1,33 @@
+{
+  "model_id": "OpenGVLab/InternVL2_5-2B",
+  "hf_repo": "Azaz666/InternVL2_5-2B-PYTORCH-INT8",
+  "family": "internvl25",
+  "method": "pytorch_int8",
+  "num_params_M": 2407.8,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 3117.4,
+  "gpu_mem_load_mb": 3117.4,
+  "load_time_s": 41.2,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.7733,
+      "avg_latency_s": 1.3754,
+      "peak_memory_mb": 3787.2,
+      "avg_memory_mb": 3054.6,
+      "throughput_sps": 0.726,
+      "n_samples": 50,
+      "n_evaluated": 50,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.7733,
+        "contains": 0.86,
+        "token_f1": 0.848,
+        "bleu": 0.8464,
+        "rouge_l": 0.848
+      }
+    }
+  },
+  "device": "jetson_orin_nano_8gb"
+}

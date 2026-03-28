@@ -16,6 +16,7 @@ Usage:
     print(f"Per-token: {timer.per_token_ms}")
 """
 
+import re
 import torch
 import time
 from typing import List, Optional
@@ -158,6 +159,145 @@ class TokenTimingProcessor(LogitsProcessor):
         return "\n".join(lines)
 
     def to_dict(self) -> dict:
+        if not self._finalized:
+            self.finalize()
+        result = {
+            'num_tokens': self.num_tokens,
+            'prefill_ms': round(self.prefill_ms, 4),
+            'decode_ms': round(self.decode_ms, 4),
+            'total_ms': round(self.total_ms, 4),
+            'per_token_ms': [round(t, 4) for t in self.per_token_ms],
+        }
+        if self.num_tokens > 1:
+            result['avg_decode_ms'] = round(self.decode_ms / (self.num_tokens - 1), 4)
+            result['decode_throughput_tok_s'] = round(
+                (self.num_tokens - 1) / (self.decode_ms / 1000.0), 2
+            ) if self.decode_ms > 0 else 0.0
+        return result
+
+
+class LMHeadTimingHook:
+    """
+    Measures prefill vs decode timing via a forward hook on the LM head.
+
+    For models that use custom generate()/chat() methods (InternVL2.5, Ovis2,
+    moondream), LogitsProcessor cannot be injected. Instead, we hook the
+    lm_head module directly — every forward call = one token step.
+
+    Event layout:
+      events[0] = record_start() — before generate()
+      events[1] = post-hook after lm_head forward #1 (end of prefill)
+      events[2] = post-hook after lm_head forward #2 (decode token 1)
+      ...
+
+    Intervals:
+      [0→1] = prefill time
+      [1→2] = decode token 1
+      ...
+    """
+
+    def __init__(self):
+        self.events: List[torch.cuda.Event] = []
+        self.cpu_times: List[float] = []
+        self.use_cuda = torch.cuda.is_available()
+        self._finalized = False
+        self._hook_handle = None
+
+        # Results (populated after finalize())
+        self.per_token_ms: List[float] = []
+        self.prefill_ms: float = 0.0
+        self.decode_ms: float = 0.0
+        self.total_ms: float = 0.0
+        self.num_tokens: int = 0
+
+    def _find_lm_head(self, model) -> Optional[torch.nn.Module]:
+        """Find the LM output head module in any model architecture.
+
+        Matches: lm_head, language_model.output (InternLM2), output_projection
+        """
+        # Priority order: lm_head first, then language_model.output
+        for name, module in model.named_modules():
+            if re.search(r"lm_head$", name):
+                return module
+        for name, module in model.named_modules():
+            if re.search(r"language_model\.output$", name) and isinstance(module, torch.nn.Linear):
+                return module
+        return None
+
+    def attach(self, model) -> bool:
+        """Attach a post-forward hook to the model's lm_head.
+
+        Returns True if successfully attached, False if lm_head not found.
+        """
+        lm_head = self._find_lm_head(model)
+        if lm_head is None:
+            return False
+
+        def _post_hook(module, input, output):
+            if self.use_cuda:
+                event = torch.cuda.Event(enable_timing=True)
+                event.record()
+                self.events.append(event)
+            else:
+                self.cpu_times.append(time.perf_counter())
+
+        self._hook_handle = lm_head.register_forward_hook(_post_hook)
+        return True
+
+    def record_start(self):
+        """Record the start time (call right before model.generate()/chat())."""
+        if self.use_cuda:
+            event = torch.cuda.Event(enable_timing=True)
+            event.record()
+            self.events.insert(0, event)
+        else:
+            self.cpu_times.insert(0, time.perf_counter())
+
+    def finalize(self):
+        """Synchronize CUDA and compute per-token timings."""
+        if self._finalized:
+            return
+
+        if self.use_cuda:
+            torch.cuda.synchronize()
+            for i in range(1, len(self.events)):
+                try:
+                    dt = self.events[i - 1].elapsed_time(self.events[i])
+                    self.per_token_ms.append(dt)
+                except RuntimeError:
+                    self.per_token_ms.append(0.0)
+        else:
+            for i in range(1, len(self.cpu_times)):
+                dt = (self.cpu_times[i] - self.cpu_times[i - 1]) * 1000.0
+                self.per_token_ms.append(dt)
+
+        self.num_tokens = len(self.per_token_ms)
+        if self.num_tokens > 0:
+            self.prefill_ms = self.per_token_ms[0]
+            self.decode_ms = sum(self.per_token_ms[1:])
+            self.total_ms = sum(self.per_token_ms)
+
+        self._finalized = True
+
+    def detach(self):
+        """Remove the forward hook."""
+        if self._hook_handle is not None:
+            self._hook_handle.remove()
+            self._hook_handle = None
+
+    def reset(self):
+        """Reset for reuse across multiple samples."""
+        self.events.clear()
+        self.cpu_times.clear()
+        self.per_token_ms.clear()
+        self.prefill_ms = 0.0
+        self.decode_ms = 0.0
+        self.total_ms = 0.0
+        self.num_tokens = 0
+        self._finalized = False
+
+    def to_dict(self) -> dict:
+        """Same format as TokenTimingProcessor.to_dict()."""
         if not self._finalized:
             self.finalize()
         result = {

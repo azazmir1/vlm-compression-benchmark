@@ -54,7 +54,7 @@ from tqdm import tqdm
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from models.model_loader import load_model, unload_model, detect_family
 from profiling.gpu_profiler import GPUProfiler
-from profiling.token_timer import TokenTimingProcessor
+from profiling.token_timer import TokenTimingProcessor, LMHeadTimingHook
 from profiling.tegrastats_monitor import TegraStatsMonitor
 from profiling.detailed_metrics import DetailedMetrics, ComponentMetrics, CategoryTiming
 from evaluation.run_baseline import (
@@ -125,6 +125,11 @@ QUANTIZED_REGISTRY = {
     ("LFM2-VL-3B", "pytorch_int8"):  "Azaz666/LFM2-VL-3B-PYTORCH-INT8",
     ("LFM2-VL-3B", "pytorch_int4"):  "Azaz666/LFM2-VL-3B-PYTORCH-INT4",
     ("LFM2-VL-3B", "gptq_int4"):     "Azaz666/LFM2-VL-3B-GPTQ-INT4",
+    # InternVL2.5-2B
+    ("InternVL2.5-2B", "hqq_int4"):      "Azaz666/InternVL2_5-2B-HQQ-INT4",
+    ("InternVL2.5-2B", "pytorch_int8"):   "Azaz666/InternVL2_5-2B-PYTORCH-INT8",
+    ("InternVL2.5-2B", "pytorch_int4"):   "Azaz666/InternVL2_5-2B-PYTORCH-INT4",
+    ("InternVL2.5-2B", "gptq_int4"):      "Azaz666/InternVL2_5-2B-GPTQ-INT4",
     # InternVL2.5-4B (HF repo uses underscore: InternVL2_5; only pytorch_int8/int4 uploaded)
     ("InternVL2.5-4B", "pytorch_int8"):  "Azaz666/InternVL2_5-4B-PYTORCH-INT8",
     ("InternVL2.5-4B", "pytorch_int4"):  "Azaz666/InternVL2_5-4B-PYTORCH-INT4",
@@ -133,9 +138,36 @@ QUANTIZED_REGISTRY = {
     ("Qwen2.5-VL-3B-Instruct", "pytorch_int8"):  "Azaz666/Qwen2.5-VL-3B-Instruct-PYTORCH-INT8",
     ("Qwen2.5-VL-3B-Instruct", "pytorch_int4"):  "Azaz666/Qwen2.5-VL-3B-Instruct-PYTORCH-INT4",
     ("Qwen2.5-VL-3B-Instruct", "gptq_int4"):     "Azaz666/Qwen2.5-VL-3B-Instruct-GPTQ-Int4",
-    # Gemma-3-4B (only pytorch_int8/int4 uploaded)
-    ("gemma-3-4b-it", "pytorch_int8"):  "Azaz666/gemma-3-4b-it-PYTORCH-INT8",
-    ("gemma-3-4b-it", "pytorch_int4"):  "Azaz666/gemma-3-4b-it-PYTORCH-INT4",
+    # Ovis2-2B
+    ("Ovis2-2B", "hqq_int4"):      "Azaz666/Ovis2-2B-HQQ-INT4",
+    ("Ovis2-2B", "pytorch_int8"):   "Azaz666/Ovis2-2B-PYTORCH-INT8",
+    ("Ovis2-2B", "pytorch_int4"):   "Azaz666/Ovis2-2B-PYTORCH-INT4",
+    ("Ovis2-2B", "gptq_int4"):      "Azaz666/Ovis2-2B-GPTQ-INT4",
+    # Ovis2-4B
+    ("Ovis2-4B", "hqq_int4"):      "Azaz666/Ovis2-4B-HQQ-INT4",
+    ("Ovis2-4B", "pytorch_int8"):   "Azaz666/Ovis2-4B-PYTORCH-INT8",
+    ("Ovis2-4B", "pytorch_int4"):   "Azaz666/Ovis2-4B-PYTORCH-INT4",
+    ("Ovis2-4B", "gptq_int4"):      "Azaz666/Ovis2-4B-GPTQ-INT4",
+    # FastVLM-1.5B
+    ("FastVLM-1.5B", "hqq_int4"):      "Azaz666/FastVLM-1.5B-HQQ-INT4",
+    ("FastVLM-1.5B", "pytorch_int8"):   "Azaz666/FastVLM-1.5B-PYTORCH-INT8",
+    ("FastVLM-1.5B", "pytorch_int4"):   "Azaz666/FastVLM-1.5B-PYTORCH-INT4",
+    ("FastVLM-1.5B", "gptq_int4"):      "Azaz666/FastVLM-1.5B-GPTQ-INT4",
+    # Gemma-3-4B
+    ("gemma-3-4b-it", "hqq_int4"):      "Azaz666/gemma-3-4b-it-HQQ-INT4",
+    ("gemma-3-4b-it", "pytorch_int8"):   "Azaz666/gemma-3-4b-it-PYTORCH-INT8",
+    ("gemma-3-4b-it", "pytorch_int4"):   "Azaz666/gemma-3-4b-it-PYTORCH-INT4",
+    ("gemma-3-4b-it", "gptq_int4"):      "Azaz666/gemma-3-4b-it-GPTQ-INT4",
+    # Qwen2.5-VL-7B
+    ("Qwen2.5-VL-7B-Instruct", "hqq_int4"):      "Azaz666/Qwen2.5-VL-7B-Instruct-HQQ-INT4",
+    ("Qwen2.5-VL-7B-Instruct", "pytorch_int8"):   "Azaz666/Qwen2.5-VL-7B-Instruct-PYTORCH-INT8",
+    ("Qwen2.5-VL-7B-Instruct", "pytorch_int4"):   "Azaz666/Qwen2.5-VL-7B-Instruct-PYTORCH-INT4",
+    ("Qwen2.5-VL-7B-Instruct", "gptq_int4"):      "Azaz666/Qwen2.5-VL-7B-Instruct-GPTQ-Int4",
+    # moondream2
+    ("moondream2", "hqq_int4"):      "Azaz666/moondream2-HQQ-INT4",
+    ("moondream2", "pytorch_int8"):   "Azaz666/moondream2-PYTORCH-INT8",
+    ("moondream2", "pytorch_int4"):   "Azaz666/moondream2-PYTORCH-INT4",
+    ("moondream2", "gptq_int4"):      "Azaz666/moondream2-GPTQ-INT4",
     # Gemma-3-12B
     ("gemma-3-12b-it", "pytorch_int8"):  "Azaz666/gemma-3-12b-it-PYTORCH-INT8",
     ("gemma-3-12b-it", "pytorch_int4"):  "Azaz666/gemma-3-12b-it-PYTORCH-INT4",
@@ -208,7 +240,8 @@ def profile_single_sample(
     # Families that DON'T use model.generate() need wall-clock fallback
     # moondream: custom .answer_question() API
     # internvl25: uses model.chat() which wraps generate() internally
-    needs_fallback = family in ("moondream", "internvl25")
+    # ovis2: custom generate() expects input_ids as positional arg, not keyword
+    needs_fallback = family in ("moondream", "internvl25", "ovis2")
 
     if not needs_fallback:
         # Create a token-aware LogitsProcessor that also updates hook token index
@@ -242,35 +275,35 @@ def profile_single_sample(
         t_decode_end = time.perf_counter()
         decode_ms = (t_decode_end - t_decode_start) * 1000
     else:
-        # Fallback: wall-clock timing (moondream, internvl25)
-        if torch.cuda.is_available():
-            torch.cuda.synchronize()
-            start_event = torch.cuda.Event(enable_timing=True)
-            end_event = torch.cuda.Event(enable_timing=True)
-            start_event.record()
+        # Fallback: LM head forward hook for prefill/decode timing
+        # (moondream, internvl25, ovis2 — custom generate()/chat() methods)
+        lm_hook = LMHeadTimingHook()
+        hook_attached = lm_hook.attach(model)
 
+        lm_hook.record_start()
         pred = run_inference(model, processor, sample, family, device, max_new_tokens)
+        lm_hook.finalize()
 
-        if torch.cuda.is_available():
-            end_event.record()
-            torch.cuda.synchronize()
-            total_gen_ms = start_event.elapsed_time(end_event)
+        if hook_attached:
+            # LM head hook gives real prefill/decode split
+            token_timer = lm_hook
         else:
-            total_gen_ms = 0.0
-
-        token_timer.total_ms = total_gen_ms
-        # Cannot determine exact token count without LogitsProcessor;
-        # use tokenizer to count actual generated tokens
-        try:
-            if hasattr(processor, 'encode'):
-                token_timer.num_tokens = len(processor.encode(pred)) if pred else 0
-            elif hasattr(processor, 'tokenize'):
-                token_timer.num_tokens = len(processor.tokenize(pred)) if pred else 0
-            else:
+            # Last resort: wall-clock total only (no lm_head found)
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()
+            token_timer.total_ms = lm_hook.total_ms
+            try:
+                if hasattr(processor, 'encode'):
+                    token_timer.num_tokens = len(processor.encode(pred)) if pred else 0
+                elif hasattr(processor, 'tokenize'):
+                    token_timer.num_tokens = len(processor.tokenize(pred)) if pred else 0
+                else:
+                    token_timer.num_tokens = len(pred.split()) if pred else 0
+            except Exception:
                 token_timer.num_tokens = len(pred.split()) if pred else 0
-        except Exception:
-            token_timer.num_tokens = len(pred.split()) if pred else 0
-        token_timer._finalized = True
+            token_timer._finalized = True
+
+        lm_hook.detach()
         decode_ms = 0.0
 
     # ── 4. Memory after inference ────────────────────────────────
@@ -456,6 +489,7 @@ def profile_model(
     num_warmup: int = 3,
     max_tokens: int = 50,
     use_components: bool = False,
+    load_meta: Optional[Dict] = None,
 ) -> Dict:
     """
     Profile a model on VQA samples with full instrumentation.
@@ -570,10 +604,17 @@ def profile_model(
         accuracy_agg[name] = round(sum(vals) / len(vals), 4) if vals else 0.0
 
     # Build final result
+    _meta = load_meta or {}
     result = {
         "model_id": model_id,
         "method": method,
         "family": family,
+        "device": device,
+        "num_params_M": _meta.get("num_params_M"),
+        "load_time_s": _meta.get("load_time_s"),
+        "gpu_mem_before_mb": _meta.get("gpu_mem_before_mb"),
+        "gpu_mem_after_mb": _meta.get("gpu_mem_after_mb"),
+        "gpu_mem_load_mb": _meta.get("gpu_mem_load_mb"),
         "num_samples": n,
         "num_warmup": num_warmup,
         "max_tokens": max_tokens,
@@ -633,9 +674,17 @@ def load_model_for_profiling(
     """
     Load a model for profiling. Handles both FP16 baseline and quantized variants.
 
-    For FP16: uses standard model_loader.
-    For quantized: uses benchmark_compressed_hf.py loading path.
+    Returns (model, processor, family, device, load_meta) where load_meta is a dict
+    with: num_params_M, load_time_s, gpu_mem_before_mb, gpu_mem_after_mb, gpu_mem_load_mb
     """
+    if torch.cuda.is_available():
+        torch.cuda.synchronize()
+        mem_before = torch.cuda.memory_allocated() / 1024**2
+    else:
+        mem_before = 0.0
+
+    t_start = time.perf_counter()
+
     if method == "fp16":
         model, processor, meta = load_model(model_id)
         family = meta.family
@@ -643,39 +692,54 @@ def load_model_for_profiling(
             device = str(next(model.parameters()).device)
         except StopIteration:
             device = "cuda:0"
-        return model, processor, family, device
+    else:
+        # Quantized model — delegate to benchmark_compressed_hf loading
+        if hf_repo is None:
+            raise ValueError(f"hf_repo required for method={method}")
 
-    # Quantized model — delegate to benchmark_compressed_hf loading
-    if hf_repo is None:
-        raise ValueError(f"hf_repo required for method={method}")
+        from profiling.benchmark_compressed_hf import (
+            detect_format,
+            load_hqq_int4, load_pytorch_int8, load_pytorch_int4, load_gptq_int4
+        )
 
-    # Import the loading functions from benchmark_compressed_hf
-    from profiling.benchmark_compressed_hf import (
-        detect_format,
-        load_hqq_int4, load_pytorch_int8, load_pytorch_int4, load_gptq_int4
-    )
+        family = detect_family(model_id)
+        fmt, cfg = detect_format(hf_repo)
+        logger.info(f"Detected format: {fmt} for {hf_repo}")
 
-    family = detect_family(model_id)
-    fmt, cfg = detect_format(hf_repo)
-    logger.info(f"Detected format: {fmt} for {hf_repo}")
+        base_model = cfg.get("base_model") or model_id
 
-    base_model = cfg.get("base_model") or model_id
+        loaders = {
+            "hqq_int4": load_hqq_int4,
+            "pytorch_int8": load_pytorch_int8,
+            "pytorch_int4": load_pytorch_int4,
+            "gptq_int4": load_gptq_int4,
+        }
+        loader = loaders.get(fmt)
+        if loader is None:
+            raise ValueError(f"No loader for format {fmt}")
 
-    # Each loader takes (hf_repo, base_model, family) and returns (model, processor)
-    loaders = {
-        "hqq_int4": load_hqq_int4,
-        "pytorch_int8": load_pytorch_int8,
-        "pytorch_int4": load_pytorch_int4,
-        "gptq_int4": load_gptq_int4,
+        model, processor = loader(hf_repo, base_model, family)
+        device = "cuda:0"
+
+    load_time = time.perf_counter() - t_start
+
+    if torch.cuda.is_available():
+        torch.cuda.synchronize()
+        mem_after = torch.cuda.memory_allocated() / 1024**2
+    else:
+        mem_after = 0.0
+
+    num_params = sum(p.numel() for p in model.parameters()) / 1e6
+
+    load_meta = {
+        "num_params_M": round(num_params, 1),
+        "load_time_s": round(load_time, 2),
+        "gpu_mem_before_mb": round(mem_before, 1),
+        "gpu_mem_after_mb": round(mem_after, 1),
+        "gpu_mem_load_mb": round(mem_after - mem_before, 1),
     }
-    loader = loaders.get(fmt)
-    if loader is None:
-        raise ValueError(f"No loader for format {fmt}")
 
-    model, processor = loader(hf_repo, base_model, family)
-
-    device = "cuda:0"
-    return model, processor, family, device
+    return model, processor, family, device, load_meta
 
 
 # ── Excel integration ────────────────────────────────────────────────────────
@@ -872,7 +936,7 @@ def main():
 
             logger.info(f"\n[{i+1}/{len(targets)}] Profiling {safe_name}")
             try:
-                model, processor, family, device = load_model_for_profiling(
+                model, processor, family, device, load_meta = load_model_for_profiling(
                     target["model_id"], target["method"], target["hf_repo"]
                 )
 
@@ -883,6 +947,7 @@ def main():
                     num_warmup=args.num_warmup,
                     max_tokens=args.max_tokens,
                     use_components=args.components,
+                    load_meta=load_meta,
                 )
 
                 with open(out_path, "w") as f:
@@ -933,7 +998,7 @@ def main():
                 if variant:
                     hf_repo = QUANTIZED_REGISTRY.get((variant, method))
 
-        model, processor, family, device = load_model_for_profiling(
+        model, processor, family, device, load_meta = load_model_for_profiling(
             model_id, method, hf_repo
         )
 
@@ -944,6 +1009,7 @@ def main():
             num_warmup=args.num_warmup,
             max_tokens=args.max_tokens,
             use_components=args.components,
+            load_meta=load_meta,
         )
 
         safe_name = model_id.replace("/", "__") + f"__{method}"
