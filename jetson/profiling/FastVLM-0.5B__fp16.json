@@ -1,0 +1,409 @@
+{
+  "model_id": "apple/FastVLM-0.5B",
+  "method": "fp16",
+  "family": "fastvlm",
+  "num_samples": 50,
+  "num_warmup": 3,
+  "max_tokens": 30,
+  "accuracy": {
+    "exact_match": 0.1933,
+    "contains": 0.72,
+    "token_f1": 0.3052,
+    "bleu": 0.27,
+    "rouge_l": 0.3052
+  },
+  "timing": {
+    "avg_preprocessing_ms": 62.79,
+    "avg_prefill_ms": 508.97,
+    "avg_decode_ms": 3414.34,
+    "avg_total_generation_ms": 3923.3,
+    "avg_decode_detokenize_ms": 0.42,
+    "avg_total_ms": 3986.52,
+    "avg_tokens_generated": 30.0,
+    "avg_input_tokens": 0.0
+  },
+  "throughput": {
+    "avg_tok_s": 7.65,
+    "avg_decode_tok_s": 8.5,
+    "samples_per_s": 0.243
+  },
+  "memory": {
+    "gpu_peak_mb": 1345.9,
+    "gpu_avg_mb": 1235.0,
+    "avg_inference_peak_mb": 1360.8
+  },
+  "gpu_util": {
+    "avg_pct": 0.0,
+    "peak_pct": 0.0
+  },
+  "tegrastats": {
+    "avg_power_w": 8.61,
+    "peak_power_w": 12.81,
+    "avg_gpu_temp_c": 55.2,
+    "peak_gpu_temp_c": 59.0,
+    "avg_cpu_temp_c": 53.2,
+    "peak_cpu_temp_c": 55.6,
+    "avg_ram_used_mb": 6885.0,
+    "peak_ram_used_mb": 6902,
+    "avg_gpu_util_pct": 43.9,
+    "peak_gpu_util_pct": 99.0,
+    "num_samples": 998
+  },
+  "sample_details": [
+    {
+      "preprocessing_ms": 67.7378,
+      "num_input_tokens": 0,
+      "token_timing": {
+        "num_tokens": 30,
+        "prefill_ms": 495.1194,
+        "decode_ms": 3383.6736,
+        "total_ms": 3878.793,
+        "per_token_ms": [
+          495.1194,
+          112.5794,
+          112.4573,
+          113.2475,
+          113.9997,
+          113.5162,
+          114.6072,
+          114.9514,
+          115.39,
+          116.5488,
+          118.8792,
+          117.8446,
+          116.9917,
+          117.1811,
+          116.9104,
+          117.5774,
+          116.5153,
+          117.3298,
+          117.278,
+          117.6478,
+          117.2439,
+          118.2195,
+          117.2524,
+          118.4173,
+          117.9892,
+          118.1239,
+          118.3298,
+          119.1054,
+          118.3817,
+          119.1576
+        ],
+        "avg_decode_ms": 116.6784,
+        "decode_throughput_tok_s": 8.57
+      },
+      "decode_ms": 0.3973,
+      "total_ms": 3946.9282,
+      "gpu_mem_before_mb": 1228.8,
+      "gpu_mem_peak_mb": 1360.8,
+      "gpu_mem_after_mb": 1228.8,
+      "generated_text": "I don't know where he is looking. It could be the audience, the ground, the sky, or the camera.",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l": 0.0
+      },
+      "components": {
+        "vision_encoder": {
+          "total_ms": 319.79,
+          "percentage": 12.6,
+          "count": 406
+        },
+        "projection": {
+          "total_ms": 0.27,
+          "percentage": 0.0,
+          "count": 3
+        },
+        "text_embeddings": {
+          "total_ms": 6.01,
+          "percentage": 0.2,
+          "count": 30
+        },
+        "other": {
+          "total_ms": 29.83,
+          "percentage": 1.2,
+          "count": 30
+        },
+        "normalization": {
+          "total_ms": 626.22,
+          "percentage": 24.7,
+          "count": 1470
+        },
+        "attention": {
+          "total_ms": 526.97,
+          "percentage": 20.8,
+          "count": 2880
+        },
+        "feedforward": {
+          "total_ms": 781.28,
+          "percentage": 30.9,
+          "count": 2880
+        },
+        "output": {
+          "total_ms": 240.96,
+          "percentage": 9.5,
+          "count": 30
+        }
+      }
+    },
+    {
+      "preprocessing_ms": 61.9182,
+      "num_input_tokens": 0,
+      "token_timing": {
+        "num_tokens": 30,
+        "prefill_ms": 500.1227,
+        "decode_ms": 3368.1101,
+        "total_ms": 3868.2328,
+        "per_token_ms": [
+          500.1227,
+          109.9061,
+          112.7011,
+          112.472,
+          113.4008,
+          112.6437,
+          114.4583,
+          114.1398,
+          115.1306,
+          117.9582,
+          117.1776,
+          117.7387,
+          116.4247,
+          119.3235,
+          116.4528,
+          116.4348,
+          116.8732,
+          117.9961,
+          117.1169,
+          117.8827,
+          117.2879,
+          116.3672,
+          117.2863,
+          116.4474,
+          117.6747,
+          117.6347,
+          117.0973,
+          117.6625,
+          117.1183,
+          117.3025
+        ],
+        "avg_decode_ms": 116.1417,
+        "decode_throughput_tok_s": 8.61
+      },
+      "decode_ms": 0.4006,
+      "total_ms": 3930.5515,
+      "gpu_mem_before_mb": 1228.8,
+      "gpu_mem_peak_mb": 1360.8,
+      "gpu_mem_after_mb": 1228.8,
+      "generated_text": "I don't know what the people in the background are doing. They could be watching the skateboarder or they could be doing something else.",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 1.0,
+        "token_f1": 0.0909090909090909,
+        "bleu": 0.047619047619047616,
+        "rouge_l": 0.0909090909090909
+      },
+      "components": {
+        "vision_encoder": {
+          "total_ms": 338.08,
+          "percentage": 13.3,
+          "count": 406
+        },
+        "projection": {
+          "total_ms": 0.27,
+          "percentage": 0.0,
+          "count": 3
+        },
+        "text_embeddings": {
+          "total_ms": 6.25,
+          "percentage": 0.2,
+          "count": 30
+        },
+        "other": {
+          "total_ms": 29.71,
+          "percentage": 1.2,
+          "count": 30
+        },
+        "normalization": {
+          "total_ms": 624.99,
+          "percentage": 24.6,
+          "count": 1470
+        },
+        "attention": {
+          "total_ms": 519.31,
+          "percentage": 20.5,
+          "count": 2880
+        },
+        "feedforward": {
+          "total_ms": 777.66,
+          "percentage": 30.7,
+          "count": 2880
+        },
+        "output": {
+          "total_ms": 239.9,
+          "percentage": 9.5,
+          "count": 30
+        }
+      }
+    },
+    {
+      "preprocessing_ms": 61.1289,
+      "num_input_tokens": 0,
+      "token_timing": {
+        "num_tokens": 30,
+        "prefill_ms": 493.1852,
+        "decode_ms": 3780.1692,
+        "total_ms": 4273.3543,
+        "per_token_ms": [
+          493.1852,
+          113.069,
+          112.1109,
+          112.0463,
+          113.2115,
+          113.3743,
+          114.9454,
+          114.4421,
+          115.029,
+          115.4315,
+          117.3262,
+          116.3409,
+          116.7743,
+          116.9816,
+          116.95,
+          116.6299,
+          117.3297,
+          118.8602,
+          116.6987,
+          117.0165,
+          116.8532,
+          117.0869,
+          117.1083,
+          117.7559,
+          116.8642,
+          117.6886,
+          117.7535,
+          117.0921,
+          118.647,
+          528.7513
+        ],
+        "avg_decode_ms": 130.3507,
+        "decode_throughput_tok_s": 7.67
+      },
+      "decode_ms": 0.4636,
+      "total_ms": 4334.9469,
+      "gpu_mem_before_mb": 1228.8,
+      "gpu_mem_peak_mb": 1360.8,
+      "gpu_mem_after_mb": 1228.8,
+      "generated_text": "Skateboard",
+      "accuracy": {
+        "exact_match": 0.3333333333333333,
+        "contains": 1.0,
+        "token_f1": 1.0,
+        "bleu": 1.0,
+        "rouge_l": 1.0
+      },
+      "components": {
+        "vision_encoder": {
+          "total_ms": 322.68,
+          "percentage": 11.0,
+          "count": 406
+        },
+        "projection": {
+          "total_ms": 0.27,
+          "percentage": 0.0,
+          "count": 3
+        },
+        "text_embeddings": {
+          "total_ms": 5.99,
+          "percentage": 0.2,
+          "count": 30
+        },
+        "other": {
+          "total_ms": 30.72,
+          "percentage": 1.0,
+          "count": 30
+        },
+        "normalization": {
+          "total_ms": 625.26,
+          "percentage": 21.3,
+          "count": 1470
+        },
+        "attention": {
+          "total_ms": 931.66,
+          "percentage": 31.8,
+          "count": 2880
+        },
+        "feedforward": {
+          "total_ms": 779.95,
+          "percentage": 26.6,
+          "count": 2880
+        },
+        "output": {
+          "total_ms": 236.63,
+          "percentage": 8.1,
+          "count": 30
+        }
+      }
+    }
+  ],
+  "components": {
+    "vision_encoder": {
+      "total_ms": 16917.52,
+      "count": 20300,
+      "samples": 50,
+      "avg_ms": 338.35,
+      "percentage": 13.1
+    },
+    "projection": {
+      "total_ms": 13.75,
+      "count": 150,
+      "samples": 50,
+      "avg_ms": 0.27,
+      "percentage": 0.0
+    },
+    "text_embeddings": {
+      "total_ms": 307.32,
+      "count": 1500,
+      "samples": 50,
+      "avg_ms": 6.15,
+      "percentage": 0.2
+    },
+    "other": {
+      "total_ms": 1521.87,
+      "count": 1500,
+      "samples": 50,
+      "avg_ms": 30.44,
+      "percentage": 1.2
+    },
+    "normalization": {
+      "total_ms": 31538.42,
+      "count": 73500,
+      "samples": 50,
+      "avg_ms": 630.77,
+      "percentage": 24.5
+    },
+    "attention": {
+      "total_ms": 27174.48,
+      "count": 144000,
+      "samples": 50,
+      "avg_ms": 543.49,
+      "percentage": 21.1
+    },
+    "feedforward": {
+      "total_ms": 39226.67,
+      "count": 144000,
+      "samples": 50,
+      "avg_ms": 784.53,
+      "percentage": 30.5
+    },
+    "output": {
+      "total_ms": 11959.19,
+      "count": 1500,
+      "samples": 50,
+      "avg_ms": 239.18,
+      "percentage": 9.3
+    }
+  }
+}
