@@ -24,8 +24,9 @@ import logging
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
+import os
 import torch
-import pynvml
+import psutil
 from transformers import (
     AutoModelForCausalLM,
     AutoModelForImageTextToText,
@@ -114,19 +115,20 @@ def detect_family(model_id: str) -> str:
     )
 
 
-# ── GPU memory helpers ─────────────────────────────────────────────────────
+# ── Memory helpers (GPU or RAM) ────────────────────────────────────────────
 
-def _gpu_mem_mb() -> float:
-    """Return current GPU used memory in MB (respects CUDA_VISIBLE_DEVICES)."""
-    if not torch.cuda.is_available():
-        return 0.0
-    free, total = torch.cuda.mem_get_info(torch.cuda.current_device())
-    return (total - free) / 1024**2
+def _mem_mb() -> float:
+    """Return current used memory in MB — GPU if available, else process RSS."""
+    if torch.cuda.is_available():
+        free, total = torch.cuda.mem_get_info(torch.cuda.current_device())
+        return (total - free) / 1024**2
+    return psutil.Process(os.getpid()).memory_info().rss / 1024**2
 
 
 def _log_gpu_mem(tag: str) -> float:
-    used = _gpu_mem_mb()
-    logger.info(f"[GPU mem] {tag}: {used:.1f} MB used")
+    used = _mem_mb()
+    label = "GPU mem" if torch.cuda.is_available() else "RAM"
+    logger.info(f"[{label}] {tag}: {used:.1f} MB used")
     return used
 
 
@@ -826,17 +828,29 @@ def load_model(
     if family not in _LOADERS:
         raise ValueError(f"No loader for family '{family}'. Available: {list(_LOADERS)}")
 
-    dtype = torch.float16 if (quant is None or quant == "fp16") else torch.float32
-    bnb   = build_bnb_config(quant)
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    cuda_available = torch.cuda.is_available()
+    # float16 has no CPU kernel on ARM — always use float32 on CPU
+    if cuda_available:
+        dtype = torch.float16 if (quant is None or quant == "fp16") else torch.float32
+    else:
+        dtype = torch.float32
+    bnb   = build_bnb_config(quant) if cuda_available else None
+    device = "cuda" if cuda_available else "cpu"
 
-    logger.info(f"Loading {model_id}  family={family}  quant={quant}  dtype={dtype}")
+    if bnb is None and quant in ("int8", "int4") and not cuda_available:
+        logger.warning(
+            f"BitsAndBytes quantization requires CUDA; ignoring quant={quant} on CPU. "
+            "Use compression/ptq/run_ptq.py with --backend quanto for CPU quantization."
+        )
 
-    # Force all layers to GPU 0 to prevent cross-device tensor errors during
-    # inference on multi-GPU machines. All target models (up to 16B fp16) fit
-    # within the 48 GB A6000 VRAM budget.
-    if device_map == "auto" and torch.cuda.is_available():
-        device_map = {"": 0}
+    logger.info(f"Loading {model_id}  family={family}  quant={quant}  dtype={dtype}  device={device}")
+
+    # Force all layers to GPU 0 on multi-GPU machines; use "cpu" map otherwise.
+    if device_map == "auto":
+        if cuda_available:
+            device_map = {"": 0}
+        else:
+            device_map = "cpu"
 
     mem_before = _log_gpu_mem("before load")
     gc.collect()
@@ -849,6 +863,7 @@ def load_model(
     if torch.cuda.is_available():
         torch.cuda.synchronize()
     mem_after = _log_gpu_mem("after load")
+
 
     meta = ModelMeta(
         model_id=model_id,

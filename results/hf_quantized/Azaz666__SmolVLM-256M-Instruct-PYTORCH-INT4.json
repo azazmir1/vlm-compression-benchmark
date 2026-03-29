@@ -1,0 +1,109 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-256M-Instruct",
+  "method": "PYTORCH-INT4",
+  "family": "smolvlm",
+  "hf_repo": "Azaz666/SmolVLM-256M-Instruct-PYTORCH-INT4",
+  "device": "rpi5_cpu",
+  "num_params_M": 268.5,
+  "load_time_s": 3.2,
+  "ram_before_mb": 419.0,
+  "ram_after_mb": 1379.7,
+  "ram_delta_mb": 960.7,
+  "num_samples": 2,
+  "num_warmup": 0,
+  "max_tokens": 30,
+  "accuracy": {
+    "exact_match": 0.0,
+    "contains": 0.0,
+    "token_f1": 0.0,
+    "bleu": 0.4759,
+    "rouge_l": 0.0
+  },
+  "timing": {
+    "avg_preprocessing_ms": 528.03,
+    "avg_prefill_ms": 101198.97,
+    "avg_decode_ms": 6633.85,
+    "avg_total_generation_ms": 107832.83,
+    "avg_decode_detokenize_ms": 0.17,
+    "avg_total_ms": 108361.02,
+    "avg_tokens_generated": 5.0,
+    "avg_input_tokens": 1151.0
+  },
+  "throughput": {
+    "avg_tok_s": 0.05,
+    "avg_decode_tok_s": 0.6,
+    "samples_per_s": 0.009
+  },
+  "memory": {
+    "ram_peak_mb": 2726.9,
+    "ram_avg_mb": 2574.6,
+    "avg_inference_peak_mb": 2668.3
+  },
+  "components": null,
+  "sample_details": [
+    {
+      "preprocessing_ms": 546.723,
+      "num_input_tokens": 1149,
+      "token_timing": {
+        "num_tokens": 5,
+        "prefill_ms": 101015.7521,
+        "decode_ms": 6641.019,
+        "total_ms": 107656.7711,
+        "per_token_ms": [
+          101015.7521,
+          1645.544,
+          1652.1934,
+          1720.8581,
+          1622.4235
+        ],
+        "avg_decode_ms": 1660.2547,
+        "decode_throughput_tok_s": 0.6
+      },
+      "decode_ms": 0.2046,
+      "total_ms": 108203.6987,
+      "ram_before_mb": 1722.4,
+      "ram_peak_mb": 2661.2,
+      "ram_after_mb": 2661.2,
+      "generated_text": "Skate park.",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.4518010018049224,
+        "rouge_l": 0.0
+      }
+    },
+    {
+      "preprocessing_ms": 509.3287,
+      "num_input_tokens": 1153,
+      "token_timing": {
+        "num_tokens": 5,
+        "prefill_ms": 101382.1936,
+        "decode_ms": 6626.6889,
+        "total_ms": 108008.8825,
+        "per_token_ms": [
+          101382.1936,
+          1699.3674,
+          1631.1176,
+          1685.5394,
+          1610.6645
+        ],
+        "avg_decode_ms": 1656.6722,
+        "decode_throughput_tok_s": 0.6
+      },
+      "decode_ms": 0.127,
+      "total_ms": 108518.3383,
+      "ram_before_mb": 2554.4,
+      "ram_peak_mb": 2675.4,
+      "ram_after_mb": 2675.4,
+      "generated_text": "Backside.",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.5,
+        "rouge_l": 0.0
+      }
+    }
+  ]
+}

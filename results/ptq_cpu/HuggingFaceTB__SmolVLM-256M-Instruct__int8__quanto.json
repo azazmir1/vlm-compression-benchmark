@@ -1,0 +1,21 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-256M-Instruct",
+  "family": "smolvlm",
+  "quant": "int8",
+  "backend": "quanto",
+  "device": "cpu",
+  "num_params_M": 256.5,
+  "ram_load_mb": 1042.03125,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.4333,
+      "avg_latency_s": 85.904,
+      "peak_memory_mb": 2841.1,
+      "avg_memory_mb": 2745.5,
+      "throughput_sps": 0.012,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 10
+    }
+  }
+}

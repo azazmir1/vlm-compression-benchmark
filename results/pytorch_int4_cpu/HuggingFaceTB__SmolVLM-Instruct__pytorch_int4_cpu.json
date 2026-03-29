@@ -1,0 +1,38 @@
+{
+  "model_id": "HuggingFaceTB/SmolVLM-Instruct",
+  "family": "smolvlm",
+  "method": "pytorch_int4_cpu",
+  "quant_bits": 4,
+  "group_size": 128,
+  "skip_vision_quant": true,
+  "n_linear_quantized": 169,
+  "num_params_M": 2246.3,
+  "ram_before_mb": 370.1,
+  "ram_after_mb": 12828.2,
+  "ram_delta_mb": 12458.2,
+  "load_time_s": 59.7,
+  "loaded_from_cache": true,
+  "benchmarks": {
+    "vqav2": {
+      "accuracy": 0.5667,
+      "avg_latency_s": 437.5919,
+      "peak_memory_mb": 11160.4,
+      "avg_memory_mb": 11051.8,
+      "throughput_sps": 0.002,
+      "avg_power_w": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "n_samples": 20,
+      "n_evaluated": 20,
+      "n_skipped": 0,
+      "all_failed": false,
+      "zero_accuracy_warning": false,
+      "metrics": {
+        "exact_match": 0.5,
+        "contains": 0.5,
+        "token_f1": 0.5,
+        "bleu": 0.5347,
+        "rouge_l": 0.5
+      }
+    }
+  }
+}
