@@ -102,6 +102,20 @@ MODELS = {
             "FP32-BASELINE": "HuggingFaceTB/SmolVLM-500M-Instruct",
         },
     },
+    "FastVLM-0.5B": {
+        "model_id": "apple/FastVLM-0.5B",
+        "family": "fastvlm",
+        "methods": {
+            "FP32-BASELINE": "apple/FastVLM-0.5B",
+        },
+    },
+    "Florence-2-base": {
+        "model_id": "microsoft/Florence-2-base",
+        "family": "florence2",
+        "methods": {
+            "FP32-BASELINE": "microsoft/Florence-2-base",
+        },
+    },
 }
 
 # Default for backward compat
@@ -552,7 +566,11 @@ def profile_single_sample(
 ) -> dict:
     """Profile a single VQA sample with granular timing."""
     image = sample["image"]
-    question = sample["question"] + " Answer with a single word or short phrase."
+    # Florence-2 uses task tokens; others get short-answer nudge
+    if family == "florence2":
+        question = sample["question"]
+    else:
+        question = sample["question"] + " Answer with a single word or short phrase."
 
     if not isinstance(image, Image.Image):
         image = Image.fromarray(image)
@@ -560,17 +578,35 @@ def profile_single_sample(
 
     # 1. Preprocessing timing (family-aware)
     t_pre_start = time.perf_counter()
-    if family == "lfm2vl":
+    if family == "florence2":
+        inputs = processor(
+            text=f"<VQA> {question}",
+            images=image,
+            return_tensors="pt",
+        ).to(device)
+        inputs["pixel_values"] = inputs["pixel_values"].to(dtype=torch.float32)
+    elif family == "lfm2vl":
         messages = [{"role": "user", "content": [
             {"type": "image", "image": image},
             {"type": "text", "text": question},
         ]}]
-    else:  # smolvlm and others
+        prompt = processor.apply_chat_template(messages, add_generation_prompt=True)
+        inputs = processor(text=prompt, images=[image], return_tensors="pt").to(device)
+    else:  # smolvlm, fastvlm, etc.
         messages = [{"role": "user", "content": [{"type": "image"}, {"type": "text", "text": question}]}]
-    prompt = processor.apply_chat_template(messages, add_generation_prompt=True)
-    inputs = processor(text=prompt, images=[image], return_tensors="pt").to(device)
+        prompt = processor.apply_chat_template(messages, add_generation_prompt=True)
+        inputs = processor(text=prompt, images=[image], return_tensors="pt").to(device)
     t_pre_end = time.perf_counter()
     preprocess_ms = (t_pre_end - t_pre_start) * 1000
+
+    # FastVLM (LLaVA-Qwen2) expects 'images' kwarg, not 'pixel_values'
+    if family == "fastvlm":
+        pv = inputs.get("pixel_values", None)
+        fastvlm_extras = {}
+        if pv is not None:
+            fastvlm_extras["images"] = pv
+            fastvlm_extras["image_sizes"] = [image.size]
+            del inputs["pixel_values"]
 
     num_input_tokens = inputs["input_ids"].shape[1] if "input_ids" in inputs else 0
     mem_before = _rss_mb()
@@ -582,18 +618,41 @@ def profile_single_sample(
         hook_manager.reset()
 
     gen_kwargs = {"max_new_tokens": max_new_tokens, "do_sample": False}
-    gen_kwargs["logits_processor"] = [token_timer]
+    # Florence-2's custom generate() breaks with LogitsProcessor
+    if family != "florence2":
+        gen_kwargs["logits_processor"] = [token_timer]
 
     token_timer.record_start()
     with torch.no_grad():
-        output_ids = model.generate(**inputs, **gen_kwargs)
+        if family == "fastvlm":
+            # FastVLM's custom generate() expects input_ids as first positional arg
+            output_ids = model.generate(
+                inputs["input_ids"],
+                images=fastvlm_extras.get("images"),
+                image_sizes=fastvlm_extras.get("image_sizes"),
+                attention_mask=inputs.get("attention_mask"),
+                **gen_kwargs,
+            )
+        elif family == "florence2":
+            output_ids = model.generate(
+                input_ids=inputs["input_ids"],
+                pixel_values=inputs["pixel_values"],
+                num_beams=1,
+                **gen_kwargs,
+            )
+        else:
+            output_ids = model.generate(**inputs, **gen_kwargs)
     token_timer.record_end()
     token_timer.finalize()
 
     # Decode output
     t_decode_start = time.perf_counter()
-    input_len = inputs["input_ids"].shape[1]
-    pred = processor.batch_decode(output_ids[:, input_len:], skip_special_tokens=True)[0]
+    if family == "florence2":
+        # Florence-2 decodes full output (not slicing off input)
+        pred = processor.batch_decode(output_ids, skip_special_tokens=True)[0]
+    else:
+        input_len = inputs["input_ids"].shape[1]
+        pred = processor.batch_decode(output_ids[:, input_len:], skip_special_tokens=True)[0]
     t_decode_end = time.perf_counter()
     decode_ms = (t_decode_end - t_decode_start) * 1000
 
@@ -861,14 +920,37 @@ def run_single_method(method: str, vqav2_n: int, force: bool = False,
 
     # Load model
     if method == "FP32-BASELINE":
-        from transformers import AutoModelForVision2Seq, AutoModelForImageTextToText, AutoProcessor
+        from transformers import AutoModelForVision2Seq, AutoModelForImageTextToText, AutoModelForCausalLM, AutoProcessor
         logger.info(f"Loading FP32 baseline: {_model_id}")
-        # LFM2-VL needs AutoModelForImageTextToText, SmolVLM works with either
-        AutoCls = AutoModelForImageTextToText if _family == "lfm2vl" else AutoModelForVision2Seq
-        model = AutoCls.from_pretrained(
-            _model_id, torch_dtype=torch.float32
-        ).eval()
-        processor = AutoProcessor.from_pretrained(_model_id)
+        if _family == "fastvlm":
+            # FastVLM is LLaVA-Qwen2 with MobileCLIP vision tower
+            from transformers import AutoTokenizer
+            model = AutoModelForCausalLM.from_pretrained(
+                _model_id, torch_dtype=torch.float32, trust_remote_code=True
+            ).eval()
+            tokenizer = AutoTokenizer.from_pretrained(_model_id, trust_remote_code=True)
+            vt = model.get_vision_tower()
+            image_processor = vt.image_processor
+            # Import FastVLM processor wrapper from model_loader
+            from models.model_loader import _FastVLMProcessor
+            processor = _FastVLMProcessor(image_processor, tokenizer)
+        elif _family == "florence2":
+            # Florence-2 uses AutoModelForCausalLM + trust_remote_code + eager attn
+            model = AutoModelForCausalLM.from_pretrained(
+                _model_id, torch_dtype=torch.float32,
+                trust_remote_code=True, attn_implementation="eager"
+            ).eval()
+            processor = AutoProcessor.from_pretrained(_model_id, trust_remote_code=True)
+        elif _family == "lfm2vl":
+            model = AutoModelForImageTextToText.from_pretrained(
+                _model_id, torch_dtype=torch.float32
+            ).eval()
+            processor = AutoProcessor.from_pretrained(_model_id)
+        else:
+            model = AutoModelForVision2Seq.from_pretrained(
+                _model_id, torch_dtype=torch.float32
+            ).eval()
+            processor = AutoProcessor.from_pretrained(_model_id)
     elif method in ("PYTORCH-INT4", "GPTQ-INT4"):
         model, processor = load_pytorch_int4(hf_repo)
     elif method == "PYTORCH-INT8":
