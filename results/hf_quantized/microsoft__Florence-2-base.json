@@ -9,104 +9,40 @@
   "ram_before_mb": 414.1,
   "ram_after_mb": 1390.7,
   "ram_delta_mb": 976.6,
-  "num_samples": 50,
+  "num_samples": 1,
   "num_warmup": 1,
   "max_tokens": 30,
   "accuracy": {
     "exact_match": 0.0,
     "contains": 0.0,
     "token_f1": 0.0,
-    "bleu": 0.1648,
+    "bleu": 0.2296,
     "rouge_l": 0.0
   },
   "timing": {
-    "avg_preprocessing_ms": 36.68,
+    "avg_preprocessing_ms": 38.59,
     "avg_prefill_ms": 0.0,
     "avg_decode_ms": 0.0,
     "avg_total_generation_ms": 0.0,
-    "avg_decode_detokenize_ms": 0.14,
-    "avg_total_ms": 36.83,
+    "avg_decode_detokenize_ms": 0.12,
+    "avg_total_ms": 38.71,
     "avg_tokens_generated": 0.0,
-    "avg_input_tokens": 14.3
+    "avg_input_tokens": 12.0
   },
   "throughput": {
     "avg_tok_s": 0.0,
     "avg_decode_tok_s": 0.0,
-    "samples_per_s": 0.062
+    "samples_per_s": 0.065
   },
   "memory": {
-    "ram_peak_mb": 2236.6,
-    "ram_avg_mb": 2216.4,
-    "avg_inference_peak_mb": 2203.6
+    "ram_peak_mb": 2047.4,
+    "ram_avg_mb": 2033.4,
+    "avg_inference_peak_mb": 2020.3
   },
-  "components": {
-    "other": {
-      "total_ms": 6422.18,
-      "count": 1800,
-      "samples": 50,
-      "avg_ms": 128.44,
-      "percentage": 1.3
-    },
-    "vision_encoder": {
-      "total_ms": 473663.65,
-      "count": 13100,
-      "samples": 50,
-      "avg_ms": 9473.27,
-      "percentage": 95.0
-    },
-    "vision_normalization": {
-      "total_ms": 8900.06,
-      "count": 2600,
-      "samples": 50,
-      "avg_ms": 178.0,
-      "percentage": 1.8
-    },
-    "projection": {
-      "total_ms": 46.44,
-      "count": 50,
-      "samples": 50,
-      "avg_ms": 0.93,
-      "percentage": 0.0
-    },
-    "normalization": {
-      "total_ms": 93.5,
-      "count": 1000,
-      "samples": 50,
-      "avg_ms": 1.87,
-      "percentage": 0.0
-    },
-    "text_embeddings": {
-      "total_ms": 4.28,
-      "count": 50,
-      "samples": 50,
-      "avg_ms": 0.09,
-      "percentage": 0.0
-    },
-    "attention": {
-      "total_ms": 2012.55,
-      "count": 1200,
-      "samples": 50,
-      "avg_ms": 40.25,
-      "percentage": 0.4
-    },
-    "feedforward": {
-      "total_ms": 3444.75,
-      "count": 600,
-      "samples": 50,
-      "avg_ms": 68.89,
-      "percentage": 0.7
-    },
-    "output": {
-      "total_ms": 4193.2,
-      "count": 50,
-      "samples": 50,
-      "avg_ms": 83.86,
-      "percentage": 0.8
-    }
-  },
+  "components": null,
   "sample_details": [
     {
-      "preprocessing_ms": 41.5096,
+      "preprocessing_ms": 38.5925,
       "num_input_tokens": 12,
       "token_timing": {
         "num_tokens": 0,
@@ -115,11 +51,11 @@
         "total_ms": 0.0,
         "per_token_ms": []
       },
-      "decode_ms": 0.2192,
-      "total_ms": 41.7289,
-      "ram_before_mb": 2187.4,
-      "ram_peak_mb": 2198.3,
-      "ram_after_mb": 2198.3,
+      "decode_ms": 0.1208,
+      "total_ms": 38.7133,
+      "ram_before_mb": 2010.8,
+      "ram_peak_mb": 2020.3,
+      "ram_after_mb": 2020.3,
       "generated_text": "QA> Where is he looking",
       "accuracy": {
         "exact_match": 0.0,
@@ -127,195 +63,6 @@
         "token_f1": 0.0,
         "bleu": 0.2295748846661433,
         "rouge_l": 0.0
-      },
-      "components": {
-        "other": {
-          "total_ms": 148.79,
-          "percentage": 1.4,
-          "count": 36
-        },
-        "vision_encoder": {
-          "total_ms": 9849.4,
-          "percentage": 94.8,
-          "count": 262
-        },
-        "vision_normalization": {
-          "total_ms": 187.54,
-          "percentage": 1.8,
-          "count": 52
-        },
-        "projection": {
-          "total_ms": 0.59,
-          "percentage": 0.0,
-          "count": 1
-        },
-        "normalization": {
-          "total_ms": 1.56,
-          "percentage": 0.0,
-          "count": 20
-        },
-        "text_embeddings": {
-          "total_ms": 0.06,
-          "percentage": 0.0,
-          "count": 1
-        },
-        "attention": {
-          "total_ms": 42.44,
-          "percentage": 0.4,
-          "count": 24
-        },
-        "feedforward": {
-          "total_ms": 62.48,
-          "percentage": 0.6,
-          "count": 12
-        },
-        "output": {
-          "total_ms": 94.83,
-          "percentage": 0.9,
-          "count": 1
-        }
-      }
-    },
-    {
-      "preprocessing_ms": 37.5836,
-      "num_input_tokens": 16,
-      "token_timing": {
-        "num_tokens": 0,
-        "prefill_ms": 0.0,
-        "decode_ms": 0.0,
-        "total_ms": 0.0,
-        "per_token_ms": []
-      },
-      "decode_ms": 0.1712,
-      "total_ms": 37.7548,
-      "ram_before_mb": 2198.5,
-      "ram_peak_mb": 2200.2,
-      "ram_after_mb": 2200.2,
-      "generated_text": "QA> What are the people in the background doing",
-      "accuracy": {
-        "exact_match": 0.0,
-        "contains": 0.0,
-        "token_f1": 0.0,
-        "bleu": 0.11868405219520975,
-        "rouge_l": 0.0
-      },
-      "components": {
-        "other": {
-          "total_ms": 142.13,
-          "percentage": 1.4,
-          "count": 36
-        },
-        "vision_encoder": {
-          "total_ms": 9469.56,
-          "percentage": 94.7,
-          "count": 262
-        },
-        "vision_normalization": {
-          "total_ms": 176.83,
-          "percentage": 1.8,
-          "count": 52
-        },
-        "projection": {
-          "total_ms": 0.63,
-          "percentage": 0.0,
-          "count": 1
-        },
-        "normalization": {
-          "total_ms": 1.52,
-          "percentage": 0.0,
-          "count": 20
-        },
-        "text_embeddings": {
-          "total_ms": 0.08,
-          "percentage": 0.0,
-          "count": 1
-        },
-        "attention": {
-          "total_ms": 45.0,
-          "percentage": 0.5,
-          "count": 24
-        },
-        "feedforward": {
-          "total_ms": 77.9,
-          "percentage": 0.8,
-          "count": 12
-        },
-        "output": {
-          "total_ms": 86.05,
-          "percentage": 0.9,
-          "count": 1
-        }
-      }
-    },
-    {
-      "preprocessing_ms": 36.5681,
-      "num_input_tokens": 14,
-      "token_timing": {
-        "num_tokens": 0,
-        "prefill_ms": 0.0,
-        "decode_ms": 0.0,
-        "total_ms": 0.0,
-        "per_token_ms": []
-      },
-      "decode_ms": 0.1109,
-      "total_ms": 36.679,
-      "ram_before_mb": 2200.2,
-      "ram_peak_mb": 2200.2,
-      "ram_after_mb": 2197.7,
-      "generated_text": "QA> What is he on top of",
-      "accuracy": {
-        "exact_match": 0.0,
-        "contains": 0.0,
-        "token_f1": 0.0,
-        "bleu": 0.1561969968460128,
-        "rouge_l": 0.0
-      },
-      "components": {
-        "other": {
-          "total_ms": 129.26,
-          "percentage": 1.3,
-          "count": 36
-        },
-        "vision_encoder": {
-          "total_ms": 9368.33,
-          "percentage": 95.0,
-          "count": 262
-        },
-        "vision_normalization": {
-          "total_ms": 186.85,
-          "percentage": 1.9,
-          "count": 52
-        },
-        "projection": {
-          "total_ms": 0.64,
-          "percentage": 0.0,
-          "count": 1
-        },
-        "normalization": {
-          "total_ms": 1.4,
-          "percentage": 0.0,
-          "count": 20
-        },
-        "text_embeddings": {
-          "total_ms": 0.06,
-          "percentage": 0.0,
-          "count": 1
-        },
-        "attention": {
-          "total_ms": 36.62,
-          "percentage": 0.4,
-          "count": 24
-        },
-        "feedforward": {
-          "total_ms": 62.31,
-          "percentage": 0.6,
-          "count": 12
-        },
-        "output": {
-          "total_ms": 79.87,
-          "percentage": 0.8,
-          "count": 1
-        }
       }
     }
   ]

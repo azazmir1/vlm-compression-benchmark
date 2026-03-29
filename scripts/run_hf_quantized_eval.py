@@ -109,11 +109,11 @@ MODELS = {
             "FP32-BASELINE": "apple/FastVLM-0.5B",
         },
     },
-    "Florence-2-base": {
-        "model_id": "microsoft/Florence-2-base",
+    "Florence-2-base-ft": {
+        "model_id": "microsoft/Florence-2-base-ft",
         "family": "florence2",
         "methods": {
-            "FP32-BASELINE": "microsoft/Florence-2-base",
+            "FP32-BASELINE": "microsoft/Florence-2-base-ft",
         },
     },
 }
@@ -578,6 +578,7 @@ def profile_single_sample(
 
     # 1. Preprocessing timing (family-aware)
     t_pre_start = time.perf_counter()
+    fastvlm_extras = {}
     if family == "florence2":
         inputs = processor(
             text=f"<VQA> {question}",
@@ -585,6 +586,25 @@ def profile_single_sample(
             return_tensors="pt",
         ).to(device)
         inputs["pixel_values"] = inputs["pixel_values"].to(dtype=torch.float32)
+    elif family == "fastvlm":
+        # FastVLM (LLaVA-Qwen2): must inject IMAGE_TOKEN_INDEX=-200 into input_ids
+        # and use model's vision tower image_processor directly
+        IMAGE_TOKEN_INDEX = -200
+        messages = [{"role": "user", "content": f"<image>\n{question}"}]
+        rendered = processor.apply_chat_template(
+            messages, add_generation_prompt=True, tokenize=False
+        )
+        pre, post = rendered.split("<image>", 1)
+        pre_ids = processor.tokenizer(pre, return_tensors="pt", add_special_tokens=False).input_ids
+        post_ids = processor.tokenizer(post, return_tensors="pt", add_special_tokens=False).input_ids
+        img_tok = torch.tensor([[IMAGE_TOKEN_INDEX]], dtype=pre_ids.dtype)
+        input_ids = torch.cat([pre_ids, img_tok, post_ids], dim=1).to(device)
+        attention_mask = torch.ones_like(input_ids, device=device)
+        pixel_values = model.get_vision_tower().image_processor(
+            images=image, return_tensors="pt"
+        )["pixel_values"].to(device, dtype=next(model.parameters()).dtype)
+        inputs = {"input_ids": input_ids, "attention_mask": attention_mask}
+        fastvlm_extras = {"images": pixel_values}
     elif family == "lfm2vl":
         messages = [{"role": "user", "content": [
             {"type": "image", "image": image},
@@ -592,21 +612,12 @@ def profile_single_sample(
         ]}]
         prompt = processor.apply_chat_template(messages, add_generation_prompt=True)
         inputs = processor(text=prompt, images=[image], return_tensors="pt").to(device)
-    else:  # smolvlm, fastvlm, etc.
+    else:  # smolvlm
         messages = [{"role": "user", "content": [{"type": "image"}, {"type": "text", "text": question}]}]
         prompt = processor.apply_chat_template(messages, add_generation_prompt=True)
         inputs = processor(text=prompt, images=[image], return_tensors="pt").to(device)
     t_pre_end = time.perf_counter()
     preprocess_ms = (t_pre_end - t_pre_start) * 1000
-
-    # FastVLM (LLaVA-Qwen2) expects 'images' kwarg, not 'pixel_values'
-    if family == "fastvlm":
-        pv = inputs.get("pixel_values", None)
-        fastvlm_extras = {}
-        if pv is not None:
-            fastvlm_extras["images"] = pv
-            fastvlm_extras["image_sizes"] = [image.size]
-            del inputs["pixel_values"]
 
     num_input_tokens = inputs["input_ids"].shape[1] if "input_ids" in inputs else 0
     mem_before = _rss_mb()
@@ -625,12 +636,11 @@ def profile_single_sample(
     token_timer.record_start()
     with torch.no_grad():
         if family == "fastvlm":
-            # FastVLM's custom generate() expects input_ids as first positional arg
+            # FastVLM's custom generate() expects input_ids as first positional arg 'inputs'
             output_ids = model.generate(
                 inputs["input_ids"],
-                images=fastvlm_extras.get("images"),
-                image_sizes=fastvlm_extras.get("image_sizes"),
                 attention_mask=inputs.get("attention_mask"),
+                images=fastvlm_extras.get("images"),
                 **gen_kwargs,
             )
         elif family == "florence2":
@@ -648,8 +658,20 @@ def profile_single_sample(
     # Decode output
     t_decode_start = time.perf_counter()
     if family == "florence2":
-        # Florence-2 decodes full output (not slicing off input)
+        # Florence-2: use post_process_generation for proper task-aware decoding
+        raw_text = processor.batch_decode(output_ids, skip_special_tokens=False)[0]
+        try:
+            result = processor.post_process_generation(
+                raw_text, task="<VQA>",
+                image_size=(image.width, image.height),
+            )
+            pred = result.get("<VQA>", "")
+        except Exception:
+            pred = processor.batch_decode(output_ids, skip_special_tokens=True)[0]
+    elif family == "fastvlm":
+        # FastVLM: decode full output, take first line
         pred = processor.batch_decode(output_ids, skip_special_tokens=True)[0]
+        pred = pred.split("\n")[0].strip()
     else:
         input_len = inputs["input_ids"].shape[1]
         pred = processor.batch_decode(output_ids[:, input_len:], skip_special_tokens=True)[0]
@@ -678,7 +700,7 @@ def profile_single_sample(
         "num_input_tokens": num_input_tokens,
         "token_timing": token_timer.to_dict(),
         "decode_ms": round(decode_ms, 4),
-        "total_ms": round(preprocess_ms + token_timer.total_ms + decode_ms, 4),
+        "total_ms": round(preprocess_ms + (token_timer.total_ms or token_timer._wall_total_ms) + decode_ms, 4),
         "ram_before_mb": round(mem_before, 1),
         "ram_peak_mb": round(max(mem_before, mem_after), 1),
         "ram_after_mb": round(mem_after, 1),

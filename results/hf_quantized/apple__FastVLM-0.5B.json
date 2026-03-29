@@ -5,176 +5,280 @@
   "hf_repo": "apple/FastVLM-0.5B",
   "device": "rpi5_cpu",
   "num_params_M": 622.7,
-  "load_time_s": 2.9,
-  "ram_before_mb": 419.2,
-  "ram_after_mb": 4350.2,
-  "ram_delta_mb": 3931.0,
+  "load_time_s": 4.9,
+  "ram_before_mb": 414.2,
+  "ram_after_mb": 2919.9,
+  "ram_delta_mb": 2505.8,
   "num_samples": 50,
   "num_warmup": 1,
   "max_tokens": 30,
   "accuracy": {
-    "exact_match": 0.0,
-    "contains": 0.0,
-    "token_f1": 0.0,
-    "bleu": 0.0,
-    "rouge_l": 0.0
+    "exact_match": 0.16,
+    "contains": 0.54,
+    "token_f1": 0.1953,
+    "bleu": 0.2369,
+    "rouge_l": 0.1953
   },
   "timing": {
-    "avg_preprocessing_ms": 67.21,
-    "avg_prefill_ms": 16441.39,
-    "avg_decode_ms": 30162.44,
-    "avg_total_generation_ms": 46603.83,
-    "avg_decode_detokenize_ms": 0.12,
-    "avg_total_ms": 46671.16,
+    "avg_preprocessing_ms": 73.04,
+    "avg_prefill_ms": 23894.82,
+    "avg_decode_ms": 35730.05,
+    "avg_total_generation_ms": 59624.87,
+    "avg_decode_detokenize_ms": 0.15,
+    "avg_total_ms": 59698.06,
     "avg_tokens_generated": 30.0,
-    "avg_input_tokens": 35.3
+    "avg_input_tokens": 37.3
   },
   "throughput": {
-    "avg_tok_s": 0.64,
-    "avg_decode_tok_s": 0.96,
-    "samples_per_s": 0.021
+    "avg_tok_s": 0.5,
+    "avg_decode_tok_s": 0.81,
+    "samples_per_s": 0.017
   },
   "memory": {
-    "ram_peak_mb": 5634.2,
-    "ram_avg_mb": 5619.9,
-    "avg_inference_peak_mb": 5628.1
+    "ram_peak_mb": 4565.3,
+    "ram_avg_mb": 4539.9,
+    "avg_inference_peak_mb": 4545.9
   },
   "components": {
     "vision_encoder": {
-      "total_ms": 698746.45,
+      "total_ms": 915361.77,
       "count": 20000,
       "samples": 50,
-      "avg_ms": 13974.93,
-      "percentage": 92.9
+      "avg_ms": 18307.24,
+      "percentage": 93.6
     },
     "vision_normalization": {
-      "total_ms": 1710.74,
+      "total_ms": 2091.74,
       "count": 300,
       "samples": 50,
-      "avg_ms": 34.21,
+      "avg_ms": 41.83,
       "percentage": 0.2
     },
     "projection": {
-      "total_ms": 1157.08,
+      "total_ms": 1390.88,
       "count": 150,
       "samples": 50,
-      "avg_ms": 23.14,
-      "percentage": 0.2
+      "avg_ms": 27.82,
+      "percentage": 0.1
     },
     "text_embeddings": {
-      "total_ms": 2.45,
+      "total_ms": 2.34,
       "count": 50,
       "samples": 50,
       "avg_ms": 0.05,
       "percentage": 0.0
     },
     "other": {
-      "total_ms": 11.51,
+      "total_ms": 12.23,
       "count": 50,
       "samples": 50,
-      "avg_ms": 0.23,
+      "avg_ms": 0.24,
       "percentage": 0.0
     },
     "normalization": {
-      "total_ms": 367.27,
+      "total_ms": 412.6,
       "count": 2450,
       "samples": 50,
-      "avg_ms": 7.35,
+      "avg_ms": 8.25,
       "percentage": 0.0
     },
     "attention": {
-      "total_ms": 5100.66,
+      "total_ms": 7038.07,
       "count": 4800,
       "samples": 50,
-      "avg_ms": 102.01,
+      "avg_ms": 140.76,
       "percentage": 0.7
     },
     "feedforward": {
-      "total_ms": 31718.48,
+      "total_ms": 35054.26,
       "count": 4800,
       "samples": 50,
-      "avg_ms": 634.37,
-      "percentage": 4.2
+      "avg_ms": 701.09,
+      "percentage": 3.6
     },
     "output": {
-      "total_ms": 13604.19,
+      "total_ms": 16358.51,
       "count": 50,
       "samples": 50,
-      "avg_ms": 272.08,
-      "percentage": 1.8
+      "avg_ms": 327.17,
+      "percentage": 1.7
     }
   },
   "sample_details": [
     {
-      "preprocessing_ms": 95.9641,
-      "num_input_tokens": 33,
+      "preprocessing_ms": 101.461,
+      "num_input_tokens": 35,
       "token_timing": {
         "num_tokens": 30,
-        "prefill_ms": 16594.4355,
-        "decode_ms": 30221.3971,
-        "total_ms": 46815.8326,
+        "prefill_ms": 24714.806,
+        "decode_ms": 35841.4107,
+        "total_ms": 60556.2167,
         "per_token_ms": [
-          16594.4355,
-          1040.3711,
-          1037.9109,
-          1037.8342,
-          1041.7288,
-          1038.5837,
-          1040.0273,
-          1037.0291,
-          1037.3189,
-          1035.5445,
-          1059.0912,
-          1045.86,
-          1042.3374,
-          1041.7508,
-          1047.1164,
-          1039.1718,
-          1040.6227,
-          1044.5418,
-          1051.7256,
-          1040.107,
-          1043.0023,
-          1039.4002,
-          1041.388,
-          1043.2785,
-          1041.4839,
-          1043.1586,
-          1043.3926,
-          1043.2465,
-          1043.5015,
-          1040.8719
+          24714.806,
+          1280.8778,
+          1235.8989,
+          1242.9904,
+          1215.3417,
+          1247.7819,
+          1253.6927,
+          1231.8263,
+          1219.1022,
+          1362.026,
+          1231.5839,
+          1227.1914,
+          1305.4567,
+          1239.4625,
+          1222.2293,
+          1208.9671,
+          1220.1054,
+          1226.7502,
+          1223.3108,
+          1225.3,
+          1229.6735,
+          1228.3864,
+          1230.3847,
+          1218.1569,
+          1217.6154,
+          1216.9767,
+          1229.5822,
+          1223.3243,
+          1220.25,
+          1207.1654
         ],
-        "avg_decode_ms": 1042.1171,
-        "decode_throughput_tok_s": 0.96
+        "avg_decode_ms": 1235.9107,
+        "decode_throughput_tok_s": 0.81
       },
-      "decode_ms": 0.1472,
-      "total_ms": 46911.9439,
-      "ram_before_mb": 4778.5,
-      "ram_peak_mb": 5607.4,
-      "ram_after_mb": 5607.4,
-      "generated_text": "",
+      "decode_ms": 0.2194,
+      "total_ms": 60657.8971,
+      "ram_before_mb": 3354.1,
+      "ram_peak_mb": 4527.2,
+      "ram_after_mb": 4527.2,
+      "generated_text": "I don't know where he is looking. It could be the audience, the ground, the sky, or the camera.",
       "accuracy": {
         "exact_match": 0.0,
         "contains": 0.0,
         "token_f1": 0.0,
-        "bleu": 0.0,
+        "bleu": 0.05415315253510895,
         "rouge_l": 0.0
       },
       "components": {
         "vision_encoder": {
-          "total_ms": 14140.55,
-          "percentage": 92.9,
+          "total_ms": 19146.49,
+          "percentage": 94.0,
           "count": 400
         },
         "vision_normalization": {
-          "total_ms": 32.94,
+          "total_ms": 36.55,
           "percentage": 0.2,
           "count": 6
         },
         "projection": {
-          "total_ms": 23.43,
+          "total_ms": 27.41,
+          "percentage": 0.1,
+          "count": 3
+        },
+        "text_embeddings": {
+          "total_ms": 0.05,
+          "percentage": 0.0,
+          "count": 1
+        },
+        "other": {
+          "total_ms": 0.24,
+          "percentage": 0.0,
+          "count": 1
+        },
+        "normalization": {
+          "total_ms": 7.66,
+          "percentage": 0.0,
+          "count": 49
+        },
+        "attention": {
+          "total_ms": 137.96,
+          "percentage": 0.7,
+          "count": 96
+        },
+        "feedforward": {
+          "total_ms": 693.84,
+          "percentage": 3.4,
+          "count": 96
+        },
+        "output": {
+          "total_ms": 317.03,
+          "percentage": 1.6,
+          "count": 1
+        }
+      }
+    },
+    {
+      "preprocessing_ms": 69.9422,
+      "num_input_tokens": 39,
+      "token_timing": {
+        "num_tokens": 30,
+        "prefill_ms": 24184.903,
+        "decode_ms": 35466.8868,
+        "total_ms": 59651.7897,
+        "per_token_ms": [
+          24184.903,
+          1259.8804,
+          1216.6447,
+          1214.3088,
+          1215.0491,
+          1226.8866,
+          1219.0785,
+          1195.8624,
+          1231.5792,
+          1204.8126,
+          1220.4007,
+          1211.753,
+          1223.1211,
+          1246.1243,
+          1240.2225,
+          1234.8536,
+          1215.4736,
+          1208.3398,
+          1233.8484,
+          1195.3903,
+          1227.0018,
+          1208.2238,
+          1217.5728,
+          1219.246,
+          1216.5116,
+          1208.2578,
+          1265.7742,
+          1220.2226,
+          1226.0514,
+          1244.395
+        ],
+        "avg_decode_ms": 1222.9961,
+        "decode_throughput_tok_s": 0.82
+      },
+      "decode_ms": 0.8083,
+      "total_ms": 59722.5402,
+      "ram_before_mb": 4542.5,
+      "ram_peak_mb": 4542.5,
+      "ram_after_mb": 4542.2,
+      "generated_text": "I don't know what the people in the background are doing. They could be watching the skateboarder or they could be doing something else.",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 1.0,
+        "token_f1": 0.07999999999999999,
+        "bleu": 0.04303846266589084,
+        "rouge_l": 0.07999999999999999
+      },
+      "components": {
+        "vision_encoder": {
+          "total_ms": 18642.26,
+          "percentage": 93.7,
+          "count": 400
+        },
+        "vision_normalization": {
+          "total_ms": 34.13,
           "percentage": 0.2,
+          "count": 6
+        },
+        "projection": {
+          "total_ms": 25.14,
+          "percentage": 0.1,
           "count": 3
         },
         "text_embeddings": {
@@ -183,206 +287,102 @@
           "count": 1
         },
         "other": {
-          "total_ms": 0.22,
+          "total_ms": 0.21,
           "percentage": 0.0,
           "count": 1
         },
         "normalization": {
-          "total_ms": 7.34,
-          "percentage": 0.0,
-          "count": 49
-        },
-        "attention": {
-          "total_ms": 100.79,
-          "percentage": 0.7,
-          "count": 96
-        },
-        "feedforward": {
-          "total_ms": 636.57,
-          "percentage": 4.2,
-          "count": 96
-        },
-        "output": {
-          "total_ms": 272.75,
-          "percentage": 1.8,
-          "count": 1
-        }
-      }
-    },
-    {
-      "preprocessing_ms": 67.9572,
-      "num_input_tokens": 37,
-      "token_timing": {
-        "num_tokens": 30,
-        "prefill_ms": 16544.1872,
-        "decode_ms": 30368.6471,
-        "total_ms": 46912.8343,
-        "per_token_ms": [
-          16544.1872,
-          1042.6401,
-          1044.0876,
-          1041.6633,
-          1043.3188,
-          1057.8366,
-          1047.0301,
-          1044.8581,
-          1041.0928,
-          1039.6297,
-          1043.6401,
-          1042.4222,
-          1043.9446,
-          1043.7331,
-          1043.9042,
-          1045.7222,
-          1045.9973,
-          1143.7352,
-          1042.9139,
-          1034.1506,
-          1034.3354,
-          1034.781,
-          1041.9615,
-          1035.4427,
-          1035.7708,
-          1057.1591,
-          1072.5522,
-          1043.9468,
-          1040.0317,
-          1040.3454
-        ],
-        "avg_decode_ms": 1047.1947,
-        "decode_throughput_tok_s": 0.95
-      },
-      "decode_ms": 0.1369,
-      "total_ms": 46980.9285,
-      "ram_before_mb": 5622.6,
-      "ram_peak_mb": 5624.9,
-      "ram_after_mb": 5624.9,
-      "generated_text": "",
-      "accuracy": {
-        "exact_match": 0.0,
-        "contains": 0.0,
-        "token_f1": 0.0,
-        "bleu": 0.0,
-        "rouge_l": 0.0
-      },
-      "components": {
-        "vision_encoder": {
-          "total_ms": 14076.92,
-          "percentage": 92.9,
-          "count": 400
-        },
-        "vision_normalization": {
-          "total_ms": 31.65,
-          "percentage": 0.2,
-          "count": 6
-        },
-        "projection": {
-          "total_ms": 23.09,
-          "percentage": 0.2,
-          "count": 3
-        },
-        "text_embeddings": {
-          "total_ms": 0.05,
-          "percentage": 0.0,
-          "count": 1
-        },
-        "other": {
-          "total_ms": 0.26,
-          "percentage": 0.0,
-          "count": 1
-        },
-        "normalization": {
-          "total_ms": 7.75,
+          "total_ms": 16.88,
           "percentage": 0.1,
           "count": 49
         },
         "attention": {
-          "total_ms": 103.08,
+          "total_ms": 142.08,
           "percentage": 0.7,
           "count": 96
         },
         "feedforward": {
-          "total_ms": 633.19,
-          "percentage": 4.2,
+          "total_ms": 709.14,
+          "percentage": 3.6,
           "count": 96
         },
         "output": {
-          "total_ms": 271.41,
-          "percentage": 1.8,
+          "total_ms": 322.78,
+          "percentage": 1.6,
           "count": 1
         }
       }
     },
     {
-      "preprocessing_ms": 65.7112,
-      "num_input_tokens": 35,
+      "preprocessing_ms": 72.2615,
+      "num_input_tokens": 37,
       "token_timing": {
         "num_tokens": 30,
-        "prefill_ms": 16597.8735,
-        "decode_ms": 30203.7993,
-        "total_ms": 46801.6729,
+        "prefill_ms": 24092.0552,
+        "decode_ms": 35852.8348,
+        "total_ms": 59944.8899,
         "per_token_ms": [
-          16597.8735,
-          1040.2837,
-          1039.5686,
-          1039.3783,
-          1040.9085,
-          1042.9994,
-          1039.763,
-          1041.1407,
-          1040.2239,
-          1046.9816,
-          1040.6883,
-          1038.2712,
-          1040.4585,
-          1040.164,
-          1042.1477,
-          1047.7404,
-          1042.4778,
-          1041.4592,
-          1041.4644,
-          1040.5523,
-          1043.7105,
-          1039.0359,
-          1037.5018,
-          1048.5642,
-          1043.392,
-          1044.3195,
-          1039.9022,
-          1040.3088,
-          1039.5426,
-          1040.8506
+          24092.0552,
+          1241.8406,
+          1245.3494,
+          1221.0602,
+          1210.9337,
+          1221.452,
+          1242.0039,
+          1218.5816,
+          1230.0975,
+          1208.3394,
+          1220.5457,
+          1237.5908,
+          1313.4868,
+          1235.716,
+          1261.6991,
+          1233.2554,
+          1206.353,
+          1232.8982,
+          1237.5071,
+          1236.2178,
+          1217.1927,
+          1315.4741,
+          1248.9967,
+          1212.295,
+          1239.3173,
+          1220.1696,
+          1235.2454,
+          1237.6888,
+          1248.6755,
+          1222.8515
         ],
-        "avg_decode_ms": 1041.5103,
-        "decode_throughput_tok_s": 0.96
+        "avg_decode_ms": 1236.3046,
+        "decode_throughput_tok_s": 0.81
       },
-      "decode_ms": 0.1158,
-      "total_ms": 46867.4998,
-      "ram_before_mb": 5625.0,
-      "ram_peak_mb": 5625.0,
-      "ram_after_mb": 5623.7,
-      "generated_text": "",
+      "decode_ms": 0.1187,
+      "total_ms": 60017.2701,
+      "ram_before_mb": 4542.3,
+      "ram_peak_mb": 4542.3,
+      "ram_after_mb": 4538.2,
+      "generated_text": "Skateboard",
       "accuracy": {
         "exact_match": 0.0,
         "contains": 0.0,
         "token_f1": 0.0,
-        "bleu": 0.0,
+        "bleu": 0.18393972058572117,
         "rouge_l": 0.0
       },
       "components": {
         "vision_encoder": {
-          "total_ms": 14106.13,
-          "percentage": 92.9,
+          "total_ms": 18553.53,
+          "percentage": 93.7,
           "count": 400
         },
         "vision_normalization": {
-          "total_ms": 35.33,
+          "total_ms": 49.5,
           "percentage": 0.2,
           "count": 6
         },
         "projection": {
-          "total_ms": 23.4,
-          "percentage": 0.2,
+          "total_ms": 25.09,
+          "percentage": 0.1,
           "count": 3
         },
         "text_embeddings": {
@@ -391,28 +391,28 @@
           "count": 1
         },
         "other": {
-          "total_ms": 0.23,
+          "total_ms": 0.32,
           "percentage": 0.0,
           "count": 1
         },
         "normalization": {
-          "total_ms": 7.3,
+          "total_ms": 8.18,
           "percentage": 0.0,
           "count": 49
         },
         "attention": {
-          "total_ms": 102.41,
+          "total_ms": 137.75,
           "percentage": 0.7,
           "count": 96
         },
         "feedforward": {
-          "total_ms": 635.22,
-          "percentage": 4.2,
+          "total_ms": 712.01,
+          "percentage": 3.6,
           "count": 96
         },
         "output": {
-          "total_ms": 272.4,
-          "percentage": 1.8,
+          "total_ms": 317.96,
+          "percentage": 1.6,
           "count": 1
         }
       }
