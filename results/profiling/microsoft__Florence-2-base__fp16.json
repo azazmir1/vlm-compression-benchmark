@@ -1,0 +1,442 @@
+{
+  "model_id": "microsoft/Florence-2-base",
+  "method": "fp16",
+  "family": "florence2",
+  "device": "cuda:0",
+  "num_params_M": 231.4,
+  "load_time_s": 4.21,
+  "gpu_mem_before_mb": 0.0,
+  "gpu_mem_after_mb": 441.7,
+  "gpu_mem_load_mb": 441.7,
+  "num_samples": 50,
+  "num_warmup": 3,
+  "max_tokens": 30,
+  "accuracy": {
+    "exact_match": 0.0,
+    "contains": 0.06,
+    "token_f1": 0.0,
+    "bleu": 0.0,
+    "rouge_l": 0.0
+  },
+  "timing": {
+    "avg_preprocessing_ms": 33.28,
+    "avg_prefill_ms": 269.39,
+    "avg_decode_ms": 502.75,
+    "avg_total_generation_ms": 772.14,
+    "avg_decode_detokenize_ms": 0.35,
+    "avg_total_ms": 805.77,
+    "avg_tokens_generated": 15.5,
+    "avg_input_tokens": 14.3
+  },
+  "throughput": {
+    "avg_tok_s": 20.05,
+    "avg_decode_tok_s": 28.83,
+    "samples_per_s": 1.197
+  },
+  "memory": {
+    "gpu_peak_mb": 536.2,
+    "gpu_avg_mb": 459.8,
+    "avg_inference_peak_mb": 608.2
+  },
+  "gpu_util": {
+    "avg_pct": 0.0,
+    "peak_pct": 0.0
+  },
+  "tegrastats": {
+    "avg_power_w": 10.24,
+    "peak_power_w": 12.2,
+    "avg_gpu_temp_c": 53.5,
+    "peak_gpu_temp_c": 55.6,
+    "avg_cpu_temp_c": 51.0,
+    "peak_cpu_temp_c": 52.2,
+    "avg_ram_used_mb": 3794.7,
+    "peak_ram_used_mb": 3800,
+    "avg_gpu_util_pct": 43.9,
+    "peak_gpu_util_pct": 99.0,
+    "num_samples": 202
+  },
+  "sample_details": [
+    {
+      "preprocessing_ms": 35.2961,
+      "num_input_tokens": 12,
+      "token_timing": {
+        "num_tokens": 19,
+        "prefill_ms": 245.7451,
+        "decode_ms": 632.8033,
+        "total_ms": 878.5483,
+        "per_token_ms": [
+          245.7451,
+          34.4156,
+          33.5491,
+          33.4286,
+          34.6681,
+          34.6753,
+          34.7131,
+          37.1194,
+          36.3017,
+          35.3485,
+          35.9892,
+          37.0228,
+          34.7397,
+          36.3833,
+          35.1711,
+          34.7325,
+          34.7853,
+          34.6588,
+          35.1014
+        ],
+        "avg_decode_ms": 35.1557,
+        "decode_throughput_tok_s": 28.44
+      },
+      "decode_ms": 0.4149,
+      "total_ms": 914.2593,
+      "gpu_mem_before_mb": 454.2,
+      "gpu_mem_peak_mb": 608.2,
+      "gpu_mem_after_mb": 454.2,
+      "generated_text": "Where is he looking<poly><loc_233><loc_999><loc_766><loc_999><loc_766><loc_998><loc_233><loc_999></poly>",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l": 0.0
+      },
+      "components": {
+        "other": {
+          "total_ms": 118.74,
+          "percentage": 23.9,
+          "count": 591
+        },
+        "vision_encoder": {
+          "total_ms": 82.6,
+          "percentage": 16.6,
+          "count": 190
+        },
+        "vision_normalization": {
+          "total_ms": 14.15,
+          "percentage": 2.9,
+          "count": 28
+        },
+        "vision_mlp": {
+          "total_ms": 48.21,
+          "percentage": 9.7,
+          "count": 96
+        },
+        "vision_embeddings": {
+          "total_ms": 0.02,
+          "percentage": 0.0,
+          "count": 3
+        },
+        "projection": {
+          "total_ms": 0.05,
+          "percentage": 0.0,
+          "count": 1
+        },
+        "normalization": {
+          "total_ms": 54.32,
+          "percentage": 10.9,
+          "count": 362
+        },
+        "text_embeddings": {
+          "total_ms": 5.01,
+          "percentage": 1.0,
+          "count": 19
+        },
+        "attention": {
+          "total_ms": 78.13,
+          "percentage": 15.7,
+          "count": 456
+        },
+        "feedforward": {
+          "total_ms": 44.87,
+          "percentage": 9.0,
+          "count": 228
+        },
+        "output": {
+          "total_ms": 50.03,
+          "percentage": 10.1,
+          "count": 19
+        }
+      }
+    },
+    {
+      "preprocessing_ms": 33.3769,
+      "num_input_tokens": 16,
+      "token_timing": {
+        "num_tokens": 17,
+        "prefill_ms": 260.4344,
+        "decode_ms": 548.9645,
+        "total_ms": 809.3989,
+        "per_token_ms": [
+          260.4344,
+          33.6635,
+          33.0697,
+          33.7572,
+          33.4904,
+          33.532,
+          34.6715,
+          34.0151,
+          34.5358,
+          35.1391,
+          34.5194,
+          34.5737,
+          35.2547,
+          34.9796,
+          34.5693,
+          34.9695,
+          34.224
+        ],
+        "avg_decode_ms": 34.3103,
+        "decode_throughput_tok_s": 29.15
+      },
+      "decode_ms": 0.3439,
+      "total_ms": 843.1198,
+      "gpu_mem_before_mb": 454.2,
+      "gpu_mem_peak_mb": 608.2,
+      "gpu_mem_after_mb": 454.2,
+      "generated_text": "What are the people in the background doing<loc_232><loc_476><loc_770><loc_683>",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l": 0.0
+      },
+      "components": {
+        "other": {
+          "total_ms": 105.55,
+          "percentage": 22.6,
+          "count": 529
+        },
+        "vision_encoder": {
+          "total_ms": 89.06,
+          "percentage": 19.0,
+          "count": 190
+        },
+        "vision_normalization": {
+          "total_ms": 17.31,
+          "percentage": 3.7,
+          "count": 28
+        },
+        "vision_mlp": {
+          "total_ms": 48.18,
+          "percentage": 10.3,
+          "count": 96
+        },
+        "vision_embeddings": {
+          "total_ms": 0.02,
+          "percentage": 0.0,
+          "count": 3
+        },
+        "projection": {
+          "total_ms": 0.05,
+          "percentage": 0.0,
+          "count": 1
+        },
+        "normalization": {
+          "total_ms": 47.75,
+          "percentage": 10.2,
+          "count": 324
+        },
+        "text_embeddings": {
+          "total_ms": 4.32,
+          "percentage": 0.9,
+          "count": 17
+        },
+        "attention": {
+          "total_ms": 69.24,
+          "percentage": 14.8,
+          "count": 408
+        },
+        "feedforward": {
+          "total_ms": 39.64,
+          "percentage": 8.5,
+          "count": 204
+        },
+        "output": {
+          "total_ms": 46.54,
+          "percentage": 10.0,
+          "count": 17
+        }
+      }
+    },
+    {
+      "preprocessing_ms": 33.6034,
+      "num_input_tokens": 14,
+      "token_timing": {
+        "num_tokens": 15,
+        "prefill_ms": 270.3064,
+        "decode_ms": 479.5074,
+        "total_ms": 749.8138,
+        "per_token_ms": [
+          270.3064,
+          34.4676,
+          33.16,
+          33.4844,
+          33.8175,
+          33.4343,
+          33.6732,
+          33.8042,
+          34.2947,
+          34.2242,
+          35.3851,
+          34.8603,
+          35.034,
+          35.3601,
+          34.5079
+        ],
+        "avg_decode_ms": 34.2505,
+        "decode_throughput_tok_s": 29.2
+      },
+      "decode_ms": 0.3403,
+      "total_ms": 783.7575,
+      "gpu_mem_before_mb": 454.2,
+      "gpu_mem_peak_mb": 608.2,
+      "gpu_mem_after_mb": 454.2,
+      "generated_text": "What is he on top of<loc_389><loc_125><loc_638><loc_684>",
+      "accuracy": {
+        "exact_match": 0.0,
+        "contains": 0.0,
+        "token_f1": 0.0,
+        "bleu": 0.0,
+        "rouge_l": 0.0
+      },
+      "components": {
+        "other": {
+          "total_ms": 91.92,
+          "percentage": 21.0,
+          "count": 467
+        },
+        "vision_encoder": {
+          "total_ms": 91.88,
+          "percentage": 21.0,
+          "count": 190
+        },
+        "vision_normalization": {
+          "total_ms": 17.36,
+          "percentage": 4.0,
+          "count": 28
+        },
+        "vision_mlp": {
+          "total_ms": 52.68,
+          "percentage": 12.1,
+          "count": 96
+        },
+        "vision_embeddings": {
+          "total_ms": 0.02,
+          "percentage": 0.0,
+          "count": 3
+        },
+        "projection": {
+          "total_ms": 0.05,
+          "percentage": 0.0,
+          "count": 1
+        },
+        "normalization": {
+          "total_ms": 42.51,
+          "percentage": 9.7,
+          "count": 286
+        },
+        "text_embeddings": {
+          "total_ms": 3.92,
+          "percentage": 0.9,
+          "count": 15
+        },
+        "attention": {
+          "total_ms": 61.44,
+          "percentage": 14.1,
+          "count": 360
+        },
+        "feedforward": {
+          "total_ms": 34.46,
+          "percentage": 7.9,
+          "count": 180
+        },
+        "output": {
+          "total_ms": 40.71,
+          "percentage": 9.3,
+          "count": 15
+        }
+      }
+    }
+  ],
+  "components": {
+    "other": {
+      "total_ms": 4814.72,
+      "count": 24094,
+      "samples": 50,
+      "avg_ms": 96.29,
+      "percentage": 21.4
+    },
+    "vision_encoder": {
+      "total_ms": 4496.42,
+      "count": 9500,
+      "samples": 50,
+      "avg_ms": 89.93,
+      "percentage": 20.0
+    },
+    "vision_normalization": {
+      "total_ms": 845.25,
+      "count": 1400,
+      "samples": 50,
+      "avg_ms": 16.9,
+      "percentage": 3.8
+    },
+    "vision_mlp": {
+      "total_ms": 2777.59,
+      "count": 4800,
+      "samples": 50,
+      "avg_ms": 55.55,
+      "percentage": 12.4
+    },
+    "vision_embeddings": {
+      "total_ms": 1.01,
+      "count": 150,
+      "samples": 50,
+      "avg_ms": 0.02,
+      "percentage": 0.0
+    },
+    "projection": {
+      "total_ms": 2.56,
+      "count": 50,
+      "samples": 50,
+      "avg_ms": 0.05,
+      "percentage": 0.0
+    },
+    "normalization": {
+      "total_ms": 2226.71,
+      "count": 14756,
+      "samples": 50,
+      "avg_ms": 44.53,
+      "percentage": 9.9
+    },
+    "text_embeddings": {
+      "total_ms": 202.81,
+      "count": 774,
+      "samples": 50,
+      "avg_ms": 4.06,
+      "percentage": 0.9
+    },
+    "attention": {
+      "total_ms": 3190.94,
+      "count": 18576,
+      "samples": 50,
+      "avg_ms": 63.82,
+      "percentage": 14.2
+    },
+    "feedforward": {
+      "total_ms": 1821.32,
+      "count": 9288,
+      "samples": 50,
+      "avg_ms": 36.43,
+      "percentage": 8.1
+    },
+    "output": {
+      "total_ms": 2110.39,
+      "count": 774,
+      "samples": 50,
+      "avg_ms": 42.21,
+      "percentage": 9.4
+    }
+  }
+}
